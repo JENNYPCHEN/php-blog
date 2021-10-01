@@ -1259,7 +1259,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="O767KZgbRcu08Ro2IDvJ" name="class diagram">
-        <mxGraphModel dx="592" dy="357" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="336" dy="357" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="gdSaFjA3N8zEZ9fKeRR8-0"/>
                 <mxCell id="gdSaFjA3N8zEZ9fKeRR8-1" parent="gdSaFjA3N8zEZ9fKeRR8-0"/>
@@ -1334,6 +1334,9 @@
                 </mxCell>
                 <mxCell id="zRfYEAlNPZ1K7EOUWBt4-8" value="0..*" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" parent="gdSaFjA3N8zEZ9fKeRR8-1" vertex="1">
                     <mxGeometry x="535" y="240" width="30" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="jnRCrgpyZO859UyOtg5g-0" value="&lt;b&gt;Class diagram&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;" vertex="1" parent="gdSaFjA3N8zEZ9fKeRR8-1">
+                    <mxGeometry x="10" y="10" width="100" height="20" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
