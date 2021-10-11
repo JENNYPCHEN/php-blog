@@ -1,0 +1,15 @@
+{
+    "name": "33669/project5php-blog",
+    "autoload": {
+        "psr-4": {
+            "app\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jenny Chen",
+            "email": "pelgrims.chenchingyi@gmail.com"
+        }
+    ],
+    "require": {}
+}
