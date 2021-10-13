@@ -40,11 +40,11 @@
                 <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
                 <li class="list-inline-item"><a href="#"><i class="fab fa-github"></i></a></li>
             </ul>
-            <a class="text-small mb-0 h6 d-none d-lg-block" href="index.php?action=login"><i class="fas fa-sign-in-alt"></i> Signup/Login</a>
+            <a class="text-small mb-0 h6 d-none d-lg-block" href="index.php?action=loginpage"><i class="fas fa-sign-in-alt"></i> Signup/Login</a>
         </div>
     </nav>
     <!--navbar-->
-    <div class="text-center d-block d-lg-none link "><a href="index.php?action=login"><i class="fas fa-sign-in-alt"></i> Signup/Login</a></div>
+    <div class="text-center d-block d-lg-none link "><a href="index.php?action=loginpage"><i class="fas fa-sign-in-alt"></i> Signup/Login</a></div>
     <nav class="navbar navbar-expand-lg navbar-light border-top border-bottom border-light link sticky-top navcolor">
         <div class="container-fluid">
             <button class="navbar-toggler  " type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>

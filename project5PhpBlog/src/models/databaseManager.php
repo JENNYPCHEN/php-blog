@@ -1,10 +1,10 @@
 <?php
 
-namespace app\src\models;
+namespace app\Models;
 
 use \PDO;
 
-class databaseManager
+class DatabaseManager
 {
 
     protected function dbConnect()
