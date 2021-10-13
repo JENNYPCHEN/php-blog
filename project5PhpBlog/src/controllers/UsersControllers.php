@@ -12,28 +12,31 @@ class UsersControllers
 
     function newUser($firstName, $lastName, $username, $emailAddress, $password, $confirmPassword)
     {
-      $usernameError = $emailAddressError = $passwordError = $confirmPasswordError = "";
+
+        $usernameError = "";
+        $emailAddressError = "";
+        $passwordError = "";
+        $confirmPasswordError = "";
+
         $nameValidation = "/^[a-zA-Z0-9]*$/";
         $passwordValidation = "/^(.{0-7}|[^a-z]*|[^\d]*)$/i";
 
         if (!preg_match($nameValidation, $username)) {
             $usernameError = "Name can only contain letters and numbers";
         }
-          if (!filter_var($emailAddress, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($emailAddress, FILTER_VALIDATE_EMAIL)) {
             $emailAddressError = "Please enter the correct format.";
         }
         if (!preg_match($passwordValidation, $password)) {
             $passwordError = "Password must have at least one numeric value.";
         } elseif (strlen($password) < 6) {
             $passwordError = "Password must have at least 8 characters.";
-        }
-        if ($password != $confirmPassword) {
+        } elseif ($password != $confirmPassword) {
             $confirmPasswordError = "Passwords do not match, please try again.";
         }
-        if (!empty($usernameError) OR !empty($emailAddressError) OR !empty($passwordError) OR !empty($confirmPasswordError)) {
+        if (!empty($usernameError) or !empty($emailAddressError) or !empty($passwordError) or !empty($confirmPasswordError)) {
             require('src/views/frontend/signup.php');
         }
-
         if (empty($usernameError) && empty($emailAddressError) && empty($passwordError) && empty($confirmPasswordError)) {
 
             $userManager = new userManager;
@@ -45,5 +48,4 @@ class UsersControllers
             }
         }
     }
-
 }

@@ -4,18 +4,19 @@
 <div style="background-image: url('public/img/sea.png');">
 <!--signup-->
 <div class="container-fluid">
+
   <form class="ms-5 me-5 needs-validation" id="signup-form" action="index.php?action=signup" method="post">
     <h1 class="h3 p-4 fw-normal text-center cardtitle">Sign up</h1>
     <div class="row">
       <div class="col col-12 col-sm-6 mb-3 has-validation">
-        <input type="text" class="form-control" name="firstName" placeholder="First name" value="<?=$firstName ?>" required>
-        <div class="invalid-feedback">
+        <input type="text" class="form-control" name="firstName" placeholder="First name" value="<?=$firstName ?>"required>
+        <div class="error">
           <?php echo $firstNameError ?>
         </div>
       </div>
       <div class="col col-12 col-sm-6 mb-3 has-validation">
         <input type="text" class="form-control" name="lastName" placeholder="Last name" value="<?=$lastName ?>"required> 
-        <div class=" invalid-feedback">
+        <div class="error">
         <?php echo $lastNameError ?>
       </div>
     </div>
@@ -23,27 +24,27 @@
 <div class="row">
   <div class="col col-12 col-sm-6 mb-3 has-validation">
     <input type="text" class="form-control" name="username" placeholder="Username" value="<?=$username?>"required>
-  <div class=" invalid-feedback">
+  <div class=" error">
     <?php echo $usernameError ?>
   </div>
 </div>
 <div class="col col-12 col-sm-6 mb-3 has-validation">
   <input type="email" class="form-control" name="emailAddress" placeholder="email@example.com" value="<?=$emailAddress?>"required>
-      <div class=" invalid-feedback">
+      <div class=" error">
   <?php echo $emailAddressError ?>
 </div>
 </div>
 </div>
 <div class="row">
   <div class="col col-12 col-sm-6 mb-3 has-validation">
-    <input type="password" class="form-control" name="password" placeholder="Password"required>
-    <div class="invalid-feedback">
+    <input type="password" class="form-control" name="password" placeholder="Password" required>
+    <div class="error">
       <?php echo $passwordError ?>
     </div>
   </div>
   <div class="col col-12 col-sm-6 mb-3 has-validation">
-    <input type="password" class="form-control" name="confirmPassword" placeholder="Repeat password"required>
-    <div class="invalid-feedback">
+    <input type="password" class="form-control" name="confirmPassword" placeholder="Repeat password" required>
+    <div class="error">
       <?php echo $confirmPasswordError ?>
     </div>
   </div>
