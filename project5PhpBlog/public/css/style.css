@@ -195,3 +195,14 @@ color: #c39c62!important;
 .link2 a:hover{
   color:#575353;
 }
+
+.error {
+  color: red;
+  font-weight: 400;
+  display: block;
+  padding: 6px 0;
+  font-size: 14px;}
+
+  .successmessage{
+    margin-bottom: 20px;font-size: 15px;color: green;
+  }

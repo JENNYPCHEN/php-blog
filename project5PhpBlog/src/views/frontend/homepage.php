@@ -1,5 +1,6 @@
 <?php $title = 'ChingYi P.C | Personal Blog'; ?>
 <?php ob_start(); ?>
+
 <!--banner-->
 <div class="pb-4 "><img class="img-fluid" src="public/img/sea.png" alt="banner" /></div>
 <!--blog-->
