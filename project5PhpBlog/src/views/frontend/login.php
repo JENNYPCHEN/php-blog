@@ -1,8 +1,15 @@
+<?php session_start(); ?>
 <?php $title = 'ChingYi P.C | Personal Blog | login'; ?>
 <?php ob_start(); ?>
 <!--background-->
 <div style="background-image: url('public/img/sea.png');">
     <!--login-->
+    <?php if (isset($_SESSION['successmessage']) && !empty($_SESSION['successmessage'])) { ?>
+                    <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?php echo $_SESSION['successmessage']; ?></div>
+                <?php
+                    unset($_SESSION['successmessage']);
+                }
+                ?>
     <form class="ms-5 me-5 needs-validation">
         <h1 class="h3 p-4 fw-normal text-center cardtitle">Login</h1>
 

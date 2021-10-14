@@ -202,3 +202,7 @@ color: #c39c62!important;
   display: block;
   padding: 6px 0;
   font-size: 14px;}
+
+  .successmessage{
+    margin-bottom: 20px;font-size: 15px;color: green;
+  }

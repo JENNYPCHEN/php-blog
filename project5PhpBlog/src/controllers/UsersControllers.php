@@ -17,9 +17,11 @@ class UsersControllers
         $emailAddressError = "";
         $passwordError = "";
         $confirmPasswordError = "";
+        $error="";
+        
 
         $nameValidation = "/^[a-zA-Z0-9]*$/";
-        $passwordValidation = "/^(.{0-7}|[^a-z]*|[^\d]*)$/i";
+        $passwordValidation = "/^(.{0,7}|[^a-z]*|[^\d]*)$/i";
 
         if (!preg_match($nameValidation, $username)) {
             $usernameError = "Name can only contain letters and numbers";
@@ -42,9 +44,17 @@ class UsersControllers
             $userManager = new userManager;
             $newUser = $userManager->signup($firstName, $lastName, $username, $emailAddress, $password);
             if ($newUser === false) {
-                echo 'Server problem.Please try again later';
+            
+                $error="The username or email address has been used.";
+                require('src/views/frontend/signup.php');
             } else {
+                session_start();
+                $_SESSION['successmessage'] = "You have successfully signed up.Please login.";
                 header('Location:index.php?action=loginpage');
+                exit();
+                
+            
+                
             }
         }
     }

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php $title = 'ChingYi P.C | Personal Blog'; ?>
 <?php ob_start(); ?>
 <!--banner-->
@@ -29,11 +30,12 @@
                 </div>
                 <!-- Leave comment-->
                 <?php if (isset($_SESSION['success_message']) && !empty($_SESSION['success_message'])) { ?>
-                    <div class="success-message" style="margin-bottom: 20px;font-size: 15px;color: green;"><?php echo $_SESSION['success_message']; ?></div>
-                <?php unset($_SESSION['success_message']);
-                } ?>
+                    <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?php echo $_SESSION['success_message']; ?></div>
+                <?php
+                    unset($_SESSION['success_message']);
+                }
+                ?>
 
-        
                 <form method="post" action="index.php?action=leavecomment&amp;id=<?= $post['id'] ?>">
                     <h3 class="cardtitle">Leave a comment</h3>
                     <div class="row mb-3">

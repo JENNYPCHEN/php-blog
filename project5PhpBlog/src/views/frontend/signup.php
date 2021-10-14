@@ -7,6 +7,7 @@
 
   <form class="ms-5 me-5 needs-validation" id="signup-form" action="index.php?action=signup" method="post">
     <h1 class="h3 p-4 fw-normal text-center cardtitle">Sign up</h1>
+    <div class="error"><?php echo $error ?></div>
     <div class="row">
       <div class="col col-12 col-sm-6 mb-3 has-validation">
         <input type="text" class="form-control" name="firstName" placeholder="First name" value="<?=$firstName ?>"required>
