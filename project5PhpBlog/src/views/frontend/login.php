@@ -10,21 +10,21 @@
                     unset($_SESSION['successmessage']);
                 }
                 ?>
-    <form class="ms-5 me-5 needs-validation">
+    <form class="ms-5 me-5 needs-validation" action="index.php?action=login" method="post">
         <h1 class="h3 p-4 fw-normal text-center cardtitle">Login</h1>
 
         <div class="form-floating ms-5 me-5 has-validation">
-            <input type="email" class="form-control ps-5 pe-5 mb-3" id="floatingInput" placeholder="name@example.com" required>
-            <label for="floatingInput">Email address</label>
-            <div class="invalid-feedback">
-                Please enter the correct username and password.
+            <input type="text" class="form-control ps-5 pe-5 mb-3" id="floatingInput" placeholder="username" name="username" required>
+            <label for="floatingInput">Username</label>
+            <div class="error">
+            <?php echo $error ?><!--Please enter the correct username and password.-->
             </div>
         </div>
         <div class="form-floating ms-5 me-5 has-validation">
-            <input type="password" class="form-control ps-5 pe-5 mb-3" id="floatingPassword" placeholder="Password" required>
+            <input type="password" class="form-control ps-5 pe-5 mb-3" id="floatingPassword" placeholder="Password" name="password" required>
             <label for="floatingPassword">Password</label>
-            <div class="invalid-feedback">
-                Please enter the correct username and password.
+            <div class="error">
+            <?php echo $error ?><!--Please enter the correct username and password.-->
             </div>
             <button class="w-100 btn button ps-5 pe-5 mb-3 " type="submit">Sign in</button>
         </div>
