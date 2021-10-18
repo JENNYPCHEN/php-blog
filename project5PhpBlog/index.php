@@ -36,6 +36,17 @@ try {
                 $UsersControllers = new UsersControllers();
                 $UsersControllers->newUser(trim($_POST['firstName']), trim($_POST['lastName']), trim($_POST['username']), trim($_POST['emailAddress']), trim($_POST['password']), trim($_POST['confirmPassword']));
             }
+        } elseif ($_GET['action'] == 'login') {
+            if (!empty($_POST['username']) && !empty($_POST['password'])) {
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                $UsersControllers = new UsersControllers();
+                $UsersControllers->currentUser(trim($_POST['username']), trim($_POST['password']));
+            }
+        } elseif ($_GET['action'] == 'logout') {
+        
+                $UsersControllers = new UsersControllers();
+                $UsersControllers->logout();
+            
         }
     } else {
         $FrontendControllers = new FrontendControllers();

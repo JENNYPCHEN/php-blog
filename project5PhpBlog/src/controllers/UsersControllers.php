@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Database;
 use App\Models\UserManager;
+use \PDO;
 
 
 
@@ -17,8 +18,7 @@ class UsersControllers
         $emailAddressError = "";
         $passwordError = "";
         $confirmPasswordError = "";
-        $error="";
-        
+        $error = "";
 
         $nameValidation = "/^[a-zA-Z0-9]*$/";
         $passwordValidation = "/^(.{0,7}|[^a-z]*|[^\d]*)$/i";
@@ -40,22 +40,51 @@ class UsersControllers
             require('src/views/frontend/signup.php');
         }
         if (empty($usernameError) && empty($emailAddressError) && empty($passwordError) && empty($confirmPasswordError)) {
-
+            $password = md5($password);
             $userManager = new userManager;
             $newUser = $userManager->signup($firstName, $lastName, $username, $emailAddress, $password);
             if ($newUser === false) {
-            
-                $error="The username or email address has been used.";
+
+                $error = "The username or email address has been used.";
                 require('src/views/frontend/signup.php');
             } else {
                 session_start();
                 $_SESSION['successmessage'] = "You have successfully signed up.Please login.";
                 header('Location:index.php?action=loginpage');
                 exit();
-                
-            
-                
             }
         }
+    }
+
+    public function currentUser($username, $password)
+    {
+        /* $password1=md5($password);*/
+    
+        $userManager = new userManager;
+        $currentUser = $userManager->login($username, $password);
+        /*$existUser = ($statement->fetchColumn() > 0) ? true : false;*/
+    
+
+       if ($currentUser === false) {
+            $error = "Please enter the correct username and password.";
+            require('src/views/frontend/login.php');
+        }else {
+            session_start();
+            if ($currentUser["user_type_id"] == 2) {
+                $_SESSION['username'] = $username;
+                header('Location:index.php');
+            } elseif ($currentUser["user_type_id"] == 1) {
+               $_SESSION['username'] = $username;
+                require('src/views/backend/dashboard.php');
+                exit();
+            }
+        }
+    }
+    public function logout()
+    {
+        session_start();
+        unset($_SESSION['username']);
+        session_destroy();
+        header("location: index.php");
     }
 }

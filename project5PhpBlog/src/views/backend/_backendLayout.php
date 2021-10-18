@@ -9,14 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!-- Icon in title bar-->
-    <link rel="icon" href="img/icon.png" type="image/icon type">
+    <link rel="icon" href="public/img/icon.png" type="image/icon type">
     <!-- Bootstrap CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Google fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Satisfy&amp;display=swap">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" type="text/css" href="/p5phpblog/public/css/style.css?v=<?php echo time(); ?>" <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="public/css/style.css?v=<?php echo time(); ?>" <!-- Font Awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!--tinyMCE-->
     <script src="https://cdn.tiny.cloud/1/luaptjjzddcgpjnq6jj9axtn2bq4giqp07fre7mj00rivpsr/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -35,7 +35,7 @@
         <div class="col-lg-2 sidebarcolor">
 
             <!--logo-->
-            <div class="text-center mt-5 mb-5"><a class="navbar-brand" href="index.html"><img src="/p5phpblog/public/img/logo_transparent.png" alt="logo" width="150"></a></div>
+            <div class="text-center mt-5 mb-5"><a class="navbar-brand" href="index.html"><img src="public/img/logo_transparent.png" alt="logo" width="150"></a></div>
 
             <!--navbar-->
             <ul class="nav d-flex align-items-start flex-column  me-5 mt-5 mb-5 d-none d-lg-block ps-5 ">
@@ -132,7 +132,7 @@
 <footer class="py-4"">
     <div class=" container text-center">
     <div class="row align-items-center">
-        <div class="col-md-4 text-lg-left"><img src="img/logo_transparent.png" alt="..." width="120"></div>
+        <div class="col-md-4 text-lg-left"><img src="public/img/logo_transparent.png"  alt="logo" width="120"></div>
         <div class="col-md-4 text-center">
             <div class="d-flex align-items-center flex-wrap justify-content-center">
                 <ul class="list-inline small mb-0 text-white">
