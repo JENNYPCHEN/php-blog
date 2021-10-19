@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Database;
 use App\Models\UserManager;
+use App\Models\PostManager;
 use \PDO;
 
 
@@ -59,24 +60,26 @@ class UsersControllers
     public function currentUser($username, $password)
     {
         /* $password1=md5($password);*/
-    
+
         $userManager = new userManager;
         $currentUser = $userManager->login($username, $password);
-        /*$existUser = ($statement->fetchColumn() > 0) ? true : false;*/
-    
 
-       if ($currentUser === false) {
+
+        if ($currentUser === false) {
             $error = "Please enter the correct username and password.";
             require('src/views/frontend/login.php');
-        }else {
+        } else {
             session_start();
             if ($currentUser["user_type_id"] == 2) {
                 $_SESSION['username'] = $username;
                 header('Location:index.php');
             } elseif ($currentUser["user_type_id"] == 1) {
-               $_SESSION['username'] = $username;
+                $_SESSION['user_type_id'] =$currentUser["user_type_id"];
+                $_SESSION['username'] = $username;
+                $postManager = new PostManager();
+                $posts = $postManager->getPosts($keyword);
                 require('src/views/backend/dashboard.php');
-                exit();
+                
             }
         }
     }

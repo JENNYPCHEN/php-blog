@@ -1,3 +1,5 @@
+<?php $title = 'ChingYi P.C | Personal Blog | Dashboard'; ?>
+<?php ob_start(); ?>
 <!--Post-->
 
 <body>
@@ -28,3 +30,6 @@
 
 </body>
 </div>
+<?php $content = ob_get_clean(); ?>
+
+<?php require('src/views/backend/_backendLayout.php'); ?>

@@ -35,4 +35,12 @@ class PostManager extends DatabaseManager
         $post = $statement->fetch();
         return $post;
     }
+
+    function deletePost($id){
+        $db = $this->dbConnect();
+        $statement=$db->prepare ('DELETE FROM `post` WHERE id= :id');
+        $statement->bindValue(':id',$id);
+        return $statement->execute();
+
+    }
 }

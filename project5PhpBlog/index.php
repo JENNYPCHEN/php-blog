@@ -1,11 +1,10 @@
 <?php
+session_start();
 require_once  __DIR__ . "/vendor/autoload.php";
 
 use App\controllers\UsersControllers;
 use App\controllers\FrontendControllers;
 use App\controllers\BackendControllers;
-
-
 
 
 try {
@@ -16,7 +15,16 @@ try {
         } elseif ($_GET['action'] == 'signuppage') {
             $FrontControllers = new FrontendControllers();
             $FrontControllers->signupPage();
-        } elseif ($_GET['action'] == 'search') {
+        } elseif ($_GET['action'] == 'dashboard' && $_SESSION['user_type_id'] == 1) {
+            $BackendControllers = new BackendControllers();
+            $BackendControllers->dashboardPage();
+        } elseif ($_GET['action']=='editPage'){
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $$BackendControllers = new BackendControllers();
+            $BackendControllers->editPage($_GET['id']);
+        }
+    }
+        elseif ($_GET['action'] == 'search') {
             $FrontendControllers = new FrontendControllers();
             $FrontendControllers->listPosts();
         } elseif ($_GET['action'] == 'post') {
@@ -43,10 +51,11 @@ try {
                 $UsersControllers->currentUser(trim($_POST['username']), trim($_POST['password']));
             }
         } elseif ($_GET['action'] == 'logout') {
-        
-                $UsersControllers = new UsersControllers();
-                $UsersControllers->logout();
-            
+            $UsersControllers = new UsersControllers();
+            $UsersControllers->logout();
+        } elseif ($_GET['action'] == 'deletePost') {
+            $BackendControllers = new BackendControllers();
+            $BackendControllers->deletePost($_POST['id']);
         }
     } else {
         $FrontendControllers = new FrontendControllers();

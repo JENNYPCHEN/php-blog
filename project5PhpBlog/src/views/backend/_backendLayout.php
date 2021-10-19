@@ -1,10 +1,14 @@
+<?php session_start(); ?>
+<?php $_SESSION['user_type_id']?>
+<?php $_SESSION['username'] ?>
+<?php $title = 'ChingYi P.C | Personal Blog | Dashboard'; ?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ChingYi P.C | Personal Blog</title>
+    <title><?=$title?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -42,10 +46,10 @@
                 <hr>
 
                 <li class="nav-item">
-                    <a class="nav-link pb-2 " href="index.php">Home</a>
+                    <a class="nav-link pb-2 " <a href="index.php" target="_blank" rel="noopener noreferrer">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link pb-2 " href="dashboard.php">Dashboard</a>
+                    <a class="nav-link pb-2 " href="index.php?action=dashboard">Dashboard</a>
                 </li>
                 <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Posts
@@ -63,7 +67,7 @@
                     <a class="nav-link pb-2" href="dashboard.php/#users">Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link pb-2 " href="#">Logout</a>
+                    <a class="nav-link pb-2 " href="index.php?action=logout">Logout</a>
                 </li>
             </ul>
 
@@ -78,7 +82,7 @@
                 <div class="collapse navbar-collapse " id="navbar">
                     <ul class="navbar-nav mx-auto reply">
                         <li class="nav-item">
-                            <a class="nav-link pb-2 " href="index.php">Home</a>
+                            <a class="nav-link pb-2 " hhref="index.php" target="_blank" rel="noopener noreferrer">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="dashboard.php">Dashboard</a>
@@ -99,7 +103,7 @@
                             <a class="nav-link" href="#users">Users</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Logout</a>
+                            <a class="nav-link" href="index.php?action=logout">Logout</a>
                         </li>
                     </ul>
                 </div>

@@ -1,7 +1,8 @@
-<?php $title = 'ChingYi P.C | Personal Blog | Dashboard'; ?>
+<?php session_start(); ?>
 <?php ob_start(); ?>
 <!--Post-->
 <h2 class="mb-3 m-1 admin-title" id="posts">Posts <button type="button" class="btn btn-sm button2">New Post</button></h2>
+
 <div class="table-responsive table-bordered m-1 mb-3">
     <table class="table table-hover blogtext  " id="posts"">
     <thead>
@@ -15,21 +16,29 @@
         </tr>
         </thead>
         <tbody>
+        <?php
+          while ($post = $posts->fetch()) {
+          ?>
             <tr>
-                <th scope="row">1</th>
-                <td class="tabled">Madffddffdrk</td>
-                <td class="tabled">Otfdfdfdfdfd fcccc ccccccddd dddd dddd ddddfdfd scc ccccc cccc cccc ssfd fdfdfddft</td>
-                <td>Madffddffdrk</td>
-                <td>01/01/2121</td>
+                <th scope="row"><?php echo ($post['id']) ?></th>
+                <td class="tabled"><?php echo ($post['title']) ?></td>
+                <td class="tabled"><?php echo ($post['content']) ?></td>
+                <td class="tabled"><?php echo ($post['category']) ?></td>
+                <td class="tabled"><?php echo ($post['creation_date']) ?></td>
                 <td>
-                    <button type="button" class="btn btn-sm button2 m-1" href="readpost.php">View</button>
+                    <a href="index.php?action=post&id=<?= $post['id'] ?>" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-sm button2 m-1"  >View</button></a>
                     <button type="button" class="btn btn-sm button2 m-1">Edit</button>
-                    <button type="button" class="btn  btn-sm btn-danger m-1">Delete</button>
-                </td>
+                    <form method="post" action="index.php?action=deletePost&id=<?= $post['id'] ?>" style="display:inline-block" onclick="return confirm('Are you sure to delete?')" ><input name="id" type="hidden" value="<?=$post['id']?>"><button type="submit" class="btn  btn-sm btn-danger m-1">Delete</button></form>
+                             </td>
             </tr>
+            <?php
+          }
+          ?>
+       
+
         </tbody>
     </table>
-</div>
+</div> 
 
 <!--comments-->
 <h2 class="mb-3 m-1  admin-title" id="comments">Comments</h2>
