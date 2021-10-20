@@ -38,13 +38,24 @@ try {
             if (!empty($_POST['author']) && !empty($_POST['comment'])) {
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                 $FrontendControllers = new FrontendControllers();
-                $FrontendControllers->addComment($_GET['id'], trim($_POST['author']), trim($_POST['comment']),$_SESSION['id']);
+                $FrontendControllers->addComment($_GET['id'], trim($_POST['author']), trim($_POST['comment']), $_SESSION['id']);
             }
         } elseif ($_GET['action'] == 'signup') {
-            if (!empty($_POST['firstName']) && !empty($_POST['lastName']) && !empty($_POST['username']) && !empty($_POST['emailAddress']) && !empty($_POST['password']) && !empty($_POST['confirmPassword'])) {
+            if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['username']) && isset($_POST['emailAddress']) && isset($_POST['password']) && isset($_POST['confirmPassword'])) {
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-                $UsersControllers = new UsersControllers();
-                $UsersControllers->newUser(trim($_POST['firstName']), trim($_POST['lastName']), trim($_POST['username']), trim($_POST['emailAddress']), trim($_POST['password']), trim($_POST['confirmPassword']));
+                $user = [
+                    'firstName' => trim($_POST['firstName']),
+                    'lastName' => trim($_POST['lastName']),
+                    'username' => trim($_POST['username']),
+                    'emailAddress' => trim($_POST['emailAddress']),
+                    'password' => trim($_POST['password']),
+                    'confirmPassword' => trim($_POST['confirmPassword'])
+                ];
+
+                $usersControllers = new UsersControllers();
+                $usersControllers->newUser($user);
+              
+
             }
         } elseif ($_GET['action'] == 'login') {
             if (!empty($_POST['username']) && !empty($_POST['password'])) {
@@ -60,8 +71,8 @@ try {
             $BackendControllers->deletePost($_POST['id']);
         } elseif ($_GET['action'] == 'updatePost') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-            $BackendControllers = new BackendControllers;
-                $BackendControllers->updatePost($_GET['id'], htmlspecialchars($_POST['title']), htmlspecialchars($_POST['category']), htmlspecialchars($_POST['chapo']), $_POST['content'],$_SESSION['id']);
+                $BackendControllers = new BackendControllers;
+                $BackendControllers->updatePost($_GET['id'], htmlspecialchars($_POST['title']), htmlspecialchars($_POST['category']), htmlspecialchars($_POST['chapo']), $_POST['content'], $_SESSION['id']);
             }
         } elseif ($_GET['action'] == 'createPost') {
             $BackendControllers = new BackendControllers();

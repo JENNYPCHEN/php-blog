@@ -13,19 +13,19 @@
                 <div class="row mb-5">
                     <div class="col-lg-12 text-center">
                         <ul class="list-inline">
-                            <li class="list-inline-item mr-2 category font-weight-normal"> <?php echo $post['category'] ?> </li>
-                            <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo $post['user_name'] ?></li>
-                            <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo $post['creation_date'] ?></li>
+                            <li class="list-inline-item mr-2 category font-weight-normal"> <?php echo $post->getCategory();?> </li>
+                            <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo $post->getUser_name(); ?></li>
+                            <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo $post->getCreation_date(); ?></li>
                         </ul>
                     </div>
                     <div class="col-lg-12 text-center">
-                        <h2 class="h3 mb-4"> <a class="d-block blogtitle" href=""><?php echo $post['title'] ?></a></h2>
-                        <p class="blogtext"><?php echo $post['chapo'] ?></p>
+                        <h2 class="h3 mb-4"> <a class="d-block blogtitle" href=""><?php echo $post->getTitle(); ?></a></h2>
+                        <p class="blogtext"><?php echo $post->getChapo();?></p>
                     </div>
                     <div class="col-lg-12 text-center"><a class="d-block post-trending mb-4" href=""><img class="img-fluid w-100" src="public/img/blogimagesample.jpg" alt="" /></a>
                     </div>
                     <div class="col-lg-12">
-                        <p class="blogtext"><?php echo $post['content'] ?></p>
+                        <p class="blogtext"><?php echo $post->getContent();?></p>
                     </div>
                 </div>
                 <?php if (!empty($_SESSION['username'])) : ?>
@@ -36,7 +36,7 @@
                         unset($_SESSION['success_message']);
                     }
                     ?>
-                    <form method="post" action="index.php?action=leavecomment&amp;id=<?= $post['id'] ?>">
+                    <form method="post" action="index.php?action=leavecomment&amp;id=<?= $post->getId(); ?>">
                         <h3 class="cardtitle">Leave a comment</h3>
                         <div class="row mb-3">
                             <div class="col-lg-12 mb-3">
@@ -56,11 +56,11 @@
                 <!-- Post comments-->
                 <h3 class="h4 mb-4 cardtitle">Comments</h3>
 
-                <?php foreach ($comments as $i => $comment) { ?>
+                <?php foreach ($comments as $comment) { ?>
 
-                    <p class="small mb-0 date"><?= $comment['comment_creation_date'] ?></p>
-                    <h5 class="name"><?= htmlspecialchars($comment['author']) ?></h5>
-                    <p class="blogtext text-small mb-2"><?= htmlspecialchars($comment['comment']) ?></p>
+                    <p class="small mb-0 date"><?= $comment->getDateCreate()?></p>
+                    <h5 class="name"><?= htmlspecialchars($comment->getAuthor())?></h5>
+                    <p class="blogtext text-small mb-2"><?= htmlspecialchars($comment->getComment()) ?></p>
                     <div class="reply fs-6"><a href="#"><i class="fas fa-share mr-2"></i><strong>Reply</strong></a></div>
                 <?php } ?>
 

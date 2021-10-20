@@ -10,25 +10,21 @@
       <!--blogposts-->
       <div class="col-lg-9 mb-5 mb-lg-0" id="blogposts">
         <div class="row align-items-center mb-5">
-          <?php
-          while ($post = $posts->fetch()) {
-          ?>
-            <div class="col-lg-6"><a class="d-block post-trending mb-4" href=""><img class="img-fluid w-100" src="<?php echo ($post['image']) ?>" alt="" /></a>
+        <?php foreach ($posts as $post) { ?>
+            <div class="col-lg-6"><a class="d-block post-trending mb-4" href=""><img class="img-fluid w-100" src="" alt="" /></a>
             </div>
             <div class="col-lg-6">
               <ul class="list-inline">
-                <li class="list-inline-item mr-2 category font-weight-normal"><?php echo ($post['category']) ?></li>
-                <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo ($post['user_name']) ?></li>
-                <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo ($post['creation_date']) ?></li>
+                <li class="list-inline-item mr-2 category font-weight-normal"><?= $post->getCategory()?></li>
+                <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo $post->getUser_name()?></li>
+                <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo $post->getCreation_date()?></li>
               </ul>
-              <h2 class="h3 mb-4"> <a class="d-block blogtitle" href="post.html"><?php echo ($post['title']) ?></a></h2>
-              <p class="blogtext"><?php echo ($post['content']) ?></p>
-              <a class="p-0 read-more-btn" href="index.php?action=post&amp;id=<?= $post['id'] ?>"><span>Read more</span><i class="fas fa-long-arrow-alt-right"></i></a>
+              <h2 class="h3 mb-4"> <a class="d-block blogtitle" href="post.html"><?php echo $post->getTitle(); ?></a></h2>
+              <p class="blogtext"><?php echo $post->getContent()?></p>
+              <a class="p-0 read-more-btn" href="index.php?action=post&amp;id=<?= $post->getId(); ?>"><span>Read more</span><i class="fas fa-long-arrow-alt-right"></i></a>
             </div>
 
-          <?php
-          }
-          ?>
+          <?php } ?>
 
 
 
