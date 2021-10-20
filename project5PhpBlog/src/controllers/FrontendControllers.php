@@ -29,11 +29,11 @@ class FrontendControllers
         require('src/views/frontend/singlepost.php');
     }
 
-    public function addComment($postId, $author, $comment)
+    public function addComment($postId, $author, $comment,$userid)
     {
 
         $commentManager = new CommentManager();
-        $comments = $commentManager->createComment($postId, $author, $comment);
+        $comments = $commentManager->createComment($postId, $author, $comment,$userid);
         if ($comments === false) {
             echo 'Server problem.Please try again later';
         } else {

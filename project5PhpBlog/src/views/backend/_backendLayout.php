@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 <?php $_SESSION['user_type_id']?>
 <?php $_SESSION['username'] ?>
+<?php $_SESSION['id'] ?>
 <?php $title = 'ChingYi P.C | Personal Blog | Dashboard'; ?>
 <!DOCTYPE html>
 <html>
@@ -39,7 +40,7 @@
         <div class="col-lg-2 sidebarcolor">
 
             <!--logo-->
-            <div class="text-center mt-5 mb-5"><a class="navbar-brand" href="index.html"><img src="public/img/logo_transparent.png" alt="logo" width="150"></a></div>
+            <div class="text-center mt-5 mb-5"><a class="navbar-brand" href="index.php"><img src="public/img/logo_transparent.png" alt="logo" width="150"></a></div>
 
             <!--navbar-->
             <ul class="nav d-flex align-items-start flex-column  me-5 mt-5 mb-5 d-none d-lg-block ps-5 ">
@@ -55,16 +56,16 @@
                     Posts
                 </a>
                 <ul class="dropdown-menu sidebardropdown" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="dashboard.php">Posts</a>
+                    <li><a class="dropdown-item" href="index.php?action=dashboard#posts">Posts</a>
                     </li>
-                    <li><a class="dropdown-item" href="createpost.php">add a post</a>
+                    <li><a class="dropdown-item" href="index.php?action=newPostPage">add a post</a>
                     </li>
                 </ul>
                 <li class="nav-item">
-                    <a class="nav-link pb-2" href="dashboard.php/#comments">Comments</a>
+                    <a class="nav-link pb-2" href="index.php?action=dashboard#comments">Comments</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link pb-2" href="dashboard.php/#users">Users</a>
+                    <a class="nav-link pb-2" href="index.php?action=dashboard#users">Users</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link pb-2 " href="index.php?action=logout">Logout</a>
@@ -85,22 +86,22 @@
                             <a class="nav-link pb-2 " hhref="index.php" target="_blank" rel="noopener noreferrer">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="dashboard.php">Dashboard</a>
+                            <a class="nav-link" href="index.php?action=dashboard">Dashboard</a>
                         </li>
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Posts
                         </a>
                         <ul class="dropdown-menu sidebardropdown" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#posts">Posts</a>
+                            <li><a class="dropdown-item" href="index.php?action=dashboard#posts">Posts</a>
                             </li>
-                            <li><a class="dropdown-item" href="createPost.php">add an posts</a>
+                            <li><a class="dropdown-item" href="index.php?action=newPostPage">add an posts</a>
                             </li>
                         </ul>
                         <li class="nav-item">
-                            <a class="nav-link" href="#comments">Comments</a>
+                            <a class="nav-link" href="index.php?action=dashboard#comments">Comments</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#users">Users</a>
+                            <a class="nav-link" href="index.php?action=dashboard#users">Users</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?action=logout">Logout</a>

@@ -18,13 +18,15 @@ try {
         } elseif ($_GET['action'] == 'dashboard' && $_SESSION['user_type_id'] == 1) {
             $BackendControllers = new BackendControllers();
             $BackendControllers->dashboardPage();
-        } elseif ($_GET['action']=='editPage'){
+        } elseif ($_GET['action'] == 'editPage') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-            $$BackendControllers = new BackendControllers();
-            $BackendControllers->editPage($_GET['id']);
-        }
-    }
-        elseif ($_GET['action'] == 'search') {
+                $BackendControllers = new BackendControllers();
+                $BackendControllers->editPage();
+            }
+        } elseif ($_GET['action'] == 'newPostPage') {
+            $BackendControllers = new BackendControllers();
+            $BackendControllers->newPostPage();
+        } elseif ($_GET['action'] == 'search') {
             $FrontendControllers = new FrontendControllers();
             $FrontendControllers->listPosts();
         } elseif ($_GET['action'] == 'post') {
@@ -36,7 +38,7 @@ try {
             if (!empty($_POST['author']) && !empty($_POST['comment'])) {
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                 $FrontendControllers = new FrontendControllers();
-                $FrontendControllers->addComment($_GET['id'], trim($_POST['author']), trim($_POST['comment']));
+                $FrontendControllers->addComment($_GET['id'], trim($_POST['author']), trim($_POST['comment']),$_SESSION['id']);
             }
         } elseif ($_GET['action'] == 'signup') {
             if (!empty($_POST['firstName']) && !empty($_POST['lastName']) && !empty($_POST['username']) && !empty($_POST['emailAddress']) && !empty($_POST['password']) && !empty($_POST['confirmPassword'])) {
@@ -56,6 +58,14 @@ try {
         } elseif ($_GET['action'] == 'deletePost') {
             $BackendControllers = new BackendControllers();
             $BackendControllers->deletePost($_POST['id']);
+        } elseif ($_GET['action'] == 'updatePost') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+            $BackendControllers = new BackendControllers;
+                $BackendControllers->updatePost($_GET['id'], htmlspecialchars($_POST['title']), htmlspecialchars($_POST['category']), htmlspecialchars($_POST['chapo']), $_POST['content'],$_SESSION['id']);
+            }
+        } elseif ($_GET['action'] == 'createPost') {
+            $BackendControllers = new BackendControllers();
+            $BackendControllers->newPost(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['category']), htmlspecialchars($_POST['chapo']), $_POST['content'], $_SESSION['id']);
         }
     } else {
         $FrontendControllers = new FrontendControllers();

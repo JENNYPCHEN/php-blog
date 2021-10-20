@@ -28,28 +28,31 @@
                         <p class="blogtext"><?php echo $post['content'] ?></p>
                     </div>
                 </div>
-                <!-- Leave comment-->
-                <?php if (isset($_SESSION['success_message']) && !empty($_SESSION['success_message'])) { ?>
-                    <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?php echo $_SESSION['success_message']; ?></div>
-                <?php
-                    unset($_SESSION['success_message']);
-                }
-                ?>
-
-                <form method="post" action="index.php?action=leavecomment&amp;id=<?= $post['id'] ?>">
-                    <h3 class="cardtitle">Leave a comment</h3>
-                    <div class="row mb-3">
-                        <div class="col-lg-12 mb-3">
-                            <input class="form-control" type="text" name="author" placeholder="Full Name e.g. Jason Doe" value="<?= $author ?>" required>
+                <?php if (!empty($_SESSION['username'])) : ?>
+                    <!-- Leave comment-->
+                    <?php if (isset($_SESSION['success_message']) && !empty($_SESSION['success_message'])) { ?>
+                        <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?php echo $_SESSION['success_message']; ?></div>
+                    <?php
+                        unset($_SESSION['success_message']);
+                    }
+                    ?>
+                    <form method="post" action="index.php?action=leavecomment&amp;id=<?= $post['id'] ?>">
+                        <h3 class="cardtitle">Leave a comment</h3>
+                        <div class="row mb-3">
+                            <div class="col-lg-12 mb-3">
+                                <input class="form-control" type="text" name="author" placeholder="Full Name e.g. Jason Doe" value="<?= $author ?>" required>
+                            </div>
+                            <div class="col-lg-12 mb-3">
+                                <textarea class="form-control" name="comment" rows="5" placeholder="Leave your comment" value="<?= $comment ?>" required></textarea>
+                            </div>
+                            <div class="col-lg-12 mb-3">
+                                <button class="btn button" type="submit">Submit your comment</button>
+                            </div>
                         </div>
-                        <div class="col-lg-12 mb-3">
-                            <textarea class="form-control" name="comment" rows="5" placeholder="Leave your comment" value="<?= $comment ?>" required></textarea>
-                        </div>
-                        <div class="col-lg-12 mb-3">
-                            <button class="btn button" type="submit">Submit your comment</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                <?php else : ?>
+                    <p class="admin-title">Please login to leave a comment</p>
+                <?php endif; ?>
                 <!-- Post comments-->
                 <h3 class="h4 mb-4 cardtitle">Comments</h3>
 
