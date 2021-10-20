@@ -4,8 +4,6 @@ namespace App\Models;
 
 use \PDO;
 
-require_once 'src\models\databaseManager.php';
-
 class CommentManager extends DatabaseManager
 {
     public function getComments($postId)
@@ -18,11 +16,19 @@ class CommentManager extends DatabaseManager
         return $comments;
     }
 
-    public function createComment($postId, $author, $comment)
+    public function createComment($postId, $author, $comment,$userid)
     {
         $db = $this->dbConnect();
-        $statement = $db->PREPARE('INSERT INTO COMMENT (`post_id`, `author`, `comment`, `date_create`) VALUES(?, ?, ?, NOW())');
-        $comments = $statement->execute(array($postId, $author, $comment));
+        $statement = $db->PREPARE('INSERT INTO COMMENT (`post_id`, `author`, `comment`, `user_id`, `date_create`) VALUES(?, ?, ?, ?, NOW())');
+        $comments = $statement->execute(array($postId, $author, $comment,$userid));
         return $comments;
+    }
+    public function getAllcomments(){
+        $db = $this->dbConnect();
+        $statement = $db->PREPARE('SELECT `id`, `author`, `comment`, `valid`, DATE_FORMAT(date_create, "%D %b %Y %H:%i") AS comment_creation_date FROM COMMENT ORDER BY comment_creation_date DESC');
+        $statement->execute();
+        $statement=$statement->fetchAll(PDO::FETCH_ASSOC);
+        return $statement;
+
     }
 }

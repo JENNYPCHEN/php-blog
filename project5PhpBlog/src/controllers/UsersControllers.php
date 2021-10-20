@@ -72,10 +72,12 @@ class UsersControllers
             session_start();
             if ($currentUser["user_type_id"] == 2) {
                 $_SESSION['username'] = $username;
+                $_SESSION['id']=$currentUser["id"];
                 header('Location:index.php');
             } elseif ($currentUser["user_type_id"] == 1) {
                 $_SESSION['user_type_id'] =$currentUser["user_type_id"];
                 $_SESSION['username'] = $username;
+                $_SESSION['id']=$currentUser["id"];
                 $postManager = new PostManager();
                 $posts = $postManager->getPosts($keyword);
                 require('src/views/backend/dashboard.php');
