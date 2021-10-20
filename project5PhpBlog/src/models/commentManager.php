@@ -8,11 +8,14 @@ class CommentManager extends DatabaseManager
 {
     public function getComments($postId)
     {
+        $comments=[];
         $db = $this->dbConnect();
         $statement = $db->PREPARE('SELECT`id`,`author`,`comment`,DATE_FORMAT(date_create, "%D %b %Y") AS comment_creation_date
     FROM COMMENT WHERE `post_id`=? AND `valid`=true ORDER BY comment_creation_date DESC');
         $statement->execute(array($postId));
-        $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
+        while ($values = $statement->fetch(PDO::FETCH_ASSOC)) {
+        $comments[]=new Comments ($values);
+        }
         return $comments;
     }
 
@@ -24,11 +27,14 @@ class CommentManager extends DatabaseManager
         return $comments;
     }
     public function getAllcomments(){
+        $comments=[];
         $db = $this->dbConnect();
-        $statement = $db->PREPARE('SELECT `id`, `author`, `comment`, `valid`, DATE_FORMAT(date_create, "%D %b %Y %H:%i") AS comment_creation_date FROM COMMENT ORDER BY comment_creation_date DESC');
+        $statement = $db->PREPARE('SELECT `id`, `author`, `comment`, DATE_FORMAT(date_create, "%D %b %Y %H:%i") AS comment_creation_date, `valid` FROM COMMENT ORDER BY comment_creation_date DESC');
         $statement->execute();
-        $statement=$statement->fetchAll(PDO::FETCH_ASSOC);
-        return $statement;
+        while ($values = $statement->fetch(PDO::FETCH_ASSOC)) {
+        $comments[]= new comments($values);
+        }
+        return $comments;
 
     }
 }

@@ -17,7 +17,8 @@ class FrontendControllers
         $keyword = $_GET['search'] ?? '';
         $postManager = new PostManager();
         $posts = $postManager->getPosts($keyword);
-        require('src/views/frontend/homepage.php');
+       
+      require('src/views/frontend/homepage.php');
     }
 
     public function listAPost()
