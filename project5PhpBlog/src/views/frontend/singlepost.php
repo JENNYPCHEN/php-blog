@@ -58,7 +58,7 @@
 
                 <?php foreach ($comments as $comment) { ?>
 
-                    <p class="small mb-0 date"><?= $comment->getDateCreate()?></p>
+                    <p class="small mb-0 date"><?= $comment->getComment_create_date()?></p>
                     <h5 class="name"><?= htmlspecialchars($comment->getAuthor())?></h5>
                     <p class="blogtext text-small mb-2"><?= htmlspecialchars($comment->getComment()) ?></p>
                     <div class="reply fs-6"><a href="#"><i class="fas fa-share mr-2"></i><strong>Reply</strong></a></div>

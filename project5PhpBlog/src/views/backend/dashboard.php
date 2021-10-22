@@ -23,46 +23,40 @@
         </tr>
         </thead>
         <tbody>
-            <?php
-            while ($post = $posts->fetch()) {
-            ?>
+            <?php foreach ($posts as $post) { ?>
                 <tr>
-                    <th scope="row"><?php echo ($post['id']) ?></th>
-                    <td class="tabled"><?php echo ($post['title']) ?></td>
-                    <td class="tabled"><?php echo ($post['content']) ?></td>
-                    <td class="tabled"><?php echo ($post['category']) ?></td>
-                    <td class="tabled"><?php echo ($post['creation_date']) ?></td>
+                    <th scope="row"><?php echo $post->getId(); ?></th>
+                    <td class="tabled"><?php echo $post->getTitle(); ?></td>
+                    <td class="tabled"><?php echo $post->getContent() ?></td>
+                    <td class="tabled"><?= $post->getCategory() ?></td>
+                    <td class="tabled"><?php echo $post->getCreation_date() ?></td>
                     <td>
-                        <a href="index.php?action=post&id=<?= $post['id'] ?>" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-sm button2 m-1">View</button></a>
-                        <a href="index.php?action=editPage&id=<?= $post['id'] ?>"><button type="button" class="btn btn-sm button2 m-1">Edit</button></a>
-                        <form method="post" action="index.php?action=deletePost&id=<?= $post['id'] ?>" style="display:inline-block" onclick="return confirm('Are you sure to delete?')"><input name="id" type="hidden" value="<?= $post['id'] ?>"><button type="submit" class="btn  btn-sm btn-danger m-1">Delete</button></form>
+                        <a href="index.php?action=post&id=<?= $post->getId(); ?>" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-sm button2 m-1">View</button></a>
+                        <a href="index.php?action=editPage&id=<?= $post->getId(); ?>"><button type="button" class="btn btn-sm button2 m-1">Edit</button></a>
+                        <form method="post" action="index.php?action=deletePost&id=<?= $post->getId(); ?>" style="display:inline-block" onclick="return confirm('Are you sure to delete?')"><input name="id" type="hidden" value="<?= $post->getId(); ?>"><button type="submit" class="btn  btn-sm btn-danger m-1">Delete</button></form>
                     </td>
                 </tr>
-            <?php
-            }
-            ?>
-
-
+            <?php } ?>
         </tbody>
     </table>
 </div>
 
 <!--comments-->
 <h2 class="mb-3 m-1  admin-title" id="comments">Comments</h2>
-<?php foreach ($comments as $i=>$comment) { ?>
-<div class="card m-1 mb-3">
-    <p class="card-text m-1"><?= htmlspecialchars($comment['comment']) ?></p>
-    <div class="card-footer d-flex justify-content-between">
-        <span class="fs-6 m-1"><i class="fas fa-user"> </i><?= htmlspecialchars($comment['author']) ?></span>
-        <span class="fs-6 m-1"><?= $comment['comment_creation_date'] ?></span>
-        <span class="fs-6 m-1"><?php if(($comment['valid']=='')) : ?>pending<?php else : ?>valided<?php endif; ?></span>
-        <span class="fs-6 m-1 ">
-            <button type="button" class="btn btn-sm button2">Valid</button>
-            <button type="button" class="btn btn-sm btn-danger">Delete</button></span>
+<?php foreach ($comments as $comment) { ?>
+    <div class="card m-1 mb-3">
+        <p class="card-text m-1"><?= htmlspecialchars($comment->getComment()) ?></p>
+        <div class="card-footer d-flex justify-content-between">
+            <span class="fs-6 m-1"><i class="fas fa-user"> </i><?= htmlspecialchars($comment->getAuthor()) ?></span>
+            <span class="fs-6 m-1"><?= $comment->getComment_create_date() ?></span>
+            <span class="fs-6 m-1"><?php if ($comment->getValid = '') : ?>pending<?php else : ?>valided<?php endif; ?></span>
+            <span class="fs-6 m-1 ">
+                <button type="button" class="btn btn-sm button2">Valid</button>
+                <button type="button" class="btn btn-sm btn-danger">Delete</button></span>
+
+        </div>
     </div>
-    <?php
-          }
-          ?>
+<?php } ?>
 <!--users-->
 <h2 class="mb-3 m-1 admin-title" id="users">Users</h2>
 <div class="table-responsive table-bordered m-1 mb-3">

@@ -39,12 +39,14 @@ class BackendControllers
     function dashboardPage()
     {
         $keyword = $_GET['search'] ?? '';
-        $postManager = new postManager();
-        $commentManager= new CommentManager();
+        $postManager = new PostManager();
+        $commentManager = new CommentManager();
         $posts = $postManager->getPosts($keyword);
-        $comments=$commentManager->getAllComments();
-       /* echo var_dump($comments);*/
-       require('src/views/backend/dashboard.php');
+        $comments = $commentManager->getAllComments();
+       /*   echo '<pre>';
+        echo var_dump($comments);
+        echo '</pre>';*/
+      require('src/views/backend/dashboard.php');
     }
     function editPage()
     {

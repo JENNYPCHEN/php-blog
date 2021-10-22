@@ -9,10 +9,10 @@ class Comments
     private $id;
     private $author;
     private $comment;
-    private $dateCreate;
+    private $comment_creation_date;
     private $valid;
-    private $userId;
-    private $postId;
+    private $user_id;
+    private $post_id;
     
 
     public function __construct($value = [])
@@ -66,42 +66,41 @@ class Comments
     }
     public function setValid($valid)
     {
-        if (is_bool($valid)) {
             $this->valid = $valid;
-        }
     }
-    public function getValid($valid)
+    public function getValid()
     {
         return $this->valid;
     }
-    public function setDateCreate($dateCreate)
+    public function setComment_creation_date($comment_creation_date)
     {
-        $this->dateCreate = $dateCreate;
+        $this->comment_creation_date = $comment_creation_date;
     }
-    public function getDateCreate()
+    public function getComment_create_date()
     {
-        return $this->dateCreate;
+        return $this->comment_creation_date;
     }
-    public function setPostId($postId)
+    public function setPost_id($post_id)
     {
-        $postId = (int) $postId;
-        if ($postId > 0) {
-            $this->postId = $postId;
+        $post_id= (int) $post_id;
+        if ($post_id > 0) {
+            $this->postId = $post_id;
         }
     }
-    public function getPostId()
+    public function getPost_id()
     {
-        return $this->postId;
+        return $this->post_id;
     }
-    public function setUserId($userId)
+    
+    public function setUser_id($user_id)
     {
-        $userId = (int) $userId;
-        if ($userId > 0) {
-            $this->postId = $userId;
+        $user_id= (int) $user_id;
+        if ($user_id > 0) {
+            $this->postId = $user_id;
         }
     }
-    public function getUserId()
+    public function getUser_id()
     {
-        return $this->userId;
+        return $this->user_id;
     }
 }

@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Models\Database;
 use App\Models\UserManager;
 use App\Models\PostManager;
+use App\Models\CommentManager;
+use App\Models\Users;
 use \PDO;
 
 
@@ -58,29 +60,30 @@ class UsersControllers
         }
     }
 
-    public function currentUser($username, $password)
+    public function currentUser($username,$password)
     {
-        /* $password1=md5($password);*/
+        $password=md5($password);
+        $userManager = new UserManager;
+        $currentUser = $userManager->login($username,$password);
+        $currentUserId= $currentUser->getId();
+        $currentUserTypeId=$currentUser->getUser_type_id();
+        $currentUsername=$currentUser->getUser_name();
 
-        $userManager = new userManager;
-        $currentUser = $userManager->login($username, $password);
-
-
-        if ($currentUser === false) {
+      if (empty($currentUserId) && empty($currentUsername) && empty($currentUserTypeId)) {
             $error = "Please enter the correct username and password.";
             require('src/views/frontend/login.php');
-        } else {
+        }  else {
             session_start();
-            if ($currentUser["user_type_id"] == 2) {
-                $_SESSION['username'] = $username;
-                $_SESSION['id']=$currentUser["id"];
+            $_SESSION['user_type_id'] =$currentUserTypeId;
+            $_SESSION['username'] = $username;
+            $_SESSION['id']=$currentUserId;
+            if ($currentUserTypeId == 2) {
                 header('Location:index.php');
-            } elseif ($currentUser["user_type_id"] == 1) {
-                $_SESSION['user_type_id'] =$currentUser["user_type_id"];
-                $_SESSION['username'] = $username;
-                $_SESSION['id']=$currentUser["id"];
+            } elseif ($currentUserTypeId == 1) {
                 $postManager = new PostManager();
+                $commentManager = new CommentManager();
                 $posts = $postManager->getPosts($keyword);
+                $comments = $commentManager->getAllComments();
                 require('src/views/backend/dashboard.php');
                 
             }
@@ -90,6 +93,8 @@ class UsersControllers
     {
         session_start();
         unset($_SESSION['username']);
+        unset($_SESSION['user_type_id']);
+        unset($_SESSION['id']);
         session_destroy();
         header("location: index.php");
     }
