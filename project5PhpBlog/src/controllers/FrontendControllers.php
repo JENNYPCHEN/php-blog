@@ -27,7 +27,7 @@ class FrontendControllers
         $commentManager = new CommentManager();
         $post = $postManager->getPost($_GET['id']);
         $comments = $commentManager->getComments($_GET['id']);
-        require('src/views/frontend/singlepost.php');
+       require('src/views/frontend/singlepost.php');
     }
 
     public function addComment($postId, $author, $comment,$userid)

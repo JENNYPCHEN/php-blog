@@ -5,16 +5,15 @@ namespace App\Models;
 class Users
 {
 
-    private $firstName;
-    private $lastName;
-    private $username;
-    private $emailAddress;
-    private $password; 
-    private $confirmPassword;
-    private $dateCreate;
     private $id;
-    private $userTypeId;
-   
+    private $first_name;
+    private $last_name;
+    private $user_name;
+    private $email;
+    private $password; 
+    private $date_create;
+    private $user_type_id;
+    private $confirmPassword;
 
     public function __construct($value = [])
     {
@@ -45,43 +44,43 @@ class Users
     {
         return $this->id;
     }
-    public function setFirstName($firstName)
+    public function setFirst_name($first_name)
     {
-        if (is_string($firstName)) {
-            $this->firstName = $firstName;
+        if (is_string($first_name)) {
+            $this->first_name = $first_name;
         }
     }
-    public function getFirstName()
+    public function getFirst_name()
     {
-        return $this->firstName;
+        return $this->first_name;
     }
-    public function setLastName($lastName)
+    public function setLast_name($last_name)
     {
-        if (is_string($lastName)) {
-            $this->lastName = $lastName;
+        if (is_string($last_name)) {
+            $this->last_name = $last_name;
         }
     }
-    public function getLastName()
+    public function getLast_name()
     {
-        return $this->lastName;
+        return $this->last_name;
     }
-    public function setUsername($username)
+    public function setUser_name($user_name)
     {
-        if (is_string($username)) {
-            $this->username = $username;
+        if (is_string($user_name)) {
+            $this->user_name = $user_name;
         }
     }
-    public function getUsername()
+    public function getUser_name()
     {
-        return $this->username;
+        return $this->user_name;
     }
-    public function setEmailAddress($emailAddress)
+    public function setEmail($email)
     {
-        $this->emailAddress = $emailAddress;
+        $this->Email = $email;
     }
-    public function getEmailAddress()
+    public function getEmail()
     {
-        return $this->emailAddress;
+        return $this->email;
     }
     public function setPassword($password)
     {
@@ -91,24 +90,24 @@ class Users
     {
         return $this->password;
     }
-    public function setDateCreate($dateCreate)
+    public function setDate_create($date_create)
     {
-        $this->dateCreate = $dateCreate;
+        $this->date_create = $date_create;
     }
-    public function getDateCreate()
+    public function getDate_create()
     {
-        return $this->dateCreate;
+        return $this->date_create;
     }
-    public function setUserTypeId($userTypeId)
+    public function setUser_type_id($user_type_id)
     {
-        $userTypeId = (int) $userTypeId;
-        if ($userTypeId > 0) {
-            $this->userTypeId = $userTypeId;
+        $user_type_id = (int) $user_type_id;
+        if ($user_type_id > 0) {
+            $this->user_type_id= $user_type_id;
         }
     }
-    public function getUserTypeId()
+    public function getUser_type_id()
     {
-        return $this->userTypeId;
+        return $this->user_type_id;
     }
     public function setConfirmPassword($confirmPassword)
     {
