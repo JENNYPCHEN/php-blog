@@ -5,15 +5,19 @@ namespace App\Controllers;
 use App\Models\PostManager;
 use App\Models\UserManager;
 use App\Models\CommentManager;
+use App\Models\Posts;
+use App\Models\Comments;
 
 class BackendControllers
 {
 
 
-    function deletePost($id)
+    function deletePost($post)
     {
+
         $postManager = new postManager;
-        $post = $postManager->deletePost($id);
+        $post = $postManager->deletePost($post);
+
         if ($post === false) {
             echo 'Server problem.Please try again later';
         } else {
@@ -23,10 +27,11 @@ class BackendControllers
             exit();
         }
     }
-    function updatePost($id, $title, $category, $chapo, $content, $userid)
+    function updatePost($post)
     {
         $postManager = new postManager;
-        $post = $postManager->editPost($id, $title, $category, $chapo, $content, $userid);
+        $post = new Posts($post);
+        $post = $postManager->editPost($post);
         if ($post === false) {
             echo 'Server problem.Please try again later';
         } else {
@@ -41,12 +46,11 @@ class BackendControllers
         $keyword = $_GET['search'] ?? '';
         $postManager = new PostManager();
         $commentManager = new CommentManager();
+        $userManager = new UserManager();
         $posts = $postManager->getPosts($keyword);
         $comments = $commentManager->getAllComments();
-       /*   echo '<pre>';
-        echo var_dump($comments);
-        echo '</pre>';*/
-      require('src/views/backend/dashboard.php');
+        $users = $userManager->getUsers();
+        require('src/views/backend/dashboard.php');
     }
     function editPage()
     {
@@ -58,15 +62,68 @@ class BackendControllers
     {
         require('src/views/backend/createPost.php');
     }
-    function newPost($title, $category, $chapo, $content, $id)
+    function newPost($post)
     {
         $postManager = new PostManager();
-        $post = $postManager->createPost($title, $category, $chapo, $content, $id);
+        $post = new Posts($post);
+        $post = $postManager->createPost($post);
         if ($post === false) {
             echo 'Server problem.Please try again later';
         } else {
             session_start();
             $_SESSION['success_message'] = "Post is added successfully";
+            header('Location: index.php?action=dashboard');
+            exit();
+        }
+    }
+    function validComment($comment)
+    {
+        $commentManager = new CommentManager();
+        $comment = $commentManager->validComment($comment);
+        if ($comment === false) {
+            echo 'Server problem.Please try again later';
+        } else {
+            session_start();
+            $_SESSION['success_message'] = "comment is validated successfully";
+            header('Location: index.php?action=dashboard');
+            exit();
+        }
+    }
+    function deleteComment($comment)
+    {
+        $commentManager = new CommentManager();
+        $comment = $commentManager->deleteComment($comment);
+        if ($comment === false) {
+            echo 'Server problem.Please try again later';
+        } else {
+            session_start();
+            $_SESSION['success_message'] = "Comment is deleted successfully";
+            header('Location: index.php?action=dashboard');
+            exit();
+        }
+    }
+    function deleteUser($user)
+    {
+        $userManager = new UserManager;
+        $user = $userManager->deleteUser($user);
+        if ($user === false) {
+            echo 'Server problem.Please try again later';
+        } else {
+            session_start();
+            $_SESSION['success_message'] = "User is deleted successfully";
+            header('Location: index.php?action=dashboard');
+            exit();
+        }
+    }
+    function editUserRole($user)
+    {
+        $userManager = new UserManager;
+        $user = $userManager->editUserRole($user);
+        if ($user === false) {
+            echo 'Server problem.Please try again later';
+        } else {
+            session_start();
+            $_SESSION['success_message'] = "User role is modified successfully";
             header('Location: index.php?action=dashboard');
             exit();
         }

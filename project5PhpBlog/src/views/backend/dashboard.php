@@ -47,12 +47,13 @@
     <div class="card m-1 mb-3">
         <p class="card-text m-1"><?= htmlspecialchars($comment->getComment()) ?></p>
         <div class="card-footer d-flex justify-content-between">
-            <span class="fs-6 m-1"><i class="fas fa-user"> </i><?= htmlspecialchars($comment->getAuthor()) ?></span>
+            <span class="fs-6 m-1"><i class="fas fa-user"> </i><?= htmlspecialchars($comment->getAuthor()) ?> (User ID:<?= $comment->getUser_id() ?>)</span>
             <span class="fs-6 m-1"><?= $comment->getComment_create_date() ?></span>
-            <span class="fs-6 m-1"><?php if ($comment->getValid = '') : ?>pending<?php else : ?>valided<?php endif; ?></span>
+            <span class="fs-6 m-1"><?php if (empty($comment->getValid())) : ?>pending<?php elseif (!empty($comment->getValid())) : ?>validated<?php endif; ?></span>
             <span class="fs-6 m-1 ">
-                <button type="button" class="btn btn-sm button2">Valid</button>
-                <button type="button" class="btn btn-sm btn-danger">Delete</button></span>
+                <form method="post" action="index.php?action=validComment&id=<?= $comment->getId(); ?>" style="display:inline-block"><button type="submit" class="btn btn-sm button2">Valid</button></form>
+                <form method="post" action="index.php?action=deleteComment&id=<?= $comment->getId(); ?>" style="display:inline-block" onclick="return confirm('Are you sure to delete?')"><button type="submit" class="btn btn-sm btn-danger">Delete</button>
+            </span></form>
 
         </div>
     </div>
@@ -71,20 +72,26 @@
         <th scope="col">Action</th>
         </tr>
         </tread>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Madffddffdrk</td>
-                <td>Madffddffdrk</td>
-                <td>Otfdfdfdfdfdfdfdfdfdfdfdfdfdfddfto</td>
-                <td>01/01/2121</td>
-                <td>
-                    <button type="button" class="btn btn-sm button2 m-1" href="readpost.php">View</button>
-                    <button type="button" class="btn btn-sm button2 m-1" href="updatepost.php">Edit</button>
-                    <button type="button" class="btn btn-sm btn-danger m-1">Delete</button>
-                </td>
-            </tr>
-        </tbody>
+        <?php foreach ($users as $user) { ?>
+            <tbody>
+                <tr>
+                    <th scope="row"><?= $user->getId() ?></th>
+                    <td><?php if ($user->getUser_type_id() == 1) {
+                            echo "administrator";
+                        } else {
+                            echo "normal user";
+                        } ?></td>
+                    <td><?= $user->getUser_name() ?></td>
+                    <td><?= $user->getEmail(); ?></td>
+                    <td><?= $user->getDate_create(); ?></td>
+                    <td>
+                    <form method="post" action="index.php?action=editUserRole&id=<?= $user->getId(); ?>" style="display:inline-block" ><button type="submit" class="btn btn-sm button2 m-1">Edit role</button></form>
+                        <form method="post" action="index.php?action=deleteUser&id=<?= $user->getId(); ?>" style="display:inline-block" onclick="return confirm('Are you sure to delete?')"><button type="submit" class="btn btn-sm btn-danger m-1">Delete</button></form>
+                    </td>
+                </tr>
+            </tbody>
+        <?php } ?>
+
     </table>
 
 

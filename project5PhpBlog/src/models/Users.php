@@ -76,7 +76,7 @@ class Users
     }
     public function setEmail($email)
     {
-        $this->Email = $email;
+        $this->email = $email;
     }
     public function getEmail()
     {

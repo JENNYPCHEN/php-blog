@@ -41,29 +41,37 @@ class PostManager extends DatabaseManager
         $post=new Posts($values);
         return $post;
     }
-    function deletePost($id)
+    function deletePost($post)
     {
+        $post=new Posts($post);
+        
         $db = $this->dbConnect();
         $statement = $db->prepare('DELETE FROM `post` WHERE id= :id');
-        $statement->bindValue(':id', $id);
+        $statement->bindValue(':id', $post->getId());
         return $statement->execute();
     }
-    function editPost($id, $title, $category, $chapo, $content, $userid)
+    function editPost($post)
     {
         $db = $this->dbConnect();
-        $statement = $db->prepare('UPDATE post SET `title` = :title,`category` = :category, `chapo` = :headline, `content` = :content, `user_id` = :userid,`date_update` = NOW() WHERE `id` = :id');
-        $statement->bindValue(':id', $id);
-        $statement->bindValue(':title', $title);
-        $statement->bindValue(':category', $category);
-        $statement->bindValue(':headline', $chapo);
-        $statement->bindValue(':content', $content);
-        $statement->bindValue(':userid', $userid);
+        $statement = $db->prepare('UPDATE post SET `title` = :title,`category` = :category, `chapo` = :headline, `content` = :content,`date_update` = NOW() WHERE `id` = :id');
+        $statement->bindValue(':id', $post->getId());
+        $statement->bindValue(':title', $post->getTitle());
+        $statement->bindValue(':category', $post->getCategory());
+        $statement->bindValue(':headline', $post->getChapo());
+        $statement->bindValue(':content',$post->getContent());
         return $statement->execute();
     }
-    function createPost($title, $category, $chapo, $content, $id)
+    function createPost($post)
     {
         $db = $this->dbConnect();
-        $statement = $db->prepare('INSERT INTO `post`( `title`, `category`, `chapo`, `content`, `user_id`, `date_create` ) VALUES( ?, ?, ?, ?, ?, NOW())');
-        $post = $statement->execute(array($title, $category, $chapo, $content, $id));
+        
+        $statement = $db->prepare('INSERT INTO `post`( `title`, `category`, `chapo`, `content`, `user_id`, `date_create` ) VALUES( :title, :category, :chapo, :content, :userid, NOW())');
+        $statement->bindValue(':title', $post->getTitle());
+        $statement->bindValue(':category', $post->getCategory());
+        $statement->bindValue(':chapo', $post->getChapo());
+        $statement->bindValue(':content', $post->getContent());
+        $statement->bindValue(':userid', $post->getUser_id());
+        $post=$statement->execute();
+        return$post;
     }
 }
