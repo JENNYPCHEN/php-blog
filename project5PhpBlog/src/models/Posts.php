@@ -12,6 +12,7 @@ class Posts
     private $user_name;
     private $content;
     private $creation_date;
+    private $user_id;
     
 
     public function __construct($value = [])
@@ -101,6 +102,16 @@ class Posts
     {
         return $this->creation_date;
     }
-    
+    public function setUser_id($user_id)
+    {
+        $user_id = (int) $user_id;
+        if ($user_id > 0) {
+            $this->user_id = $user_id;
+        }
+    }
+    public function getUser_id()
+    {
+        return $this->user_id;
+    }
 
 }

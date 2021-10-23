@@ -40,7 +40,7 @@
                         <h3 class="cardtitle">Leave a comment</h3>
                         <div class="row mb-3">
                             <div class="col-lg-12 mb-3">
-                                <input class="form-control" type="text" name="author" placeholder="Full Name e.g. Jason Doe" value="<?= $author ?>" required>
+                                <input class="form-control" type="text" name="author" placeholder="Full Name e.g. Jason Doe" value="<?= $_SESSION['username'] ?>" required>
                             </div>
                             <div class="col-lg-12 mb-3">
                                 <textarea class="form-control" name="comment" rows="5" placeholder="Leave your comment" value="<?= $comment ?>" required></textarea>

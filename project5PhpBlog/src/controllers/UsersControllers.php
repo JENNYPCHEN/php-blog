@@ -16,8 +16,8 @@ class UsersControllers
 
     function newUser($user)
     {
-      
-       $usernameError = "";
+
+        $usernameError = "";
         $emailAddressError = "";
         $passwordError = "";
         $confirmPasswordError = "";
@@ -42,13 +42,13 @@ class UsersControllers
         if (!empty($usernameError) or !empty($emailAddressError) or !empty($passwordError) or !empty($confirmPasswordError)) {
             require('src/views/frontend/signup.php');
         }
-       if (empty($usernameError) && empty($emailAddressError) && empty($passwordError) && empty($confirmPasswordError)) {
-       
-        $user['password'] = md5($user['password']);
+        if (empty($usernameError) && empty($emailAddressError) && empty($passwordError) && empty($confirmPasswordError)) {
+
+            $user['password'] = md5($user['password']);
             $userManager = new UserManager;
-            $newUser=$userManager->signup($user);
-    
-           if ($newUser === false) {
+            $newUser = $userManager->signup($user);
+
+            if ($newUser === false) {
                 $error = "The username or email address has been used.";
                 require('src/views/frontend/signup.php');
             } else {
@@ -60,32 +60,33 @@ class UsersControllers
         }
     }
 
-    public function currentUser($username,$password)
+    public function currentUser($user)
     {
-        $password=md5($password);
+        $user['password'] = md5($user['password']);
         $userManager = new UserManager;
-        $currentUser = $userManager->login($username,$password);
-        $currentUserId= $currentUser->getId();
-        $currentUserTypeId=$currentUser->getUser_type_id();
-        $currentUsername=$currentUser->getUser_name();
+        $currentUser = $userManager->login($user);
+        $currentUserId = $currentUser->getId();
+        $currentUserTypeId = $currentUser->getUser_type_id();
+        $currentUsername = $currentUser->getUser_name();
 
-      if (empty($currentUserId) && empty($currentUsername) && empty($currentUserTypeId)) {
+        if (empty($currentUserId) && empty($currentUsername) && empty($currentUserTypeId)) {
             $error = "Please enter the correct username and password.";
             require('src/views/frontend/login.php');
-        }  else {
+        } else {
             session_start();
-            $_SESSION['user_type_id'] =$currentUserTypeId;
-            $_SESSION['username'] = $username;
-            $_SESSION['id']=$currentUserId;
+            $_SESSION['user_type_id'] = $currentUserTypeId;
+            $_SESSION['username'] = $currentUsername;
+            $_SESSION['id'] = $currentUserId;
             if ($currentUserTypeId == 2) {
                 header('Location:index.php');
             } elseif ($currentUserTypeId == 1) {
                 $postManager = new PostManager();
                 $commentManager = new CommentManager();
+                $userManager=new UserManager();
                 $posts = $postManager->getPosts($keyword);
                 $comments = $commentManager->getAllComments();
+                $users=$userManager->getUsers();
                 require('src/views/backend/dashboard.php');
-                
             }
         }
     }

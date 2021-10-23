@@ -10,6 +10,7 @@ class Comments
     private $author;
     private $comment;
     private $comment_creation_date;
+    private $comment_date_create;
     private $valid;
     private $user_id;
     private $post_id;
@@ -84,7 +85,7 @@ class Comments
     {
         $post_id= (int) $post_id;
         if ($post_id > 0) {
-            $this->postId = $post_id;
+            $this->post_id = $post_id;
         }
     }
     public function getPost_id()
@@ -96,11 +97,20 @@ class Comments
     {
         $user_id= (int) $user_id;
         if ($user_id > 0) {
-            $this->postId = $user_id;
+            $this->user_id = $user_id;
         }
     }
     public function getUser_id()
     {
         return $this->user_id;
+    }
+
+    public function setComment_date_create($comment_date_create)
+    {
+        $this->comment_date_create = $comment_date_create;
+    }
+    public function getComment_date_create()
+    {
+        return $this->comment_date_create;
     }
 }
