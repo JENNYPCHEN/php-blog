@@ -22,7 +22,7 @@
                         <h2 class="h3 mb-4"> <a class="d-block blogtitle" href=""><?php echo $post->getTitle(); ?></a></h2>
                         <p class="blogtext"><?php echo $post->getChapo();?></p>
                     </div>
-                    <div class="col-lg-12 text-center"><a class="d-block post-trending mb-4" href=""><img class="img-fluid w-100" src="public/img/blogimagesample.jpg" alt="" /></a>
+                    <div class="col-lg-12 text-center"><a class="d-block post-trending mb-4" href=""><img class="img-fluid w-100" src="<?php echo $post->getImage(); ?>" alt="" /></a>
                     </div>
                     <div class="col-lg-12">
                         <p class="blogtext"><?php echo $post->getContent();?></p>

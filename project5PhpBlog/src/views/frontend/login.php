@@ -10,7 +10,7 @@
                     unset($_SESSION['successmessage']);
                 }
                 ?>
-    <form class="ms-5 me-5 needs-validation" action="index.php?action=login" method="post">
+    <form class="ms-5 me-5 needs-validation" action="index.php?action=login" method="post" target="_blank" rel="noopener noreferrer">
         <h1 class="h3 p-4 fw-normal text-center cardtitle">Login</h1>
 
         <div class="form-floating ms-5 me-5 has-validation">

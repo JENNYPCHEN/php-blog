@@ -24,7 +24,7 @@ class UsersControllers
         $error = "";
 
         $nameValidation = "/^[a-zA-Z0-9]*$/";
-        $passwordValidation = "/^(.{0,7}|[^a-z]*|[^\d]*)$/i";
+        $passwordValidation = "^(?=.*?[0-9])[a-zA-Z0-9]{8,}$";
 
         if (!preg_match($nameValidation, $user['username'])) {
             $usernameError = "Name can only contain letters and numbers";
@@ -34,7 +34,7 @@ class UsersControllers
         }
         if (!preg_match($passwordValidation, $user['password'])) {
             $passwordError = "Password must have at least one numeric value.";
-        } elseif (strlen($user['password']) < 6) {
+        } elseif (strlen($user['password']) < 7) {
             $passwordError = "Password must have at least 8 characters.";
         } elseif ($user['password'] != $user['confirmPassword']) {
             $confirmPasswordError = "Passwords do not match, please try again.";

@@ -2,9 +2,10 @@
 session_start();
 require_once  __DIR__ . "/vendor/autoload.php";
 
-use App\controllers\UsersControllers;
-use App\controllers\FrontendControllers;
-use App\controllers\BackendControllers;
+
+use App\Controllers\UsersControllers;
+use App\Controllers\FrontendControllers;
+use App\Controllers\BackendControllers;
 
 
 try {
@@ -88,6 +89,7 @@ try {
                     'category' => htmlspecialchars($_POST['category']),
                     'chapo' => htmlspecialchars($_POST['chapo']),
                     'content' => $_POST['content'],
+                    'image' => $_FILES['image'] ?? '',
                 ];
                 $BackendControllers = new BackendControllers;
                 $BackendControllers->updatePost($post);
@@ -99,6 +101,7 @@ try {
                 'chapo' => htmlspecialchars($_POST['chapo']),
                 'content' => $_POST['content'],
                 'user_id' => $_SESSION['id'],
+                'image' => $_FILES["image"] ?? '',
             ];
             $BackendControllers = new BackendControllers();
             $BackendControllers->newPost($post);
