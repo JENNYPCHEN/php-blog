@@ -28,7 +28,7 @@ class BackendControllers
             exit();
         }
     }
-    function updatePost($post)
+    function NewOrUpdatePost($post)
     {
         $fileName = basename($post['image']["name"]);
         $fileTmpPath = $post['image']["tmp_name"];
@@ -47,10 +47,20 @@ class BackendControllers
                 $post['image'] = $targetFilePath;
             }
         }
-
         $postManager = new postManager;
         $post = new Posts($post);
-        $post = $postManager->editPost($post);
+        $id=($post->getId());
+        $haveImage=is_string($post->getImage());
+
+        if (!empty($id) && !$haveImage) {
+            $post = $postManager->editPost($post);
+        }elseif(!empty($id) && $haveImage) {
+            $post = $postManager->editPostAndImage($post);
+        } 
+        if(empty($id)) {
+            $post = $postManager->createPost($post);
+        }
+
         if ($post === false) {
             echo 'Server problem.Please try again later';
         } else {
@@ -82,37 +92,7 @@ class BackendControllers
     {
         require('src/views/backend/createPost.php');
     }
-    function newPost($post)
-    {
-        $fileName = basename($post['image']["name"]);
-        $fileTmpPath = $post['image']["tmp_name"];
-        $targetFilePath = 'public/img/' . Helper::randomString(8) . '/' . $fileName;
-        $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-        $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'svg');
-        $error = "";
-        if (!empty($fileName) && !empty($fileTmpPath)) {
-            if (!in_array($fileType, $allowTypes)) {
-                $error = "Sorry, only jpg, png, jpeg, gif, & svg files are allowed to upload.";
-                require('src/views/backend/createPost.php');
-                exit;
-            } else {
-                mkdir(dirname(__DIR__ . '/../../' . $targetFilePath));
-                move_uploaded_file($fileTmpPath, __DIR__ . '/../../' . $targetFilePath);
-                $post['image'] = $targetFilePath;
-            }
-        }
-        $postManager = new PostManager();
-        $post = new Posts($post);
-        $post = $postManager->createPost($post);
-        if ($post === false) {
-            echo 'Server problem.Please try again later';
-        } else {
-            session_start();
-            $_SESSION['success_message'] = "Post is added successfully";
-            header('Location: index.php?action=dashboard');
-            exit();
-        }
-    }
+
     function validComment($comment)
     {
         $commentManager = new CommentManager();

@@ -50,7 +50,7 @@ class PostManager extends DatabaseManager
         $statement->bindValue(':id', $post->getId());
         return $statement->execute();
     }
-    function editPost($post)
+    function editPostAndImage($post)
     {
         $db = $this->dbConnect();
         $statement = $db->prepare('UPDATE post SET `title` = :title,`category` = :category,`image` = :img,`chapo` = :headline, `content` = :content,`date_update` = NOW() WHERE `id` = :id');
@@ -60,6 +60,17 @@ class PostManager extends DatabaseManager
         $statement->bindValue(':headline', $post->getChapo());
         $statement->bindValue(':content', $post->getContent());
         $statement->bindValue(':img', $post->getImage());
+        return $statement->execute();
+    }
+    function editPost($post)
+    {
+        $db = $this->dbConnect();
+        $statement = $db->prepare('UPDATE post SET `title` = :title,`category` = :category,`chapo` = :headline, `content` = :content,`date_update` = NOW() WHERE `id` = :id');
+        $statement->bindValue(':id', $post->getId());
+        $statement->bindValue(':title', $post->getTitle());
+        $statement->bindValue(':category', $post->getCategory());
+        $statement->bindValue(':headline', $post->getChapo());
+        $statement->bindValue(':content', $post->getContent());
         return $statement->execute();
     }
     function createPost($post)

@@ -92,7 +92,7 @@ try {
                     'image' => $_FILES['image'] ?? '',
                 ];
                 $BackendControllers = new BackendControllers;
-                $BackendControllers->updatePost($post);
+                $BackendControllers->NewOrUpdatePost($post);
             }
         } elseif ($_GET['action'] == 'createPost') {
             $post = [
@@ -104,7 +104,7 @@ try {
                 'image' => $_FILES["image"] ?? '',
             ];
             $BackendControllers = new BackendControllers();
-            $BackendControllers->newPost($post);
+            $BackendControllers->NewOrUpdatePost($post);
         } elseif ($_GET['action'] == 'validComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $comment = [
