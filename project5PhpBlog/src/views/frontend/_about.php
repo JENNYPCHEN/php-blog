@@ -11,7 +11,7 @@
                 <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
                 <li class="list-inline-item"><a href="#"><i class="fab fa-github"></i></a></li>
             </ul>
-            <a href="#"><i class="fas fa-portrait" title="download my CV"></i></a>
+            <a href="public/doc/CV_2021-Ching Yi_Chen_Pelgrims.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-portrait" title="download my CV"></i></a>
         </div>
     </div>
     <!--seachbox-->

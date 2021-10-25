@@ -11,7 +11,7 @@
       <div class="col-lg-9 mb-5 mb-lg-0" id="blogposts">
         <div class="row align-items-center mb-5">
         <?php foreach ($posts as $post) { ?>
-            <div class="col-lg-6"><a class="d-block post-trending mb-4" href=""><img class="img-fluid w-100" src="" alt="" /></a>
+            <div class="col-lg-6"><a class="d-block post-trending mb-4" href=""><img class="img-fluid w-100" src="<?= $post->getImage()?>" alt="" /></a>
             </div>
             <div class="col-lg-6">
               <ul class="list-inline">

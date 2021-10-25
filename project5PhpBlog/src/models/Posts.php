@@ -13,7 +13,8 @@ class Posts
     private $content;
     private $creation_date;
     private $user_id;
-    
+    private $image;
+
 
     public function __construct($value = [])
     {
@@ -113,5 +114,12 @@ class Posts
     {
         return $this->user_id;
     }
-
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+    public function getImage()
+    {
+        return $this->image;
+    }
 }

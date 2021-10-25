@@ -7,6 +7,7 @@ use App\Models\UserManager;
 use App\Models\CommentManager;
 use App\Models\Posts;
 use App\Models\Comments;
+use App\Helpers\Helper;
 
 class BackendControllers
 {
@@ -29,6 +30,24 @@ class BackendControllers
     }
     function updatePost($post)
     {
+        $fileName = basename($post['image']["name"]);
+        $fileTmpPath = $post['image']["tmp_name"];
+        $targetFilePath = 'public/img/' . Helper::randomString(8) . '/' . $fileName;
+        $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+        $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'svg');
+        $error = "";
+        if (!empty($fileName) && !empty($fileTmpPath)) {
+            if (!in_array($fileType, $allowTypes)) {
+                $error = "Sorry, only jpg, png, jpeg, gif, & svg files are allowed to upload.";
+                require('src/views/backend/createPost.php');
+                exit;
+            } else {
+                mkdir(dirname(__DIR__ . '/../../' . $targetFilePath));
+                move_uploaded_file($fileTmpPath, __DIR__ . '/../../' . $targetFilePath);
+                $post['image'] = $targetFilePath;
+            }
+        }
+
         $postManager = new postManager;
         $post = new Posts($post);
         $post = $postManager->editPost($post);
@@ -54,6 +73,7 @@ class BackendControllers
     }
     function editPage()
     {
+
         $postManager = new PostManager();
         $post = $postManager->getPost($_GET['id']);
         require('src/views/backend/updatePost.php');
@@ -64,6 +84,23 @@ class BackendControllers
     }
     function newPost($post)
     {
+        $fileName = basename($post['image']["name"]);
+        $fileTmpPath = $post['image']["tmp_name"];
+        $targetFilePath = 'public/img/' . Helper::randomString(8) . '/' . $fileName;
+        $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+        $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'svg');
+        $error = "";
+        if (!empty($fileName) && !empty($fileTmpPath)) {
+            if (!in_array($fileType, $allowTypes)) {
+                $error = "Sorry, only jpg, png, jpeg, gif, & svg files are allowed to upload.";
+                require('src/views/backend/createPost.php');
+                exit;
+            } else {
+                mkdir(dirname(__DIR__ . '/../../' . $targetFilePath));
+                move_uploaded_file($fileTmpPath, __DIR__ . '/../../' . $targetFilePath);
+                $post['image'] = $targetFilePath;
+            }
+        }
         $postManager = new PostManager();
         $post = new Posts($post);
         $post = $postManager->createPost($post);

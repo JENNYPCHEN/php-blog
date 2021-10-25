@@ -40,7 +40,7 @@
         <div class="col-lg-2 sidebarcolor">
 
             <!--logo-->
-            <div class="text-center mt-5 mb-5"><a class="navbar-brand" href="index.php"><img src="public/img/logo_transparent.png" alt="logo" width="150"></a></div>
+            <div class="text-center mt-5 mb-5"><a class="navbar-brand" href="index.php" target="_blank" rel="noopener noreferrer"><img src="public/img/logo_transparent.png" alt="logo" width="150"></a></div>
 
             <!--navbar-->
             <ul class="nav d-flex align-items-start flex-column  me-5 mt-5 mb-5 d-none d-lg-block ps-5 ">
