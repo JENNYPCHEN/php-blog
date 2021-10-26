@@ -24,12 +24,12 @@ class UsersControllers
         $error = "";
 
         $nameValidation = "/^[a-zA-Z0-9]*$/";
-        $passwordValidation = "^(?=.*?[0-9])[a-zA-Z0-9]{8,}$";
+        $passwordValidation = "/^(?=.*?[0-9])[a-zA-Z0-9]{8,}$/";
 
         if (!preg_match($nameValidation, $user['username'])) {
             $usernameError = "Name can only contain letters and numbers";
         }
-        if (!filter_var($user['emailAddress'], FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($user['email'], FILTER_VALIDATE_EMAIL)) {
             $emailAddressError = "Please enter the correct format.";
         }
         if (!preg_match($passwordValidation, $user['password'])) {
@@ -48,7 +48,7 @@ class UsersControllers
             $userManager = new UserManager;
             $newUser = $userManager->signup($user);
 
-            if ($newUser === false) {
+             if ($newUser === false) {
                 $error = "The username or email address has been used.";
                 require('src/views/frontend/signup.php');
             } else {

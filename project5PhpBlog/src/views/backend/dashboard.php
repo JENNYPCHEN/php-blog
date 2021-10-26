@@ -14,7 +14,7 @@
     <table class="table table-hover blogtext  " id="posts"">
     <thead>
       <tr>
-        <th scope=" col">#ID</th>
+        <th scope="col">#ID</th>
         <th scope="col">Title</th>
         <th scope="col">Content</th>
         <th scope="col">Category</th>
@@ -27,7 +27,7 @@
                 <tr>
                     <th scope="row"><?php echo $post->getId(); ?></th>
                     <td class="tabled"><?php echo $post->getTitle(); ?></td>
-                    <td class="tabled"><?php echo $post->getContent() ?></td>
+                    <td class="tabled"><?php echo substr($post->getContent(), 0, 50)?></td>
                     <td class="tabled"><?= $post->getCategory() ?></td>
                     <td class="tabled"><?php echo $post->getCreation_date() ?></td>
                     <td>

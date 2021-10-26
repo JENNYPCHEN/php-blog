@@ -1,10 +1,10 @@
-.link a{
-    font-family: "Satisfy", sans-serif;
-    text-decoration: none;
-    color: #255E6B!important;
+.link a {
+  font-family: "Satisfy", sans-serif;
+  text-decoration: none;
+  color: #255e6b !important;
 }
-.link a:hover{
-  color: #c39c62!important;
+.link a:hover {
+  color: #c39c62 !important;
 }
 section {
   overflow: hidden;
@@ -12,14 +12,14 @@ section {
 }
 .cardtitle {
   font-family: "Satisfy", sans-serif;
-  color:#255E6B;
+  color: #255e6b;
 }
 .cardlink {
   text-decoration: none;
-  line-height:200%;
+  line-height: 200%;
   font-family: "Satisfy", sans-serif;
 }
-.card-body p{
+.card-body p {
   color: #575353;
 }
 .category {
@@ -31,7 +31,7 @@ section {
   letter-spacing: 0.1rem;
   font-size: 0.7rem;
 }
-.meta{
+.meta {
   text-transform: uppercase;
   text-decoration: none;
   color: #575353;
@@ -40,22 +40,22 @@ section {
 .blogtitle {
   font-family: "Satisfy", sans-serif;
   text-decoration: none;
-  color: #255E6B;
+  color: #255e6b;
 }
-.blogtitle:hover{
-  color:#255E6B;
+.blogtitle:hover {
+  color: #255e6b;
 }
-.blogtext{
+.blogtext {
   color: #575353;
 }
 .read-more-btn span {
   display: inline-block;
   margin-right: 0.5rem;
   font-family: "Satisfy", sans-serif;
-  color:#c39c62;
+  color: #c39c62;
 }
 .read-more-btn i {
-  color:#c39c62;
+  color: #c39c62;
   margin-left: -0.5rem;
   -webkit-transform: translateY(2px);
   transform: translateY(2px);
@@ -66,14 +66,14 @@ section {
   opacity: 1;
   margin-left: 0;
 }
-.button{
-  background-color:#549cb9;
+.button {
+  background-color: #549cb9;
   font-family: "Satisfy", sans-serif;
-  color:white;
+  color: white;
 }
-.button:hover{
-  color:white;
-  background-color:#c39c62;
+.button:hover {
+  color: white;
+  background-color: #c39c62;
 }
 .page-item.active .page-link {
   color: #fff;
@@ -82,7 +82,7 @@ section {
 }
 .page-link {
   padding: 0.5rem 0.75rem;
-  line-height:1.25;
+  line-height: 1.25;
   color: #6c757d;
   background-color: #fff;
   border: 1px solid #dee2e6;
@@ -101,48 +101,48 @@ section {
 }
 
 blockquote {
-  background-color:#c39c62b9;
+  background-color: #c39c62b9;
   font-family: "Satisfy", sans-serif;
   padding: 0.5rem 1rem;
   margin-bottom: 2rem;
   font-size: 1.25rem;
 }
-cite{
+cite {
   font-family: "Open Sans", sans-serif;
   font-style: normal;
   font-size: 1rem;
 }
 form {
-  color:#575353;
+  color: #575353;
 }
-footer{
-    background-color: #255E6B;
+footer {
+  background-color: #255e6b;
 }
 footer a {
-    color:#c39c62;
-  }
-footer a:hover{
-    color: #eededa;
+  color: #c39c62;
+}
+footer a:hover {
+  color: #eededa;
 }
 
-.circle{
+.circle {
   border-radius: 50%;
   width: 70px;
   height: 70px;
 }
-.name{
-  color:#575353;
+.name {
+  color: #575353;
   font-family: "Satisfy", sans-serif;
 }
-.date{
+.date {
   color: #c39c62;
 }
-.reply a{
+.reply a {
   text-decoration: none;
-  color: #255E6B!important;
+  color: #255e6b !important;
 }
-.reply a:hover{
-color: #c39c62!important;
+.reply a:hover {
+  color: #c39c62 !important;
 }
 
 .formsignin {
@@ -152,48 +152,49 @@ color: #c39c62!important;
   margin: auto;
 }
 
-.admin-title{
-  color:#255E6B;
+.admin-title {
+  color: #255e6b;
 }
 
-.button2{
-  background-color:#549cb9;
-  color:white;
+.button2 {
+  background-color: #549cb9;
+  color: white;
 }
-.button2:hover{
-  background-color:#44849e;
-  color:white;
+.button2:hover {
+  background-color: #44849e;
+  color: white;
 }
 .tabled {
   max-width: 150px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  
 }
 
-.sidebarcolor{
-  background-color: #255E6B;
+.sidebarcolor {
+  background-color: #255e6b;
 }
 
-.sidebarcolor a{
-  color:white;
+.sidebarcolor a {
+  color: white;
 }
-.sidebarcolor a:hover{
-  color:#c39c62;
+.sidebarcolor a:hover {
+  color: #c39c62;
 }
-.navcolor{
+.navcolor {
   background-color: rgba(255, 255, 255, 0.514);
 }
-.sidebardropdown a{
-  color:#255E6B !important;
-  border:0px;
+.sidebardropdown a {
+  color: #255e6b !important;
+  border: 0px;
 }
-.link2 a{
-  color:#2f2b2b;
+.link2 a {
+  color: #2f2b2b;
   text-decoration: none;
 }
-.link2 a:hover{
-  color:#575353;
+.link2 a:hover {
+  color: #575353;
 }
 
 .error {
@@ -201,8 +202,14 @@ color: #c39c62!important;
   font-weight: 400;
   display: block;
   padding: 6px 0;
-  font-size: 14px;}
+  font-size: 14px;
+}
 
-  .successmessage{
-    margin-bottom: 20px;font-size: 15px;color: green;
-  }
+.successmessage {
+  margin-bottom: 20px;
+  font-size: 15px;
+  color: green;
+}
+
+.limitTextLine {
+  display:inline;}
