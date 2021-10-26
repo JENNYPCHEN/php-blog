@@ -6,7 +6,7 @@ require_once  __DIR__ . "/vendor/autoload.php";
 use App\Controllers\UsersControllers;
 use App\Controllers\FrontendControllers;
 use App\Controllers\BackendControllers;
-
+use App\Controllers\MailControllers;
 
 try {
     if (isset($_GET['action'])) {
@@ -51,10 +51,10 @@ try {
             if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['username']) && isset($_POST['emailAddress']) && isset($_POST['password']) && isset($_POST['confirmPassword'])) {
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                 $user = [
-                    'firstName' => trim($_POST['firstName']),
-                    'lastName' => trim($_POST['lastName']),
-                    'username' => trim($_POST['username']),
-                    'emailAddress' => trim($_POST['emailAddress']),
+                    'first_name' => trim($_POST['firstName']),
+                    'last_name' => trim($_POST['lastName']),
+                    'user_name' => trim($_POST['username']),
+                    'email' => trim($_POST['emailAddress']),
                     'password' => trim($_POST['password']),
                     'confirmPassword' => trim($_POST['confirmPassword'])
                 ];
@@ -137,6 +137,18 @@ try {
             }
             $BackendControllers = new BackendControllers();
             $BackendControllers->editUserRole($user);
+        } elseif($_GET['action']=='contact'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                $mail = [
+                    'firstName' => trim($_POST['firstName']),
+                    'lastName' => trim($_POST['lastName']),
+                    'email' => trim($_POST['email']),
+                    'subject' => trim($_POST['subject']),
+                    'message' => trim($_POST['message'])
+                ];
+                $MailControllers=new MailControllers();
+                $MailControllers->sendMail($mail);
+
         }
     } else {
         $FrontendControllers = new FrontendControllers();

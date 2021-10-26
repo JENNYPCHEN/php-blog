@@ -13,7 +13,6 @@ class userManager extends databaseManager
     {
         $db = $this->dbConnect();
         $user = new Users($user);
-
         $statement = $db->prepare('INSERT INTO USER( `first_name`, `last_name`, `user_name`, `email`, `password`,`date_create` ) VALUES( :firstName, :lastName, :username, :email, :password ,NOW())');
         $statement->bindValue(':firstName', $user->getFirst_name());
         $statement->bindValue(':lastName', $user->getLast_name());

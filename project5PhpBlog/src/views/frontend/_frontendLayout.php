@@ -36,10 +36,10 @@
     <nav class="navbar navbar-expand-lg navbar-light py-4 bg-white link">
         <div class="container d-flex justify-content-center justify-content-lg-between align-items-center">
             <ul class="list-inline small mb-0 text-dark d-none d-lg-block">
-                <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-                <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                <li class="list-inline-item"><a href="#"><i class="fab fa-github"></i></a></li>
+                <li class="list-inline-item"><a href="#"target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a></li>
+                <li class="list-inline-item"><a href="#"target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" ></i></a></li>
+                <li class="list-inline-item"><a href="https://www.linkedin.com/in/ching-yi-chen-63120322/"target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin" ></i></a></li>
+                <li class="list-inline-item"><a href="https://github.com/JENNYPCHEN"target="_blank" rel="noopener noreferrer" ><i class="fab fa-github"></i></a></li>
             </ul>
             <?php if(!isset($_SESSION['username'])) : ?>
             <a class="text-small mb-0 h6 d-none d-lg-block admin-title" href="index.php?action=loginpage" title="Please login so that you can leave your comments"><i class="fas fa-sign-in-alt"></i> Signup/Login</a>
@@ -86,11 +86,10 @@
             <div class="col-md-4 text-center">
                 <div class="d-flex align-items-center flex-wrap justify-content-center">
                     <ul class="list-inline small mb-0 text-white">
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
+                        <li class="list-inline-item"><a href="#"target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f" ></i></a></li>
+                        <li class="list-inline-item"><a href="#"target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram" ></i></a></li>
+                        <li class="list-inline-item"><a href="https://www.linkedin.com/in/ching-yi-chen-63120322/"target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"target="_blank" rel="noopener noreferrer" ></i></a></li>
+                        <li class="list-inline-item"><a href="https://github.com/JENNYPCHEN"target="_blank" rel="noopener noreferrer" ><i class="fab fa-github"></i></a></li>
                     </ul>
                 </div>
             </div>

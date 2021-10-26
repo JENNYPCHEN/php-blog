@@ -83,7 +83,7 @@
                 <div class="collapse navbar-collapse " id="navbar">
                     <ul class="navbar-nav mx-auto reply">
                         <li class="nav-item">
-                            <a class="nav-link pb-2 " hhref="index.php" target="_blank" rel="noopener noreferrer">Home</a>
+                            <a class="nav-link pb-2 " hhref="index.php" target="_blank" rel="noopener noreferrer" >Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?action=dashboard">Dashboard</a>
@@ -141,11 +141,10 @@
         <div class="col-md-4 text-center">
             <div class="d-flex align-items-center flex-wrap justify-content-center">
                 <ul class="list-inline small mb-0 text-white">
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
+                    <li class="list-inline-item"><a href="#"target="_blank" rel="noopener noreferrer" ><i class="fab fa-facebook-f"></i></a></li>
+                    <li class="list-inline-item"><a href="#"target="_blank" rel="noopener noreferrer" ><i class="fab fa-instagram"></i></a></li>
+                    <li class="list-inline-item"><a href="https://www.linkedin.com/in/ching-yi-chen-63120322/"target="_blank" rel="noopener noreferrer" ><i class="fab fa-linkedin"></i></a></li>
+                    <li class="list-inline-item"><a href="https://github.com/JENNYPCHEN" target="_blank"><i class="fab fa-github"></i></a></li>
                 </ul>
             </div>
         </div>
