@@ -14,7 +14,7 @@ class Comments
     private $valid;
     private $user_id;
     private $post_id;
-    
+
 
     public function __construct($value = [])
     {
@@ -27,8 +27,19 @@ class Comments
     public function hydrate(array $values)
     {
         foreach ($values as $key => $value) {
-            $method = 'set' . ucfirst($key);
-
+            $method = 'set';
+            $pieces = explode('_', $key);
+            foreach ($pieces as $piece) {
+                if (count($pieces) == 1) {
+                    $method = 'set' . ucfirst($pieces[0]);
+                }
+                if (count($pieces) == 2) {
+                    $method = 'set' . ucfirst($pieces[0]) . ucfirst($pieces[1]);
+                }
+                if (count($pieces) == 3) {
+                    $method = 'set' . ucfirst($pieces[0]) . ucfirst($pieces[1]) . ucfirst($pieces[2]);
+                }
+            }
             if (method_exists($this, $method)) {
                 $this->$method($value);
             }
@@ -67,49 +78,49 @@ class Comments
     }
     public function setValid($valid)
     {
-            $this->valid = $valid;
+        $this->valid = $valid;
     }
     public function getValid()
     {
         return $this->valid;
     }
-    public function setComment_creation_date($comment_creation_date)
+    public function setCommentCreationDate($comment_creation_date)
     {
         $this->comment_creation_date = $comment_creation_date;
     }
-    public function getComment_create_date()
+    public function getCommentCreateDate()
     {
         return $this->comment_creation_date;
     }
-    public function setPost_id($post_id)
+    public function setPostId($post_id)
     {
-        $post_id= (int) $post_id;
+        $post_id = (int) $post_id;
         if ($post_id > 0) {
             $this->post_id = $post_id;
         }
     }
-    public function getPost_id()
+    public function getPostId()
     {
         return $this->post_id;
     }
-    
-    public function setUser_id($user_id)
+
+    public function setUserId($user_id)
     {
-        $user_id= (int) $user_id;
+        $user_id = (int) $user_id;
         if ($user_id > 0) {
             $this->user_id = $user_id;
         }
     }
-    public function getUser_id()
+    public function getUserId()
     {
         return $this->user_id;
     }
 
-    public function setComment_date_create($comment_date_create)
+    public function setCommentDateCreate($comment_date_create)
     {
         $this->comment_date_create = $comment_date_create;
     }
-    public function getComment_date_create()
+    public function getCommentDateCreate()
     {
         return $this->comment_date_create;
     }

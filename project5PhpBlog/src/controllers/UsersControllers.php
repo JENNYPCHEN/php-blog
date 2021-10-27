@@ -6,6 +6,7 @@ use App\Models\Database;
 use App\Models\UserManager;
 use App\Models\PostManager;
 use App\Models\CommentManager;
+use App\Models\Mails;
 use App\Models\Users;
 use \PDO;
 
@@ -47,8 +48,7 @@ class UsersControllers
             $user['password'] = md5($user['password']);
             $userManager = new UserManager;
             $newUser = $userManager->signup($user);
-
-             if ($newUser === false) {
+            if ($newUser === false) {
                 $error = "The username or email address has been used.";
                 require('src/views/frontend/signup.php');
             } else {
@@ -66,8 +66,8 @@ class UsersControllers
         $userManager = new UserManager;
         $currentUser = $userManager->login($user);
         $currentUserId = $currentUser->getId();
-        $currentUserTypeId = $currentUser->getUser_type_id();
-        $currentUsername = $currentUser->getUser_name();
+        $currentUserTypeId = $currentUser->getUserTypeId();
+        $currentUsername = $currentUser->getUserName();
 
         if (empty($currentUserId) && empty($currentUsername) && empty($currentUserTypeId)) {
             $error = "Please enter the correct username and password.";
@@ -82,10 +82,10 @@ class UsersControllers
             } elseif ($currentUserTypeId == 1) {
                 $postManager = new PostManager();
                 $commentManager = new CommentManager();
-                $userManager=new UserManager();
+                $userManager = new UserManager();
                 $posts = $postManager->getPosts($keyword);
                 $comments = $commentManager->getAllComments();
-                $users=$userManager->getUsers();
+                $users = $userManager->getUsers();
                 require('src/views/backend/dashboard.php');
             }
         }
@@ -98,5 +98,25 @@ class UsersControllers
         unset($_SESSION['id']);
         session_destroy();
         header("location: index.php");
+    }
+
+    public function findUserEmail($user)
+    {
+        $userManager = new UserManager();
+        $user = $userManager->findUserEmail($user);
+        $userUserName = $user->getUserName();
+        $userId = $user->getId();
+        if (empty($userUserName) && empty($userId)) {
+            session_start();
+            $_SESSION['error'] = "Email does not exist.";
+            header('Location:index.php?action=loginpage');
+            exit();
+        } else {
+            $user->setResetToken(time() . md5($user->getEmail()));
+            $userManager = new UserManager();
+            $user = $userManager->updateToken($user);
+            $mail = new Mails();
+            $mail = $mail->sendResetPasswordEmail($user);
+        }
     }
 }

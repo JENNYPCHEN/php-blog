@@ -10,7 +10,7 @@ class CommentManager extends DatabaseManager
     {
         $comments = [];
         $db = $this->dbConnect();
-        $statement = $db->PREPARE('SELECT`id`,`author`,`comment`,DATE_FORMAT(date_create, "%D %b %Y") AS comment_creation_date
+        $statement = $db->PREPARE('SELECT`id`,`author`,`post_id`,`comment`,DATE_FORMAT(date_create, "%D %b %Y") AS comment_creation_date
     FROM COMMENT WHERE `post_id`=? AND `valid`=true ORDER BY comment_creation_date DESC');
         $statement->execute(array($postId));
         while ($values = $statement->fetch(PDO::FETCH_ASSOC)) {
@@ -24,10 +24,10 @@ class CommentManager extends DatabaseManager
     {
         $db = $this->dbConnect();
         $statement = $db->PREPARE('INSERT INTO COMMENT (`post_id`, `author`, `comment`, `user_id`, `date_create`) VALUES(:postId, :author, :comment, :userId, now())');
-        $statement->bindValue(':postId', $comment->getPost_id());
+        $statement->bindValue(':postId', $comment->getPostId());
         $statement->bindValue(':author', $comment->getAuthor());
         $statement->bindValue(':comment', $comment->getComment());
-        $statement->bindValue(':userId', $comment->getUser_id());
+        $statement->bindValue(':userId', $comment->getUserId());
         $comment = $statement->execute();
         return $comment;
     }
@@ -35,7 +35,7 @@ class CommentManager extends DatabaseManager
     {
         $comments = [];
         $db = $this->dbConnect();
-        $statement = $db->PREPARE('SELECT `id`, `author`, `comment`,`user_id`, DATE_FORMAT(date_create, "%D %b %Y %H:%i") AS comment_creation_date, `valid` FROM COMMENT ORDER BY comment_creation_date DESC');
+        $statement = $db->PREPARE('SELECT `id`, `author`, `comment`,`post_id`,`user_id`, DATE_FORMAT(date_create, "%D %b %Y %H:%i") AS comment_creation_date, `valid` FROM COMMENT ORDER BY comment_creation_date DESC');
         $statement->execute(array());
         while ($values = $statement->fetch(PDO::FETCH_ASSOC)) {
             $comments[] = new Comments($values);
