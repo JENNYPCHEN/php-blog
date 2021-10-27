@@ -14,8 +14,8 @@
                     <div class="col-lg-12 text-center">
                         <ul class="list-inline">
                             <li class="list-inline-item mr-2 category font-weight-normal"> <?php echo $post->getCategory();?> </li>
-                            <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo $post->getUser_name(); ?></li>
-                            <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo $post->getCreation_date(); ?></li>
+                            <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo $post->getUserName(); ?></li>
+                            <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo $post->getCreationDate(); ?></li>
                         </ul>
                     </div>
                     <div class="col-lg-12 text-center">
@@ -58,10 +58,10 @@
 
                 <?php foreach ($comments as $comment) { ?>
 
-                    <p class="small mb-0 date"><?= $comment->getComment_create_date()?></p>
+                    <p class="small mb-0 date"><?= $comment->getCommentCreateDate()?></p>
                     <h5 class="name"><?= htmlspecialchars($comment->getAuthor())?></h5>
                     <p class="blogtext text-small mb-2"><?= htmlspecialchars($comment->getComment()) ?></p>
-                    <div class="reply fs-6"><a href="#"><i class="fas fa-share mr-2"></i><strong>Reply</strong></a></div>
+                    <!--<div class="reply fs-6"><a href="#"><i class="fas fa-share mr-2"></i><strong>Reply</strong></a></div>-->
                 <?php } ?>
 
             </div>

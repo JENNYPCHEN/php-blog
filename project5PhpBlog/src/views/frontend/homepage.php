@@ -16,8 +16,8 @@
             <div class="col-lg-6">
               <ul class="list-inline">
                 <li class="list-inline-item mr-2 category font-weight-normal"><?= $post->getCategory() ?></li>
-                <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo $post->getUser_name() ?></li>
-                <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo $post->getCreation_date() ?></li>
+                <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo $post->getUserName() ?></li>
+                <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo $post->getCreationDate() ?></li>
               </ul>
               <h2 class="h3 mb-4"> <a class="d-block blogtitle" href="post.html"><?php echo $post->getTitle(); ?></a></h2>
               <p class="blogtext "><?php echo substr($post->getContent(), 0, 220)?></p>

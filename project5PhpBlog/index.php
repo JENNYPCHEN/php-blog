@@ -149,6 +149,11 @@ try {
                 $MailControllers=new MailControllers();
                 $MailControllers->sendMail($mail);
 
+        } elseif($_GET['action']=='resetPassword'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $user=['email'=>trim($_POST['email'])];
+            $userControllers=new UsersControllers();
+            $userControllers->findUserEmail($user);
         }
     } else {
         $FrontendControllers = new FrontendControllers();

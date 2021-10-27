@@ -35,13 +35,12 @@ class FrontendControllers
         $commentManager = new CommentManager();
         $comment = new Comments($comment);
         $comments = $commentManager->createComment($comment);
-        echo var_dump($comments);
         if ($comments === false) {
             echo 'Server problem.Please try again later';
         } else {
             session_start();
             $_SESSION['success_message'] = "Comment is sent successfully. It will be displayed once it is approved.";
-            header('Location: index.php?action=post&id='.$comment->getPost_id());
+            header('Location: index.php?action=post&id='.$comment->getPostId());
             exit();
         }
     }

@@ -23,12 +23,22 @@ class Posts
             $this->hydrate($value);
         }
     }
-
     public function hydrate(array $values)
     {
         foreach ($values as $key => $value) {
-            $method = 'set' . ucfirst($key);
-
+            $method = 'set';
+            $pieces = explode('_', $key);
+            foreach ($pieces as $piece) {
+                if (count($pieces) == 1) {
+                    $method = 'set' . ucfirst($pieces[0]);
+                }
+                if (count($pieces) == 2) {
+                    $method = 'set' . ucfirst($pieces[0]) . ucfirst($pieces[1]);
+                }
+                if (count($pieces) == 3) {
+                    $method = 'set' . ucfirst($pieces[0]) . ucfirst($pieces[1]) . ucfirst($pieces[2]);
+                }
+            }
             if (method_exists($this, $method)) {
                 $this->$method($value);
             }
@@ -75,13 +85,13 @@ class Posts
     {
         return $this->chapo;
     }
-    public function setUser_name($user_name)
+    public function setUserName($user_name)
     {
         if (is_string($user_name)) {
             $this->user_name = $user_name;
         }
     }
-    public function getUser_name()
+    public function getUserName()
     {
         return $this->user_name;
     }
@@ -95,22 +105,22 @@ class Posts
     {
         return $this->content;
     }
-    public function setCreation_date($creation_date)
+    public function setCreationDate($creation_date)
     {
         $this->creation_date = $creation_date;
     }
-    public function getCreation_date()
+    public function getCreationDate()
     {
         return $this->creation_date;
     }
-    public function setUser_id($user_id)
+    public function setUserId($user_id)
     {
         $user_id = (int) $user_id;
         if ($user_id > 0) {
             $this->user_id = $user_id;
         }
     }
-    public function getUser_id()
+    public function getUserId()
     {
         return $this->user_id;
     }

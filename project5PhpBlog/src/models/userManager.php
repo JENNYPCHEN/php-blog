@@ -14,13 +14,12 @@ class userManager extends databaseManager
         $db = $this->dbConnect();
         $user = new Users($user);
         $statement = $db->prepare('INSERT INTO USER( `first_name`, `last_name`, `user_name`, `email`, `password`,`date_create` ) VALUES( :firstName, :lastName, :username, :email, :password ,NOW())');
-        $statement->bindValue(':firstName', $user->getFirst_name());
-        $statement->bindValue(':lastName', $user->getLast_name());
-        $statement->bindValue(':username', $user->getUser_name());
+        $statement->bindValue(':firstName', $user->getFirstName());
+        $statement->bindValue(':lastName', $user->getLastName());
+        $statement->bindValue(':username', $user->getUserName());
         $statement->bindValue(':email', $user->getEmail());
         $statement->bindValue(':password', $user->getPassword());
         $statement->execute();
-        return $statement;
     }
 
 
@@ -66,12 +65,11 @@ class userManager extends databaseManager
         while ($values = $statement->fetch(PDO::FETCH_ASSOC)) {
             $user = new Users($values);
         }
-        /*echo var_dump($user->setUser_type_id(1));*/
-         if ($user->getUser_type_id() == 2) {
+        if ($user->getUserTypeId() !== 1) {
             $statement = $db->PREPARE('UPDATE USER SET user_type_id = :user_type_id WHERE id = :id');
             $statement->bindValue(':id', $user->getId());
             $statement->bindValue(':user_type_id', 1);
-         }elseif ($user->getUser_type_id() == 1) {
+        } elseif ($user->getUserTypeId() == 1) {
             $statement = $db->PREPARE('UPDATE user SET user_type_id =:user_type_id Where id=:id');
             $statement->bindValue(':id', $user->getId());
             $statement->bindValue(':user_type_id', 2);
@@ -80,8 +78,30 @@ class userManager extends databaseManager
         while ($values = $statement->fetch(PDO::FETCH_ASSOC)) {
             $user = new Users($values);
             return $user;
-            echo var_dump($user);
         }
     }
+    function findUserEmail($user)
+    {
+        $user = new Users($user);
+        $db = $db = $this->dbConnect();
+        $statement = $db->PREPARE('SELECT * FROM `user` WHERE `email` =:email');
+        $statement->bindValue(':email', $user->getEmail());
+        $statement->execute();
+        while ($values = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $user = new Users($values);
+        }
+        return $user;
+    }
+    function updateToken($user)
+    {
+        $db = $db = $this->dbConnect();
+        $statement = $db->PREPARE('UPDATE USER SET reset_token = :reset_token WHERE email = :email');
+        $statement->bindValue(':reset_token', $user->getReset_token());
+        $statement->bindValue(':email', $user->getEmail());
+        $statement->execute();
+        while ($values = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $user = new Users($values);
+        }
+        return $user;
+    }
 }
-         

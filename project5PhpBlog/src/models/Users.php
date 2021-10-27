@@ -14,6 +14,7 @@ class Users
     private $date_create;
     private $user_type_id;
     private $confirmPassword;
+    private $reset_token;
 
     public function __construct($value = [])
     {
@@ -26,8 +27,19 @@ class Users
     public function hydrate(array $values)
     {
         foreach ($values as $key => $value) {
-            $method = 'set' . ucfirst($key);
-
+            $method = 'set';
+            $pieces = explode('_', $key);
+            foreach ($pieces as $piece) {
+                if (count($pieces) == 1) {
+                    $method = 'set' . ucfirst($pieces[0]);
+                }
+                if (count($pieces) == 2) {
+                    $method = 'set' . ucfirst($pieces[0]) . ucfirst($pieces[1]);
+                }
+                if (count($pieces) == 3) {
+                    $method = 'set' . ucfirst($pieces[0]) . ucfirst($pieces[1]) . ucfirst($pieces[2]);
+                }
+            }
             if (method_exists($this, $method)) {
                 $this->$method($value);
             }
@@ -44,33 +56,33 @@ class Users
     {
         return $this->id;
     }
-    public function setFirst_name($first_name)
+    public function setFirstName($first_name)
     {
         if (is_string($first_name)) {
             $this->first_name = $first_name;
         }
     }
-    public function getFirst_name()
+    public function getFirstName()
     {
         return $this->first_name;
     }
-    public function setLast_name($last_name)
+    public function setLastName($last_name)
     {
         if (is_string($last_name)) {
             $this->last_name = $last_name;
         }
     }
-    public function getLast_name()
+    public function getLastName()
     {
         return $this->last_name;
     }
-    public function setUser_name($user_name)
+    public function setUserName($user_name)
     {
         if (is_string($user_name)) {
             $this->user_name = $user_name;
         }
     }
-    public function getUser_name()
+    public function getUserName()
     {
         return $this->user_name;
     }
@@ -90,22 +102,22 @@ class Users
     {
         return $this->password;
     }
-    public function setDate_create($date_create)
+    public function setDateCreate($date_create)
     {
         $this->date_create = $date_create;
     }
-    public function getDate_create()
+    public function getDateCreate()
     {
         return $this->date_create;
     }
-    public function setUser_type_id($user_type_id)
+    public function setUserTypeId($user_type_id)
     {
         $user_type_id = (int) $user_type_id;
         if ($user_type_id > 0) {
             $this->user_type_id= $user_type_id;
         }
     }
-    public function getUser_type_id()
+    public function getUserTypeId()
     {
         return $this->user_type_id;
     }
@@ -116,5 +128,13 @@ class Users
     public function getConfirmPassword()
     {
         return $this->confirmPassword;
+    }
+    public function setResetToken($reset_token)
+    {
+        $this->reset_token = $reset_token;
+    }
+    public function getResetToken()
+    {
+        return $this->reset_token;
     }
 }

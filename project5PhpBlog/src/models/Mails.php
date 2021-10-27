@@ -101,7 +101,7 @@ class Mails
             $mail->isHTML(true);
             $mail->Subject = 'We have received your message';
             $mail->addEmbeddedImage('public/img/logo.png','logo');
-            $bodyParagraphs = ["Thank you for your message.We will get back to you Shortly.", "",  "", '<img src="cid:logo" width="20%">', "","First Name: {$this->getFirstName()}", "Last Name: {$this->getLastName()}", "Email: {$this->getEmail()}", "Subject: {$this->getSubject()}", "Message:", nl2br($this->getMessage())];
+            $bodyParagraphs = ["Thank you for your message.We will get back to you shortly.", "",  "", '<img src="cid:logo" width="20%">', "","First Name: {$this->getFirstName()}", "Last Name: {$this->getLastName()}", "Email: {$this->getEmail()}", "Subject: {$this->getSubject()}", "Message:", nl2br($this->getMessage())];
             $body = join('<br />', $bodyParagraphs);
             $mail->Body = $body;
             $mail->send();
@@ -111,5 +111,33 @@ class Mails
             session_start();
             $_SESSION['error'] = "Oops, something went wrong. Please try again later.";
         }
+    }
+    function sendResetPasswordEmail($user){
+        $mail = new PHPMailer($user);
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.mailtrap.io';
+            $mail->SMTPAuth = true;
+            $mail->Port = 2525;
+            $mail->Username = '0580ec86a93a2d';
+            $mail->Password = '246a9f332e368c';
+
+            $mail->setFrom('pelgrims.chenchingyi@gmail.com', 'ChingYi PC');
+            $mail->addAddress($user->getEmail(), $user->getFirstName());
+            $mail->isHTML(true);
+            $mail->Subject = 'Reset password';
+            $bodyParagraphs = ["Please click the link below to reset your password.","<a href=''>"];
+            $body = join('<br />', $bodyParagraphs);
+            $mail->Body = $body;
+            $mail->send();
+            session_start();
+            $_SESSION['success_message'] = "Your contact form is sent successfully.Thank you for contacting us.";
+        } catch (Exception $e) {
+            session_start();
+            $_SESSION['error'] = "Oops, something went wrong. Please try again later.";
+        }
+
+
+
     }
 }

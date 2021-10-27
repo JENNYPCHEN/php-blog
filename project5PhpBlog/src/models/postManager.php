@@ -82,7 +82,7 @@ class PostManager extends DatabaseManager
         $statement->bindValue(':category', $post->getCategory());
         $statement->bindValue(':chapo', $post->getChapo());
         $statement->bindValue(':content', $post->getContent());
-        $statement->bindValue(':userid', $post->getUser_id());
+        $statement->bindValue(':userid', $post->getUserId());
         $statement->bindValue(':image', $post->getImage());
         $post=$statement->execute();
         return$post;
