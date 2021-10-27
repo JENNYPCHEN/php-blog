@@ -26,10 +26,8 @@ class userManager extends databaseManager
     public function login($user)
     {
         $db = $this->dbConnect();
-
-        $statement = $db->prepare("SELECT * FROM `user` WHERE `user_name`= :username AND `password`= :password");
+        $statement = $db->prepare("SELECT * FROM `user` WHERE `user_name`= :username");
         $statement->bindValue(':username', $user['username']);
-        $statement->bindValue(':password', $user['password']);
         $statement->execute();
         while ($values = $statement->fetch(PDO::FETCH_ASSOC)) {
             $currentUser = new Users($values);

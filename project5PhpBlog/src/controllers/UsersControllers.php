@@ -45,7 +45,7 @@ class UsersControllers
         }
         if (empty($usernameError) && empty($emailAddressError) && empty($passwordError) && empty($confirmPasswordError)) {
 
-            $user['password'] = md5($user['password']);
+            $user['password'] = password_hash($user['password'], PASSWORD_BCRYPT);
             $userManager = new UserManager;
             $newUser = $userManager->signup($user);
             if ($newUser === false) {
@@ -62,31 +62,36 @@ class UsersControllers
 
     public function currentUser($user)
     {
-        $user['password'] = md5($user['password']);
         $userManager = new UserManager;
         $currentUser = $userManager->login($user);
-        $currentUserId = $currentUser->getId();
         $currentUserTypeId = $currentUser->getUserTypeId();
+        $currentUserPassword = $currentUser->getPassword();
         $currentUsername = $currentUser->getUserName();
+        $currentUserId = $currentUser->getId();
 
-        if (empty($currentUserId) && empty($currentUsername) && empty($currentUserTypeId)) {
+        if (empty($currentUserPassword)) {
             $error = "Please enter the correct username and password.";
             require('src/views/frontend/login.php');
-        } else {
-            session_start();
-            $_SESSION['user_type_id'] = $currentUserTypeId;
-            $_SESSION['username'] = $currentUsername;
-            $_SESSION['id'] = $currentUserId;
-            if ($currentUserTypeId == 2) {
-                header('Location:index.php');
-            } elseif ($currentUserTypeId == 1) {
-                $postManager = new PostManager();
-                $commentManager = new CommentManager();
-                $userManager = new UserManager();
-                $posts = $postManager->getPosts($keyword);
-                $comments = $commentManager->getAllComments();
-                $users = $userManager->getUsers();
-                require('src/views/backend/dashboard.php');
+        } elseif (!empty($currentUserPassword)) {
+            if (password_verify($user['password'], $currentUserPassword) == false) {
+                $error = "Please enter the correct username and password.";
+                require('src/views/frontend/login.php');
+            } elseif (password_verify($user['password'], $currentUserPassword) == true) {
+                session_start();
+                $_SESSION['user_type_id'] = $currentUserTypeId;
+                $_SESSION['username'] = $currentUsername;
+                $_SESSION['id'] = $currentUserId;
+                if ($currentUserTypeId !== 1) {
+                    header('Location:index.php');
+                } elseif ($currentUserTypeId == 1) {
+                    $postManager = new PostManager();
+                    $commentManager = new CommentManager();
+                    $userManager = new UserManager();
+                    $posts = $postManager->getPosts($keyword);
+                    $comments = $commentManager->getAllComments();
+                    $users = $userManager->getUsers();
+                    require('src/views/backend/dashboard.php');
+                }
             }
         }
     }
