@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 27, 2021 at 09:38 AM
+-- Generation Time: Oct 28, 2021 at 04:58 AM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.11
 
@@ -104,7 +104,7 @@ CREATE TABLE `user` (
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `date_create` datetime NOT NULL,
   `user_type_id` int(11) DEFAULT '2',
-  `reset_token` int(11) DEFAULT NULL
+  `reset_token` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -112,7 +112,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `user_name`, `email`, `password`, `date_create`, `user_type_id`, `reset_token`) VALUES
-(1, 'Jenny', 'Chen', 'ChingyiPC', 'pelgrims.chenchingyi@gmail.com                                                                      ', '$2y$10$0LMqQp1OETmOaARw15k1mOY.xTZsCezRQyKNud16MiYh4xB7oa686', '2021-10-02 00:00:00', 1, NULL),
+(1, 'Jenny', 'Chen', 'ChingyiPC', 'pelgrims.chenchingyi@gmail.com                                                                      ', '$2y$10$0LMqQp1OETmOaARw15k1mOY.xTZsCezRQyKNud16MiYh4xB7oa686', '2021-10-02 00:00:00', 1, '1635360983$2y$10$hdXA/DPDOP8OexmnigLODu2ZM0RvvtpIt8a28jokDr7Ic9VelB.HS'),
 (22, 'joeylee1234', 'marrion', 'joeyleemarion1234', 'joeyleemarion@gmail.com', 'joeyleemarion1234', '2021-10-12 15:55:30', NULL, NULL),
 (23, 'joeylee123445', 'marrion', 'joeyleemarion123445', 'joeyleemarion45@gmail.com', 'joeyleemarion123445', '2021-10-12 15:58:06', NULL, NULL),
 (28, 'joeylee987456', 'marrion', 'joeylee987456', 'joeyleemarion852@gmail.com', 'joeylee987456', '2021-10-12 16:00:42', NULL, NULL),
