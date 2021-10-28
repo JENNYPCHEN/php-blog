@@ -44,7 +44,7 @@
         <form class="dropdown-menu p-4" method="post" action="index.php?action=resetPassword">
             <div class="mb-3 blogtext">
                 <p>Please enter your email address. <br>Instructions for resetting the password will be immediately emailed to you.</p>
-                <input type="email" name="email"class="form-control" id="emailAddress" placeholder="email@example.com">
+                <input type="email" name="email" class="form-control" id="emailAddress" placeholder="email@example.com">
             </div>
             <button type="submit" class="btn button">Reset Password</button>
         </form>

@@ -114,6 +114,8 @@ class Mails
     }
     function sendResetPasswordEmail($user){
         $mail = new PHPMailer($user);
+        $userEmail=$user->getEmail();
+        $userToken=$user->getResetToken();
         try {
             $mail->isSMTP();
             $mail->Host = 'smtp.mailtrap.io';
@@ -126,12 +128,15 @@ class Mails
             $mail->addAddress($user->getEmail(), $user->getFirstName());
             $mail->isHTML(true);
             $mail->Subject = 'Reset password';
-            $bodyParagraphs = ["Please click the link below to reset your password.","<a href=''>"];
-            $body = join('<br />', $bodyParagraphs);
+            $mail->addEmbeddedImage('public/img/logo.png','logo');
+            $body = 
+            "<p>Please click the link below to reset your password.<p><br>
+            <a href='http://localhost/project5PhpBlog/index.php?action=resetPasswordMail&email=$userEmail&reset_token=$userToken'>click here</a><br><br>
+            <img src='cid:logo' width='20%'>";
             $mail->Body = $body;
             $mail->send();
             session_start();
-            $_SESSION['success_message'] = "Your contact form is sent successfully.Thank you for contacting us.";
+            $_SESSION['successmessage'] = "We have sent you an Email to reset the password. Please check your mail box.";
         } catch (Exception $e) {
             session_start();
             $_SESSION['error'] = "Oops, something went wrong. Please try again later.";
