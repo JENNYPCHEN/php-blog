@@ -137,23 +137,43 @@ try {
             }
             $BackendControllers = new BackendControllers();
             $BackendControllers->editUserRole($user);
-        } elseif($_GET['action']=='contact'){
+        } elseif ($_GET['action'] == 'contact') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-                $mail = [
-                    'firstName' => trim($_POST['firstName']),
-                    'lastName' => trim($_POST['lastName']),
-                    'email' => trim($_POST['email']),
-                    'subject' => trim($_POST['subject']),
-                    'message' => trim($_POST['message'])
-                ];
-                $MailControllers=new MailControllers();
-                $MailControllers->sendMail($mail);
-
-        } elseif($_GET['action']=='resetPassword'){
+            $mail = [
+                'firstName' => trim($_POST['firstName']),
+                'lastName' => trim($_POST['lastName']),
+                'email' => trim($_POST['email']),
+                'subject' => trim($_POST['subject']),
+                'message' => trim($_POST['message'])
+            ];
+            $MailControllers = new MailControllers();
+            $MailControllers->sendMail($mail);
+        } elseif ($_GET['action'] == 'resetPassword') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            $user=['email'=>trim($_POST['email'])];
-            $userControllers=new UsersControllers();
+            $user = ['email' => trim($_POST['email'])];
+            $userControllers = new UsersControllers();
             $userControllers->findUserEmail($user);
+        } elseif ($_GET['action'] == 'resetPasswordMail') {
+            if (isset($_GET['email']) && (isset($_GET['reset_token']))) {
+                $user = [
+                    'email' => $_GET['email'],
+                    'reset_token' => $_GET['reset_token']
+                ];
+                $userControllers = new UsersControllers();
+                $userControllers->resetPassWordMailVerification($user);
+            }
+        } elseif ($_GET['action'] == 'newPassword') {
+            if (isset($_POST['email']) && isset($_POST['reset_token']) && isset($_POST['password']) && isset($_POST['confirmPassword'])) {
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                $user=[
+                    'email'=>trim($_POST['email']),
+                    'reset_token'=>trim($_POST['reset_token']),
+                    'password'=>trim($_POST['password']),
+                    'confirmPassword'=>trim($_POST['confirmPassword'])
+                ];
+                $usersController=new UsersControllers();
+                $usersController->newPassword($user);
+            }
         }
     } else {
         $FrontendControllers = new FrontendControllers();

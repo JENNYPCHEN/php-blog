@@ -109,19 +109,75 @@ class UsersControllers
     {
         $userManager = new UserManager();
         $user = $userManager->findUserEmail($user);
+
         $userUserName = $user->getUserName();
         $userId = $user->getId();
+
         if (empty($userUserName) && empty($userId)) {
             session_start();
             $_SESSION['error'] = "Email does not exist.";
             header('Location:index.php?action=loginpage');
             exit();
         } else {
-            $user->setResetToken(time() . md5($user->getEmail()));
+            $user->setResetToken(time() . password_hash($user->getEmail(), PASSWORD_BCRYPT));
+
             $userManager = new UserManager();
-            $user = $userManager->updateToken($user);
+            $UserToken = $userManager->updateToken($user);
             $mail = new Mails();
             $mail = $mail->sendResetPasswordEmail($user);
+            header('Location: index.php?action=loginpage');
         }
     }
-}
+
+    function resetPassWordMailVerification($user)
+    {
+        $userManager = new UserManager;
+        $userFromSystem = $userManager->findUserEmail($user);
+        $userResetToken = $userFromSystem->getResetToken();
+        if (empty($userResetToken)) {
+            session_start();
+            $_SESSION['error'] = "Email does not exist.";
+            header('Location:index.php?action=loginpage');
+            exit();
+        }
+        if (isset($userResetToken) && $userResetToken !== $user['reset_token']) {
+            session_start();
+            $_SESSION['error'] = "Recovery email has been expired.";
+            header('Location:index.php?action=loginpage');
+            exit();
+        } elseif ($userResetToken == $user['reset_token']) {
+            require 'src/views/frontend/resetPassword.php';
+        }
+    }
+    function newPassword($user)
+    {
+        $passwordValidation = "/^(?=.*?[0-9])[a-zA-Z0-9]{8,}$/";
+        $error = "";
+        if (!preg_match($passwordValidation, $user['password'])) {
+            $error = "Password must have at least one numeric value.";
+            require 'src/views/frontend/resetPassword.php';
+        } elseif (strlen($user['password']) < 7) {
+            $error = "Password must have at least 8 characters.";
+            require 'src/views/frontend/resetPassword.php';
+        } elseif ($user['password'] !== $user['confirmPassword']) {
+            $error = "Password do not match. Please try again.";
+            require 'src/views/frontend/resetPassword.php';
+        } else{
+            $user['password']=password_hash($user['password'], PASSWORD_BCRYPT);
+            $userManager=new UserManager();
+            $resetUser=$userManager->newPassword($user);
+        if(isset($resetUser)){
+            session_start();
+            $_SESSION['successmessage' ] = "Password has been reset successfully.";
+            header('Location:index.php?action=loginpage');
+            exit();   
+        } else{
+            $error = "Opps.Something went wrong. Please try again later";
+            require 'src/views/frontend/resetPassword.php';
+        }
+            
+
+        }
+      }
+     
+    }

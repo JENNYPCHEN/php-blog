@@ -92,14 +92,25 @@ class userManager extends databaseManager
     }
     function updateToken($user)
     {
-        $db = $db = $this->dbConnect();
-        $statement = $db->PREPARE('UPDATE USER SET reset_token = :reset_token WHERE email = :email');
-        $statement->bindValue(':reset_token', $user->getReset_token());
+         $db = $db = $this->dbConnect();
+        $statement = $db->PREPARE('UPDATE user set `reset_token`=:reset_token WHERE `email`=:email');
+        $statement->bindValue(':reset_token', $user->getResetToken());
         $statement->bindValue(':email', $user->getEmail());
+        $statement->execute();
+    }
+    function newPassword($user){
+        $db = $db = $this->dbConnect();
+        $user=new Users($user);
+        $statement= $db->PREPARE('UPDATE user set `password`=:password WHERE `email`=:email AND `reset_token`=:reset_token');
+        $statement->bindValue(':reset_token', $user->getResetToken());
+        $statement->bindValue(':email', $user->getEmail());
+        $statement->bindValue(':password', $user->getPassword());
         $statement->execute();
         while ($values = $statement->fetch(PDO::FETCH_ASSOC)) {
             $user = new Users($values);
         }
         return $user;
+
+
     }
 }

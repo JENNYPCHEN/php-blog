@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 28, 2021 at 04:58 AM
+-- Generation Time: Oct 28, 2021 at 12:56 PM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.11
 
@@ -43,9 +43,8 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`id`, `author`, `comment`, `valid`, `date_create`, `post_id`, `user_id`) VALUES
-(34, 'Doe', 'Lovely to hear that', 1, '2021-10-22 10:02:15', 22, 62),
-(37, 'Doe', 'Lovely to hear that', NULL, '2021-10-22 10:03:04', 22, 62),
-(38, 'Doe', 'Lovely to hear that', NULL, '2021-10-22 10:04:10', 22, 62),
+(37, 'Doe', 'Lovely to hear that', 1, '2021-10-22 10:03:04', 22, 62),
+(38, 'Doe', 'Lovely to hear that', 1, '2021-10-22 10:04:10', 22, 62),
 (40, 'Doe', 'Lovely to hear that', 1, '2021-10-22 10:05:11', 22, 43),
 (41, 'Doe', 'Lovely to hear that', 1, '2021-10-22 10:07:14', 22, 62),
 (42, 'Doe', 'Lovely to hear that', 1, '2021-10-22 10:07:41', 22, 62),
@@ -86,8 +85,8 @@ INSERT INTO `post` (`id`, `title`, `chapo`, `content`, `image`, `date_create`, `
 (38, 'hi', 'testing', '<p>testing</p>', 'hi', '2021-10-25 14:08:18', '2021-10-25 14:39:46', 63, 'hi'),
 (40, 'testing', 'testing', '<p>Hello, World!</p>', NULL, '2021-10-25 14:45:46', '2021-10-25 14:45:46', 62, 'testing'),
 (42, 'testing', 'testing', '<p>Hello, World!</p>', NULL, '2021-10-25 14:46:59', '2021-10-25 14:46:59', 62, 'testing'),
-(43, 'testing', 'testing', '<p>Hello, World!</p>', 'Array', '2021-10-25 14:49:02', '2021-10-25 22:13:57', 62, 'testing'),
-(45, 'New Post1', 'New Post', '<p>Once upon a time, there was a little girl who lived in a village near the forest.&nbsp;</p>\r\n<p>Whenever she went out, the little girl wore a red riding cloak, so everyone in the village called her Little Red Riding Hood.</p>\r\n<p>Once upon a time, there was a little girl who lived in a village near the forest.&nbsp; Whenever she went out, the little girl wore a red riding cloak, so everyone in the village called her Little Red Riding Hood.Once upon a time, there was a little girl who lived in a village near the forest.&nbsp; Whenever she went out, the little girl wore a red riding cloak, so everyone in the village called her Little Red Riding HooOnce upon a time, there was a little girl who lived in a village near the forest.&nbsp; Whenever she went out, the little girl wore a red riding cloak, so everyone in the village called her Little Red Riding Hood.</p>\r\n<p>One morning, Little Red Riding Hood asked her mother if she could go to visit her grandmother as it had been awhile since they\'d seen each other. \"That\'s a good idea,\" her mother said.&nbsp; So they packed a nice basket for Little Red Riding Hood to take to her grandmother. When the basket was ready, the little girl put on her red cloak and kissed her mother goodbye.</p>', 'public/img/fDU1n0Po/219269.jpg', '2021-10-25 21:53:23', '2021-10-27 07:52:17', 62, 'New Post');
+(43, 'testing', 'testing', '<p>Hello, World!</p>', 'public/img/qifp6dpR/1.jpg', '2021-10-25 14:49:02', '2021-10-28 14:53:48', 62, 'testing'),
+(45, 'New Post2', 'New Post', '<p>Once upon a time, there was a little girl who lived in a village near the forest.&nbsp;</p>\r\n<p>Whenever she went out, the little girl wore a red riding cloak, so everyone in the village called her Little Red Riding Hood.</p>\r\n<p>Once upon a time, there was a little girl who lived in a village near the forest.&nbsp; Whenever she went out, the little girl wore a red riding cloak, so everyone in the village called her Little Red Riding Hood.Once upon a time, there was a little girl who lived in a village near the forest.&nbsp; Whenever she went out, the little girl wore a red riding cloak, so everyone in the village called her Little Red Riding HooOnce upon a time, there was a little girl who lived in a village near the forest.&nbsp; Whenever she went out, the little girl wore a red riding cloak, so everyone in the village called her Little Red Riding Hood.</p>\r\n<p>One morning, Little Red Riding Hood asked her mother if she could go to visit her grandmother as it had been awhile since they\'d seen each other. \"That\'s a good idea,\" her mother said.&nbsp; So they packed a nice basket for Little Red Riding Hood to take to her grandmother. When the basket was ready, the little girl put on her red cloak and kissed her mother goodbye.</p>', 'public/img/fDU1n0Po/219269.jpg', '2021-10-25 21:53:23', '2021-10-28 14:53:30', 62, 'New Post');
 
 -- --------------------------------------------------------
 
@@ -112,7 +111,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `user_name`, `email`, `password`, `date_create`, `user_type_id`, `reset_token`) VALUES
-(1, 'Jenny', 'Chen', 'ChingyiPC', 'pelgrims.chenchingyi@gmail.com                                                                      ', '$2y$10$0LMqQp1OETmOaARw15k1mOY.xTZsCezRQyKNud16MiYh4xB7oa686', '2021-10-02 00:00:00', 1, '1635360983$2y$10$hdXA/DPDOP8OexmnigLODu2ZM0RvvtpIt8a28jokDr7Ic9VelB.HS'),
+(1, 'Jenny', 'Chen', 'ChingyiPC', 'pelgrims.chenchingyi@gmail.com                                                                      ', '$2y$10$TLJ9dUtHwR0SQcxr24gjxOnXP/VQ6isURVoFT5V5tXOP.i.Vka7vy', '2021-10-02 00:00:00', 1, '1635425706$2y$10$4JKcNrJL0V1voS8Jvw4F5.dcTUCZeJaopJifXPelbRPChpazL/ApW'),
 (22, 'joeylee1234', 'marrion', 'joeyleemarion1234', 'joeyleemarion@gmail.com', 'joeyleemarion1234', '2021-10-12 15:55:30', NULL, NULL),
 (23, 'joeylee123445', 'marrion', 'joeyleemarion123445', 'joeyleemarion45@gmail.com', 'joeyleemarion123445', '2021-10-12 15:58:06', NULL, NULL),
 (28, 'joeylee987456', 'marrion', 'joeylee987456', 'joeyleemarion852@gmail.com', 'joeylee987456', '2021-10-12 16:00:42', NULL, NULL),
@@ -211,7 +210,7 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `user_type`
