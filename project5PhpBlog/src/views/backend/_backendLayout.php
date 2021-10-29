@@ -114,13 +114,13 @@
         <div class="col-lg-10  ">
             <div class=" d-flex justify-content-between card-group border-light mb-3">
                 <div class="card">
-                    <h5 class="card-body card-title fs-6"><i class="fas fa-mail-bulk"></i> Publications</h5>
+                    <h5 class="card-body card-title fs-6"><i class="fas fa-mail-bulk"></i> <?=$post->getCounter()?> Publications</h5>
                 </div>
                 <div class="card">
-                    <h5 class="card-body card-title fs-6"><i class="far fa-user"></i> Users</h5>
+                    <h5 class="card-body card-title fs-6"><i class="far fa-user"></i> <?=$user->getCounter()?> Users</h5>
                 </div>
                 <div class="card">
-                    <h5 class="card-body card-title fs-6"><i class="far fa-comments"></i> Comments</h5>
+                    <h5 class="card-body card-title fs-6"><i class="far fa-comments"></i> <?=$comment->getCounter()?> Comments</h5>
                 </div>
             </div>
 
