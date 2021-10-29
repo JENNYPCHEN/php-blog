@@ -15,12 +15,14 @@ class Users
     private $user_type_id;
     private $confirmPassword;
     private $reset_token;
+    public static $counter=0;
 
     public function __construct($value = [])
     {
         if (!empty($value)) {
 
             $this->hydrate($value);
+            self::$counter++;
         }
     }
 
@@ -136,5 +138,8 @@ class Users
     public function getResetToken()
     {
         return $this->reset_token;
+    }
+    public function getCounter(){
+        return self::$counter;
     }
 }

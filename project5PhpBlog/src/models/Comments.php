@@ -14,6 +14,7 @@ class Comments
     private $valid;
     private $user_id;
     private $post_id;
+    public static $counter=0;
 
 
     public function __construct($value = [])
@@ -21,6 +22,7 @@ class Comments
         if (!empty($value)) {
 
             $this->hydrate($value);
+            self::$counter++;
         }
     }
 
@@ -123,5 +125,8 @@ class Comments
     public function getCommentDateCreate()
     {
         return $this->comment_date_create;
+    }
+    public function getCounter(){
+        return self::$counter;
     }
 }
