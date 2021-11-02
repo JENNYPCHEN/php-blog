@@ -15,10 +15,12 @@ class FrontendControllers
     {
 
         $keyword = $_GET['search'] ?? '';
+        $page = $_GET['page'] ?? 1;
         $postManager = new PostManager();
-        $posts = $postManager->getPosts($keyword);
-
-        require('src/views/frontend/homepage.php');
+        $number_of_post_results = $postManager->counter($keyword);
+        $posts = $postManager->getPosts($keyword, $page);
+        $number_of_pages = ceil($number_of_post_results / 5);
+       require('src/views/frontend/homepage.php');
     }
 
     public function listAPost()
@@ -40,7 +42,7 @@ class FrontendControllers
         } else {
             session_start();
             $_SESSION['success_message'] = "Comment is sent successfully. It will be displayed once it is approved.";
-            header('Location: index.php?action=post&id='.$comment->getPostId());
+            header('Location: index.php?action=post&id=' . $comment->getPostId());
             exit();
         }
     }

@@ -34,12 +34,14 @@ class userManager extends databaseManager
         }
         return $currentUser;
     }
-    public function getUsers()
+    public function getUsers($userPage)
     {
         $users = [];
         $db = $this->dbConnect();
-        $statement = $db->PREPARE('SELECT * FROM USER');
-        $statement->execute(array());
+        $this_page_first_result =($userPage-1)*5;
+        $statement = $db->PREPARE('SELECT * FROM USER ORDER BY date_create DESC LIMIT :thisPageFirstResult, 5;');
+        $statement->bindValue(':thisPageFirstResult', $this_page_first_result, PDO::PARAM_INT);
+        $statement->execute();
         while ($values = $statement->fetch(PDO::FETCH_ASSOC)) {
             $users[] = new Users($values);
         }
@@ -110,7 +112,13 @@ class userManager extends databaseManager
             $user = new Users($values);
         }
         return $user;
-
-
+    }
+    public function counter()
+    {
+        $db = $this->dbConnect();
+        $statement = $db->prepare('SELECT COUNT(id) as counter FROM user');
+        $statement->execute();
+        $count = $statement->fetch()[0];
+        return $count;
     }
 }

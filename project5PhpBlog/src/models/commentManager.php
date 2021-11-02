@@ -31,12 +31,15 @@ class CommentManager extends DatabaseManager
         $comment = $statement->execute();
         return $comment;
     }
-    public function getAllcomments()
+    public function getAllcomments($commentPage)
     {
         $comments = [];
         $db = $this->dbConnect();
-        $statement = $db->PREPARE('SELECT `id`, `author`, `comment`,`post_id`,`user_id`, DATE_FORMAT(date_create, "%D %b %Y %H:%i") AS comment_creation_date, `valid` FROM COMMENT ORDER BY comment_creation_date DESC');
-        $statement->execute(array());
+        $this_page_first_result =($commentPage-1)*5;
+
+        $statement = $db->PREPARE('SELECT `id`, `author`, `comment`,`post_id`,`user_id`, DATE_FORMAT(date_create, "%D %b %Y %H:%i") AS comment_creation_date, `valid` FROM COMMENT ORDER BY comment_creation_date DESC LIMIT :thisPageFirstResult, 5');
+        $statement->bindValue(':thisPageFirstResult', $this_page_first_result, PDO::PARAM_INT);
+        $statement->execute();
         while ($values = $statement->fetch(PDO::FETCH_ASSOC)) {
             $comments[] = new Comments($values);
         }
@@ -56,5 +59,14 @@ class CommentManager extends DatabaseManager
         $statement=$db->PREPARE ('DELETE FROM COMMENT WHERE id= :id');
         $statement->bindValue(':id',$comment->getId());
         return $statement->execute();
+    }
+
+    public function counter()
+    {
+        $db = $this->dbConnect();
+        $statement = $db->prepare('SELECT COUNT(id) as counter FROM comment');
+        $statement->execute();
+        $count = $statement->fetch()[0];
+        return $count;
     }
 }

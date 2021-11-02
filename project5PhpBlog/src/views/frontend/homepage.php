@@ -34,10 +34,9 @@
         <!--pagination-->
         <nav aria-label="Page navigation">
           <ul class="pagination">
-            <li class="page-item"><a class="page-link" name="page" href="#">&laquo;</a></li>
-            <li class="page-item active"><a class="page-link" name="page" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" name="page" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" name="page" href="#">&raquo;</a></li>
+         <?php for ($page=1;$page<=$number_of_pages;$page++) { ?>
+            <li class="page-item"><a class="page-link" name="page" href="index.php?search=<?=$keyword?>&amp;page=<?=$page?>"><?=$page?></a></li>
+         <?php } ?>
           </ul>
         </nav>
 

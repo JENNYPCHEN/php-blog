@@ -73,12 +73,25 @@ class BackendControllers
     function dashboardPage()
     {
         $keyword = $_GET['search'] ?? '';
+        $page = $_GET['page'] ?? 1;
+        $commentPage = $_GET['commentPage'] ?? 1;
+        $userPage = $_GET['userPage'] ?? 1;
+
         $postManager = new PostManager();
+        $number_of_post_results = $postManager->counter($keyword);
+
         $commentManager = new CommentManager();
+        $number_of_comment_results = $commentManager->counter();
+
         $userManager = new UserManager();
-        $posts = $postManager->getPosts($keyword);
-        $comments = $commentManager->getAllComments();
-        $users = $userManager->getUsers();
+        $number_of_user_results = $userManager->counter();
+
+        $posts = $postManager->getPosts($keyword,$page);
+        $number_of_pages = ceil($number_of_post_results / 5);
+        $comments = $commentManager->getAllComments($commentPage);
+        $number_comment_pages= ceil($number_of_comment_results / 5);
+        $users = $userManager->getUsers($userPage);
+        $number_user_pages= ceil($number_of_user_results / 5);
         require('src/views/backend/dashboard.php');
     }
     function editPage()

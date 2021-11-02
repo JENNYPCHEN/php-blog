@@ -56,16 +56,16 @@
                     Posts
                 </a>
                 <ul class="dropdown-menu sidebardropdown" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="index.php?action=dashboard#posts">Posts</a>
+                    <li><a class="dropdown-item" href="#posts">Posts</a>
                     </li>
                     <li><a class="dropdown-item" href="index.php?action=newPostPage">add a post</a>
                     </li>
                 </ul>
                 <li class="nav-item">
-                    <a class="nav-link pb-2" href="index.php?action=dashboard#comments">Comments</a>
+                    <a class="nav-link pb-2" href="#comments">Comments</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link pb-2" href="index.php?action=dashboard#users">Users</a>
+                    <a class="nav-link pb-2" href="#users">Users</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link pb-2 " href="index.php?action=logout">Logout</a>
@@ -110,18 +110,19 @@
                 </div>
             </div>
         </nav>
-        <!--statistic-->
+
         <div class="col-lg-10  ">
+        <!--statistic-->
             <div class=" d-flex justify-content-between card-group border-light mb-3">
-                <div class="card">
-                    <h5 class="card-body card-title fs-6"><i class="fas fa-mail-bulk"></i> <?=$post->getCounter()?> Publications</h5>
+              <!--  <div class="card">
+                    <h5 class="card-body card-title fs-6"><i class="fas fa-mail-bulk"></i> Publications</h5>
                 </div>
                 <div class="card">
-                    <h5 class="card-body card-title fs-6"><i class="far fa-user"></i> <?=$user->getCounter()?> Users</h5>
+                    <h5 class="card-body card-title fs-6"><i class="far fa-user"></i>  Users</h5>
                 </div>
                 <div class="card">
-                    <h5 class="card-body card-title fs-6"><i class="far fa-comments"></i> <?=$comment->getCounter()?> Comments</h5>
-                </div>
+                    <h5 class="card-body card-title fs-6"><i class="far fa-comments"></i>  Comments</h5>
+                </div>-->
             </div>
 
             <?php echo $content ?>
