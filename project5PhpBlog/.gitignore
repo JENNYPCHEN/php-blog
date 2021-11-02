@@ -1,7 +1,23 @@
 # File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
 
-# Created by https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,git
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,visualstudiocode,git
+
+### Git ###
+# Created by git for backups. To disable backups in Git:
+# $ git config --global mergetool.keepBackup false
+*.orig
+*.env
+
+# Created by git when using merge tools for conflicts
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+*_BACKUP_*.txt
+*_BASE_*.txt
+*_LOCAL_*.txt
+*_REMOTE_*.txt
 
 ### VisualStudioCode ###
 .vscode/*
@@ -18,7 +34,6 @@
 # Ignore all local history of files
 .history
 .ionide
-.env
 
 # Support for Project snippet scope
 !.vscode/*.code-snippets
@@ -49,7 +64,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,git
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
