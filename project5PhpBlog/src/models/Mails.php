@@ -88,11 +88,11 @@ class Mails
         $mail = new PHPMailer($mail);
         try {
             $mail->isSMTP();
-            $mail->Host = 'smtp.mailtrap.io';
+            $mail->Host = $_ENV["MAIL_HOST"];
             $mail->SMTPAuth = true;
-            $mail->Port = 2525;
-            $mail->Username = '0580ec86a93a2d';
-            $mail->Password = '246a9f332e368c';
+            $mail->Port = $_ENV["MAIL_PORT"];
+            $mail->Username = $_ENV["MAIL_USERNAME"];
+            $mail->Password = $_ENV["MAIL_PASSWORD"];
 
             $mail->setFrom('pelgrims.chenchingyi@gmail.com', 'ChingYi PC');
             $mail->addAddress($this->getEmail(), $this->getFirstName());
@@ -118,11 +118,11 @@ class Mails
         $userToken=$user->getResetToken();
         try {
             $mail->isSMTP();
-            $mail->Host = 'smtp.mailtrap.io';
+            $mail->Host = $_ENV["MAIL_HOST"];
             $mail->SMTPAuth = true;
-            $mail->Port = 2525;
-            $mail->Username = '0580ec86a93a2d';
-            $mail->Password = '246a9f332e368c';
+            $mail->Port = $_ENV["MAIL_PORT"];
+            $mail->Username = $_ENV["MAIL_USERNAME"];
+            $mail->Password = $_ENV["MAIL_PASSWORD"];
 
             $mail->setFrom('pelgrims.chenchingyi@gmail.com', 'ChingYi PC');
             $mail->addAddress($user->getEmail(), $user->getFirstName());

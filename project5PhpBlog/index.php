@@ -1,13 +1,15 @@
 <?php
+
 session_start();
 require_once  __DIR__ . "/vendor/autoload.php";
-
 
 use App\Controllers\UsersControllers;
 use App\Controllers\FrontendControllers;
 use App\Controllers\BackendControllers;
 use App\Controllers\MailControllers;
-
+use Dotenv\Dotenv;
+$dotenv= Dotenv::createImmutable(__DIR__."/vendor");
+$dotenv->load();
 try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'loginpage') {
