@@ -84,13 +84,18 @@ class UsersControllers
                 if ($currentUserTypeId !== 1) {
                     header('Location:index.php');
                 } elseif ($currentUserTypeId == 1) {
-                    $postManager = new PostManager();
+                    $backendControllers=new BackendControllers();
+                    $backendControllers->dashboardPage();
+                   /* $postManager = new PostManager();
                     $commentManager = new CommentManager();
                     $userManager = new UserManager();
-                    $posts = $postManager->getPosts($keyword);
+                    $page = $_GET['page'] ?? 1;
+                    $number_of_post_results = $postManager->counter();
+                    $posts = $postManager->getPosts($keyword, $page);
+                    $number_of_pages = ceil($number_of_post_results / 5);
                     $comments = $commentManager->getAllComments();
                     $users = $userManager->getUsers();
-                    require('src/views/backend/dashboard.php');
+                    require('src/views/backend/dashboard.php');*/
                 }
             }
         }

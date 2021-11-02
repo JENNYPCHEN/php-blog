@@ -14,7 +14,7 @@ class Posts
     private $creation_date;
     private $user_id;
     private $image;
-    public static $counter=0;
+    private $counter;
 
 
     public function __construct($value = [])
@@ -22,7 +22,6 @@ class Posts
         if (!empty($value)) {
 
             $this->hydrate($value);
-            self::$counter++;
         }
     }
     public function hydrate(array $values)
@@ -134,7 +133,12 @@ class Posts
     {
         return $this->image;
     }
-    public function getCounter(){
-        return self::$counter;
+    public function setCounter($counter)
+    {
+        $this->counter = $counter;
+    }
+    public function getCounter()
+    {
+        return $this->counter;
     }
 }

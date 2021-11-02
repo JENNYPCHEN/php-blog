@@ -2,7 +2,6 @@
 <?php $title = 'ChingYi P.C | Personal Blog | Dashboard'; ?>
 <?php ob_start(); ?>
 <!--Post-->
-
 <body>
     <h2 class="m-3 admin-title">New Post</h2>
     <form method="post" enctype="multipart/form-data" action="index.php?action=createPost">
@@ -18,9 +17,10 @@
             <label for="headline" class="form-label">Headline</label>
             <textarea type="text" class="form-control" name="chapo" rows="3" placeholder="Headline" required></textarea>
         </div>
+        
         <div class="m-3 blogtext">
             <label for="content" class="form-label">Content</label>
-            <textarea id="mytextarea" name="content" required>Hello, World!</textarea>
+            <textarea type="text" id="mytextarea" rows="10" name="content" required>Hello, World!</textarea>
         </div>
         <div class="m-3">
             <label for="upload_image" class="form-label">Upload Image</label>

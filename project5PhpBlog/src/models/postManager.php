@@ -10,25 +10,27 @@ use PDO;
 class PostManager extends DatabaseManager
 {
 
-    function getPosts($keyword)
+    function getPosts($keyword,$page)
     {
         $posts = [];
-        $keyword = $_GET['search'] ?? '';
         $db = $this->dbConnect();
+        $this_page_first_result =($page-1)*5;
 
-        if (!empty($keyword)) {
-            $statement = $db->prepare('SELECT post.id, title, image,category, chapo, user_name, content, DATE_FORMAT(post.date_create,"%D %b %Y") AS creation_date FROM `post`JOIN  `user`WHERE USER.id = `post`.`user_id`AND content like :keyword GROUP BY post.id
-            ORDER BY post.date_create DESC LIMIT 0, 5');
+       if (!empty($keyword)) {
+            $statement = $db->prepare('SELECT post.id, title, image,category, chapo, user_name, content, DATE_FORMAT(post.date_create,"%D %b %Y") AS creation_date FROM `post`JOIN `user`WHERE USER.id = `post`.`user_id`AND content like :keyword GROUP BY post.id ORDER BY post.date_create DESC LIMIT :this_page_first_result, 5');
             $statement->bindValue(":keyword", "%$keyword%");
+            $statement->bindValue(":this_page_first_result", $this_page_first_result,PDO::PARAM_INT);
             $statement->execute();
         } else {
-            $statement = $db->prepare('SELECT post.id, title, image,category, chapo, user_name, content, DATE_FORMAT(post.date_create, "%D %b %Y") AS creation_date FROM `post` JOIN `user` WHERE USER.id = `post`.`user_id` GROUP BY post.id ORDER BY post.date_create DESC LIMIT 0, 5');
+            $statement = $db->prepare('SELECT post.id, title, image,category, chapo, user_name, content, DATE_FORMAT(post.date_create, "%D %b %Y") AS creation_date FROM `post` JOIN `user` WHERE USER.id = `post`.`user_id` GROUP BY post.id ORDER BY post.date_create DESC LIMIT :thisPageFirstResult, 5');
+            $statement->bindValue(':thisPageFirstResult', $this_page_first_result, PDO::PARAM_INT);
             $statement->execute();
         }
         while ($values = $statement->fetch(PDO::FETCH_ASSOC)) {
             $posts[] = new Posts($values);
         }
         return $posts;
+        echo var_dump($posts);
     }
 
     function getPost($postId)
@@ -76,7 +78,7 @@ class PostManager extends DatabaseManager
     function createPost($post)
     {
         $db = $this->dbConnect();
-        
+
         $statement = $db->prepare('INSERT INTO `post`( `title`, `category`, `chapo`, `content`, `user_id`,  `image`,`date_create` ) VALUES( :title, :category, :chapo, :content, :userid, :image, NOW())');
         $statement->bindValue(':title', $post->getTitle());
         $statement->bindValue(':category', $post->getCategory());
@@ -84,8 +86,17 @@ class PostManager extends DatabaseManager
         $statement->bindValue(':content', $post->getContent());
         $statement->bindValue(':userid', $post->getUserId());
         $statement->bindValue(':image', $post->getImage());
-        $post=$statement->execute();
-        return$post;
+        $post = $statement->execute();
+        return $post;
     }
+    public function counter($keyword)
+    {
+        $db = $this->dbConnect();
+        $statement = $db->prepare('SELECT COUNT(id) AS counter FROM post WHERE content LIKE :keyword');
+        $statement->bindValue(":keyword", "%$keyword%");
+        $statement->execute();
+        $count = $statement->fetch()[0];
+        return $count;    
 
+    }
 }
