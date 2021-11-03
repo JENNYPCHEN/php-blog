@@ -10,6 +10,7 @@ section {
   overflow: hidden;
   position: relative;
 }
+
 .cardtitle {
   font-family: "Satisfy", sans-serif;
   color: #255e6b;
@@ -19,9 +20,11 @@ section {
   line-height: 200%;
   font-family: "Satisfy", sans-serif;
 }
+
 .card-body p {
   color: #575353;
 }
+
 .category {
   padding: 0.3rem 1rem;
   text-decoration: none;
@@ -37,6 +40,7 @@ section {
   color: #575353;
   font-size: 0.75rem;
 }
+
 .blogtitle {
   font-family: "Satisfy", sans-serif;
   text-decoration: none;
@@ -62,6 +66,7 @@ section {
   opacity: 0;
   transition: all 0.2s;
 }
+
 .read-more-btn:hover i {
   opacity: 1;
   margin-left: 0;
@@ -71,6 +76,7 @@ section {
   font-family: "Satisfy", sans-serif;
   color: white;
 }
+
 .button:hover {
   color: white;
   background-color: #c39c62;
@@ -107,11 +113,13 @@ blockquote {
   margin-bottom: 2rem;
   font-size: 1.25rem;
 }
+
 cite {
   font-family: "Open Sans", sans-serif;
   font-style: normal;
   font-size: 1rem;
 }
+
 form {
   color: #575353;
 }
@@ -121,6 +129,7 @@ footer {
 footer a {
   color: #c39c62;
 }
+
 footer a:hover {
   color: #eededa;
 }
@@ -169,7 +178,6 @@ footer a:hover {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  
 }
 
 .sidebarcolor {
@@ -212,4 +220,5 @@ footer a:hover {
 }
 
 .limitTextLine {
-  display:inline;}
+  display: inline;
+}
