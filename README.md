@@ -43,7 +43,7 @@ Install Composer if you do not have it yet. All dependencies must be installed i
 
 <h4>Step 4 .Env file</h4>
 Create an .env file and copy the text below into your file and modify it as required and place the file in the vendor folder.<br>
-
+<br>
 #SMTP configuration to send mail<br>
 MAIL_HOST = <br>
 MAIL_PORT = <br>
@@ -55,12 +55,16 @@ DB_NAME=<br>
 DB_USER=<br>
 DB_PASSWORD=<br>
 DB_HOST=<br>
- 
+<br>
+<hr>
 
 
-You can use the following administrator account to test the blog, or you could simply create your own one!
-Username: administratorSample
-Password: Aa12345678
-
-Enjoy!
+You can use the following administrator account to test the blog, or you could simply create your own one!<br>
+<br>
+Username: administratorSample<br>
+Password: Aa12345678<br>
+<br>
+Enjoy!<br>
+<br>
+ChingYi P.C
 
