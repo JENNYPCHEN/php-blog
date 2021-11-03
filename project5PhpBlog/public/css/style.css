@@ -4,13 +4,22 @@
   color: #255e6b !important;
 }
 
+footer a {
+  color: #c39c62;
+}
+
 .link2 a {
   color: #2f2b2b;
   text-decoration: none;
 }
 
-footer a {
-  color: #c39c62;
+.sidebarcolor a {
+  color: white;
+}
+
+.sidebardropdown a {
+  color: #255e6b !important;
+  border: 2px;
 }
 
 .link a {
@@ -25,11 +34,6 @@ footer a:hover {
 
 .reply a:hover {
   color: #c39c62 !important;
-}
-
-.sidebardropdown a {
-  color: #255e6b !important;
-  border: 2px;
 }
 
 .sidebarcolor a:hover {
@@ -167,7 +171,6 @@ footer {
   background-color: #255e6b;
 }
 
-
 .circle {
   border-radius: 50%;
   width: 70px;
@@ -217,9 +220,6 @@ footer {
 
 .navcolor {
   background: rgba(255, 255, 255, 0.514);
-}
-
-.sidebarcolor a {
   color: white;
 }
 
