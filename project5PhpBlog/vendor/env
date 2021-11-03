@@ -1,0 +1,10 @@
+MAIL_HOST = 'smtp.mailtrap.io'
+MAIL_SMTPAUTH = true
+MAIL_PORT = 2525
+MAIL_USERNAME = '0580ec86a93a2d'
+MAIL_PASSWORD= '246a9f332e368c'
+
+DB_NAME=p5phpblog
+DB_USER=root
+DB_PASSWORD=mysql
+DB_HOST=localhost
