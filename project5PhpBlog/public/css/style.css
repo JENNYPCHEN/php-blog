@@ -4,8 +4,13 @@
   color: #255e6b !important;
 }
 
-footer a:hover {
-  color: #eededa;
+.link2 a {
+  color: #2f2b2b;
+  text-decoration: none;
+}
+
+footer a {
+  color: #c39c62;
 }
 
 .link a {
@@ -14,8 +19,21 @@ footer a:hover {
   color: #255e6b !important;
 }
 
+footer a:hover {
+  color: #eededa;
+}
+
 .reply a:hover {
   color: #c39c62 !important;
+}
+
+.sidebardropdown a {
+  color: #255e6b !important;
+  border: 2px;
+}
+
+.sidebarcolor a:hover {
+  color: #c39c62;
 }
 
 .link a:hover {
@@ -84,7 +102,7 @@ section {
   color: #c39c62;
   margin-left: -0.5rem;
   -webkit-transform: translateY(2px);
-  -ms-transform:translateY(2px);
+  -ms-transform: translateY(2px);
   transform: translateY(2px);
   opacity: 0;
   transition: all 0.2s;
@@ -112,12 +130,6 @@ section {
   text-decoration: none;
   background-color: #c39c62;
   border-color: #c39c62;
-}
-
-.page-item.active .page-link {
-  color: #fff;
-  background-color: #549cb9;
-  border-color: #549cb9;
 }
 
 .page-link {
@@ -155,9 +167,6 @@ footer {
   background-color: #255e6b;
 }
 
-footer a {
-  color: #c39c62;
-}
 
 .circle {
   border-radius: 50%;
@@ -206,26 +215,12 @@ footer a {
   background-color: #255e6b;
 }
 
-.sidebarcolor a:hover {
-  color: #c39c62;
-}
-
 .navcolor {
   background: rgba(255, 255, 255, 0.514);
 }
 
-.sidebardropdown a {
-  color: #255e6b !important;
-  border: 2px;
-}
-
 .sidebarcolor a {
   color: white;
-}
-
-.link2 a {
-  color: #2f2b2b;
-  text-decoration: none;
 }
 
 .link2 a:hover {
