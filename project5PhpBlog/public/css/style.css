@@ -1,27 +1,47 @@
+
+.reply a {
+  text-decoration: none;
+  color: #255e6b !important;
+}
+
+.reply a:hover {
+  color: #c39c62 !important;
+}
+
+footer a:hover {
+  color: #eededa;
+}
+
 .link a {
   font-family: "Satisfy", sans-serif;
   text-decoration: none;
   color: #255e6b !important;
 }
+
 .link a:hover {
   color: #c39c62 !important;
 }
+
 section {
   overflow: hidden;
   position: relative;
 }
+
 .cardtitle {
   font-family: "Satisfy", sans-serif;
   color: #255e6b;
 }
+
 .cardlink {
   text-decoration: none;
   line-height: 200%;
   font-family: "Satisfy", sans-serif;
 }
+
 .card-body p {
   color: #575353;
 }
+
 .category {
   padding: 0.3rem 1rem;
   text-decoration: none;
@@ -31,29 +51,35 @@ section {
   letter-spacing: 0.1rem;
   font-size: 0.7rem;
 }
+
 .meta {
   text-transform: uppercase;
   text-decoration: none;
   color: #575353;
   font-size: 0.75rem;
 }
+
 .blogtitle {
   font-family: "Satisfy", sans-serif;
   text-decoration: none;
   color: #255e6b;
 }
+
 .blogtitle:hover {
   color: #255e6b;
 }
+
 .blogtext {
   color: #575353;
 }
+
 .read-more-btn span {
   display: inline-block;
   margin-right: 0.5rem;
   font-family: "Satisfy", sans-serif;
   color: #c39c62;
 }
+
 .read-more-btn i {
   color: #c39c62;
   margin-left: -0.5rem;
@@ -62,24 +88,37 @@ section {
   opacity: 0;
   transition: all 0.2s;
 }
+
 .read-more-btn:hover i {
   opacity: 1;
   margin-left: 0;
 }
+
 .button {
   background-color: #549cb9;
   font-family: "Satisfy", sans-serif;
   color: white;
 }
+
 .button:hover {
   color: white;
   background-color: #c39c62;
 }
+
+.page-link:hover {
+  z-index: 2;
+  color: white;
+  text-decoration: none;
+  background-color: #c39c62;
+  border-color: #c39c62;
+}
+
 .page-item.active .page-link {
   color: #fff;
   background-color: #549cb9;
   border-color: #549cb9;
 }
+
 .page-link {
   padding: 0.5rem 0.75rem;
   line-height: 1.25;
@@ -92,13 +131,6 @@ section {
   min-width: 2.5rem;
   text-align: center;
 }
-.page-link:hover {
-  z-index: 2;
-  color: white;
-  text-decoration: none;
-  background-color: #c39c62;
-  border-color: #c39c62;
-}
 
 blockquote {
   background-color: #c39c62b9;
@@ -107,22 +139,23 @@ blockquote {
   margin-bottom: 2rem;
   font-size: 1.25rem;
 }
+
 cite {
   font-family: "Open Sans", sans-serif;
   font-style: normal;
   font-size: 1rem;
 }
+
 form {
   color: #575353;
 }
+
 footer {
   background-color: #255e6b;
 }
+
 footer a {
   color: #c39c62;
-}
-footer a:hover {
-  color: #eededa;
 }
 
 .circle {
@@ -130,19 +163,14 @@ footer a:hover {
   width: 70px;
   height: 70px;
 }
+
 .name {
   color: #575353;
   font-family: "Satisfy", sans-serif;
 }
+
 .date {
   color: #c39c62;
-}
-.reply a {
-  text-decoration: none;
-  color: #255e6b !important;
-}
-.reply a:hover {
-  color: #c39c62 !important;
 }
 
 .formsignin {
@@ -160,16 +188,17 @@ footer a:hover {
   background-color: #549cb9;
   color: white;
 }
+
 .button2:hover {
   background-color: #44849e;
   color: white;
 }
+
 .tabled {
   max-width: 150px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  
 }
 
 .sidebarcolor {
@@ -179,20 +208,24 @@ footer a:hover {
 .sidebarcolor a {
   color: white;
 }
+
 .sidebarcolor a:hover {
   color: #c39c62;
 }
+
 .navcolor {
   background-color: rgba(255, 255, 255, 0.514);
 }
+
 .sidebardropdown a {
   color: #255e6b !important;
-  border: 0px;
+  border: 2px;
 }
 .link2 a {
   color: #2f2b2b;
   text-decoration: none;
 }
+
 .link2 a:hover {
   color: #575353;
 }
@@ -212,4 +245,5 @@ footer a:hover {
 }
 
 .limitTextLine {
-  display:inline;}
+  display: inline;
+}
