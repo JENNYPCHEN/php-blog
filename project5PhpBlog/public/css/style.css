@@ -4,10 +4,6 @@
   color: #255e6b !important;
 }
 
-footer a {
-  color: #c39c62;
-}
-
 .link2 a {
   color: #2f2b2b;
   text-decoration: none;
@@ -20,6 +16,10 @@ footer a {
 .sidebardropdown a {
   color: #255e6b !important;
   border: 2px;
+}
+
+footer a {
+  color: #c39c62;
 }
 
 .link a {
