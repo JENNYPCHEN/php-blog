@@ -10,7 +10,6 @@ Thank you for your interest in my project. The goal of the project is to build a
 ![project5pic4](https://user-images.githubusercontent.com/87466842/140088570-752ac9ac-e47e-4852-8ecc-db6b8e3c4019.png)
 <p align="center">administration page</p>
 
-
 <h2>Features</h2>
 <li>A user registration system that handles normal users.<br></li>
 <li>A user password reset system.<br></li>
@@ -32,7 +31,6 @@ Thank you for your interest in my project. The goal of the project is to build a
 <li>MySQL DBMS such as phpMyAdmin<br></li>
 <li>Libraries will be installed using Composer (PHP Mailer, Dotenv).<br></li>
 <li>CSS libraries are called directly via CDN (Bootstrap 5.0.2, Font Awesome 5).<br></li>
-
 
 <h2>Starting the application</h2>
 You can run the application on your computer for development and testing purposes by following the simple steps below:<br>
@@ -64,7 +62,6 @@ DB_PASSWORD=<br>
 DB_HOST=<br>
 <br>
 <hr>
-
 
 You can use the following administrator account to test the blog, or you could simply create your own one!<br>
 <br>
