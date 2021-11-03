@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 28, 2021 at 12:56 PM
+-- Generation Time: Nov 03, 2021 at 12:05 PM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.11
 
@@ -47,10 +47,8 @@ INSERT INTO `comment` (`id`, `author`, `comment`, `valid`, `date_create`, `post_
 (38, 'Doe', 'Lovely to hear that', 1, '2021-10-22 10:04:10', 22, 62),
 (40, 'Doe', 'Lovely to hear that', 1, '2021-10-22 10:05:11', 22, 43),
 (41, 'Doe', 'Lovely to hear that', 1, '2021-10-22 10:07:14', 22, 62),
-(42, 'Doe', 'Lovely to hear that', 1, '2021-10-22 10:07:41', 22, 62),
 (43, 'jack', 'Lovely', 1, '2021-10-22 10:07:55', 22, 62),
-(44, 'TomasHillSUN', 'ccccc', 1, '2021-10-22 13:12:21', 22, 62),
-(45, 'TomasHillSUN', 'thanks', 1, '2021-10-26 15:16:46', 45, 62);
+(47, 'ChingyiPC', 'Hello here', 1, '2021-11-02 09:13:22', 43, 1);
 
 -- --------------------------------------------------------
 
@@ -75,18 +73,15 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`id`, `title`, `chapo`, `content`, `image`, `date_create`, `date_update`, `user_id`, `category`) VALUES
-(15, 'I love PHP', 'I love PHP', 'I love PHP', NULL, '2021-10-18 14:56:10', '2021-10-22 11:00:00', 1, 'I love PHP'),
-(21, 'hhh', 'hhh', 'hhh', NULL, '2021-10-19 16:01:49', '2021-10-22 11:00:00', 1, 'hhh'),
 (22, 'ddd', 'ddd', '<p>Hello, World!</p>', NULL, '2021-10-19 16:11:25', '2021-10-22 11:00:00', 1, 'ddd'),
 (25, 'Hello', 'Hello', '<p>Hello, World!</p>', NULL, '2021-10-22 10:40:03', '2021-10-22 11:00:00', 62, 'Hello'),
 (29, 'new post testingcc', 'new post testingnew post testing', '<p>Hello, World!</p>', NULL, '2021-10-22 11:17:06', '2021-10-22 11:25:44', 62, 'new post testing'),
-(30, 'testing', 'testing', '<p>Hello, World!</p>', NULL, '2021-10-22 11:29:34', '2021-10-22 11:29:34', 62, 'testing'),
-(31, 'testing', 'testing', '<p>testing</p>', '', '2021-10-25 12:37:59', '2021-10-25 14:39:59', 62, 'testing'),
-(38, 'hi', 'testing', '<p>testing</p>', 'hi', '2021-10-25 14:08:18', '2021-10-25 14:39:46', 63, 'hi'),
 (40, 'testing', 'testing', '<p>Hello, World!</p>', NULL, '2021-10-25 14:45:46', '2021-10-25 14:45:46', 62, 'testing'),
 (42, 'testing', 'testing', '<p>Hello, World!</p>', NULL, '2021-10-25 14:46:59', '2021-10-25 14:46:59', 62, 'testing'),
 (43, 'testing', 'testing', '<p>Hello, World!</p>', 'public/img/qifp6dpR/1.jpg', '2021-10-25 14:49:02', '2021-10-28 14:53:48', 62, 'testing'),
-(45, 'New Post2', 'New Post', '<p>Once upon a time, there was a little girl who lived in a village near the forest.&nbsp;</p>\r\n<p>Whenever she went out, the little girl wore a red riding cloak, so everyone in the village called her Little Red Riding Hood.</p>\r\n<p>Once upon a time, there was a little girl who lived in a village near the forest.&nbsp; Whenever she went out, the little girl wore a red riding cloak, so everyone in the village called her Little Red Riding Hood.Once upon a time, there was a little girl who lived in a village near the forest.&nbsp; Whenever she went out, the little girl wore a red riding cloak, so everyone in the village called her Little Red Riding HooOnce upon a time, there was a little girl who lived in a village near the forest.&nbsp; Whenever she went out, the little girl wore a red riding cloak, so everyone in the village called her Little Red Riding Hood.</p>\r\n<p>One morning, Little Red Riding Hood asked her mother if she could go to visit her grandmother as it had been awhile since they\'d seen each other. \"That\'s a good idea,\" her mother said.&nbsp; So they packed a nice basket for Little Red Riding Hood to take to her grandmother. When the basket was ready, the little girl put on her red cloak and kissed her mother goodbye.</p>', 'public/img/fDU1n0Po/219269.jpg', '2021-10-25 21:53:23', '2021-10-28 14:53:30', 62, 'New Post');
+(46, 'Qui suis-je ?', 'J\'aime les défis. J\'étudie actuellement le langage PHP.', '<p>Je suis un amateur de d&eacute;fis. J\'ai suivi une formation d\'enseignante en &eacute;cole primaire &agrave; Hong Kong, puis j\'ai fini par enseigner au Royaume-Uni.&nbsp; Apr&egrave;s avoir ma&icirc;tris&eacute; l\'anglais et le syst&egrave;me &eacute;ducatif anglais, j\'ai d&eacute;m&eacute;nag&eacute; en France pour apprendre la langue fran&ccedil;aise et maintenant la langue PHP !</p>\r\n<p>Le codage est une comp&eacute;tence que j\'aurais aim&eacute; d&eacute;couvrir plus t&ocirc;t dans ma vie. Cela me rappelle quand j\'&eacute;tais &agrave; l\'&eacute;cole, comment je passais la plupart de mes temps de pause &agrave; essayer de r&eacute;soudre les devoirs de maths avec mes amis !</p>\r\n<p>Le codage dans mon caf&eacute; et la m&eacute;ditation. C\'est vrai que j\'ai parfois du mal, mais c\'est un sentiment tr&egrave;s agr&eacute;able quand vous pouvez finalement r&eacute;soudre le probl&egrave;me et construire votre propre projet !</p>', 'public/img/fWCLyNUT/php-logo.jpeg', '2021-11-03 09:28:58', '2021-11-03 09:29:41', 1, 'Presentation'),
+(47, 'mon premier projet : site web professionnel avec wordpress', 'site web professionnel avec wordpress', '<p>Il s\'agit d\'un projet pour ma formation de d&eacute;veloppeur php. J\'ai appris &agrave; choisir le bon plugin et &agrave; cr&eacute;er un site web enti&egrave;rement fonctionnel en tenant compte du concept de base de la conception du site web. C\'est mon 4&egrave;me projet pour ma formation de d&eacute;veloppeur php. Dans ce projet, j\'ai appliqu&eacute; le concept UML pour concevoir une base de donn&eacute;.</p>', 'public/img/YhmJALkt/project1.png', '2021-11-03 09:41:42', '2021-11-03 09:41:42', 1, 'Project'),
+(50, 'mon 2eme projet : site web professionnel avec CSS et HTML', 'site web professionnel avec CSS et HTML', '<p>Ceci est mon projet (marqette de page)construit purement avec css et html. Je suis aussi capable de cr&eacute;er un cahier des charges. https://jennypchen.github.io/</p>\r\n<p>&nbsp;</p>', 'public/img/qLz5RgBW/project2.png', '2021-11-03 09:53:00', '2021-11-03 09:56:15', 1, 'Project');
 
 -- --------------------------------------------------------
 
@@ -111,12 +106,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `user_name`, `email`, `password`, `date_create`, `user_type_id`, `reset_token`) VALUES
-(1, 'Jenny', 'Chen', 'ChingyiPC', 'pelgrims.chenchingyi@gmail.com                                                                      ', '$2y$10$TLJ9dUtHwR0SQcxr24gjxOnXP/VQ6isURVoFT5V5tXOP.i.Vka7vy', '2021-10-02 00:00:00', 1, '1635425706$2y$10$4JKcNrJL0V1voS8Jvw4F5.dcTUCZeJaopJifXPelbRPChpazL/ApW'),
-(22, 'joeylee1234', 'marrion', 'joeyleemarion1234', 'joeyleemarion@gmail.com', 'joeyleemarion1234', '2021-10-12 15:55:30', NULL, NULL),
-(23, 'joeylee123445', 'marrion', 'joeyleemarion123445', 'joeyleemarion45@gmail.com', 'joeyleemarion123445', '2021-10-12 15:58:06', NULL, NULL),
-(28, 'joeylee987456', 'marrion', 'joeylee987456', 'joeyleemarion852@gmail.com', 'joeylee987456', '2021-10-12 16:00:42', NULL, NULL),
-(30, 'joeychi', 'marrion', 'joeylee', 'joeyleemario@gmail.com', 'joeylee987456', '2021-10-12 16:06:08', NULL, NULL),
-(32, 'hello', 'chen', 'hellohello', 'hello@gmail.com', '123456789', '2021-10-13 14:17:55', NULL, NULL),
+(1, 'administrator', 'administrator', 'ChingyiPC', 'administrator@gmail.com                                                                      ', '$2y$10$XO13KrPb/QbLAFLtRcgimOCd/U/p029R/t7wQGPofZFPl9V1Lw8TC', '2021-10-02 00:00:00', 1, '1635940977$2y$10$QRp7BNjfgtuKo9BO6c.6m..FJ6p1mZidki3jr0.Cly7knCSehsLZm'),
 (33, 'lllkakllk', 'LLLK', 'lllkakllk', 'JEE@GMAIL.COM', '123456789', '2021-10-13 15:35:05', NULL, NULL),
 (35, 'lllkakllk', 'LLLK', 'lllkakllk7', 'JEE1@GMAIL.COM', '123456789', '2021-10-13 15:36:29', NULL, NULL),
 (36, 'ching yi', 'pelgrims', 'PeterLoz', 'ingyi@gmail.com', '123456789', '2021-10-13 16:28:45', NULL, NULL),
@@ -125,14 +115,9 @@ INSERT INTO `user` (`id`, `first_name`, `last_name`, `user_name`, `email`, `pass
 (44, 'helloopendoor', 'sam', 'sesameopendoor', 'sesameopendoor@gmail.com', '123456789', '2021-10-14 10:12:54', 2, NULL),
 (45, 'albertt', 'timm', 'albertteam', 'alerb@gmail.com', '123456789', '2021-10-14 10:15:33', 2, NULL),
 (48, 'albertt123', 'timm', 'albertteam12345', 'alerb12345@gmail.com', '98765432', '2021-10-14 10:22:12', 2, NULL),
-(50, 'Ashley', 'Pelgrims', 'AshleyPelgrims', 'Ashley@gmail.com', '123456789', '2021-10-14 14:30:27', 2, NULL),
 (51, 'JasonCunning', 'Sun', 'JCS', 'JSC@gmail.com', '25f9e794323b453885f5181f1b624d0b', '2021-10-20 20:09:49', 2, NULL),
 (62, 'TomasHill', 'Sun', 'TomasHillSUN', 'TomasHill@gmail.com', 'f25ded1f2365b0c450d0037161728a63', '2021-10-20 20:26:57', 1, NULL),
-(63, 'Ching Yi', 'Pelgrims Chen', 'chaletsetcaviar', 'pelgrims.ssssschenchingyi@gmail.com', '25f9e794323b453885f5181f1b624d0b', '2021-10-21 15:53:14', 1, NULL),
-(64, 'Ching Yi', 'Pelgrims Chen', 'ChingYiCHEN', 'pelgrims.chenchisddddngyi@gmail.com', '0659c7992e268962384eb17fafe88364', '2021-10-26 13:24:00', 2, NULL),
-(72, 'Peter', 'PeterPeter', 'PeterPeterPeterPeter', 'PeterPeterPeterPeter@gmail.com', 'c8ca1864d977bf6528c5e195ec09d93f', '2021-10-27 09:02:56', 2, NULL),
-(73, 'HelloHello', 'HelloHello', 'HelloHello123', 'HelloHelloHello123@gmail.com', '$2y$10$Z.Mze/rIGDyuOPizfgbsGu8NSgQKnMCQs4Y101EXdPEyYn9FLFpG6', '2021-10-27 10:05:57', 2, NULL),
-(75, 'testing', 'testing', 'testing', 'testing@gmail.com', '$2y$10$0LMqQp1OETmOaARw15k1mOY.xTZsCezRQyKNud16MiYh4xB7oa686', '2021-10-27 10:47:47', 2, NULL);
+(78, 'administrator1', 'administrator1', 'administratorSample', 'administratorSample@gmail.com', '$2y$10$Nd.JS3oWHqfdphUNPt/eKuqFCvpbbIe3x.R5JqcIuv1L0.rUzq2xG', '2021-11-03 13:04:26', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -198,19 +183,19 @@ ALTER TABLE `user_type`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `user_type`
