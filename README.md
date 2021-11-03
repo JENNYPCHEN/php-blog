@@ -4,6 +4,13 @@ Hi there,
 
 Thank you for your interest in my project. The goal of the project is to build a professional blog application from stretch with php and mysql database and apply it with a MVC framework. The project is part of my PHP/Symfony course via OpenClassrooms.
 
+![project5pic1](https://user-images.githubusercontent.com/87466842/140088382-e5318e92-4077-42f2-a9c0-97b6f1f99e9f.png)
+<p align="center">frontpage</p>
+
+![project5pic4](https://user-images.githubusercontent.com/87466842/140088570-752ac9ac-e47e-4852-8ecc-db6b8e3c4019.png)
+<p align="center">administration page</p>
+
+
 <h2>Features</h2>
 <li>A user registration system that handles normal users.<br></li>
 <li>A user password reset system.<br></li>
