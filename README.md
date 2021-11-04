@@ -1,4 +1,5 @@
 # php-blog
+<a href="https://codeclimate.com/github/JENNYPCHEN/php-blog/maintainability"><img src="https://api.codeclimate.com/v1/badges/8d31f64570610b543924/maintainability" /></a>
 
 Hi there,
 
