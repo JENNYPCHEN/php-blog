@@ -4,8 +4,6 @@ namespace App\Models;
 
 use PDO;
 
-require_once 'src\Models\DatabaseManager.php';
-
 class userManager extends databaseManager
 {
 
