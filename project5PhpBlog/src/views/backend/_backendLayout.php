@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?=$title?></title>
+    <title><?=htmlspecialchars($title)?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Satisfy&amp;display=swap">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" type="text/css" href="public/css/style.css?v=<?php echo time(); ?>" <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="public/css/style.css" >
+    <!-- Font Awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!--tinyMCE-->
     <script src="https://cdn.tiny.cloud/1/luaptjjzddcgpjnq6jj9axtn2bq4giqp07fre7mj00rivpsr/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -125,7 +126,7 @@
                 </div>-->
             </div>
 
-            <?php echo $content ?>
+            <?=$content ?>
 
         </div>
     </div>
