@@ -1,22 +1,22 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => 'e6e4086c6d1fbc9f93eab6756f27103940df8b4e',
         'name' => '33669/project5php-blog',
         'dev' => true,
     ),
     'versions' => array(
         '33669/project5php-blog' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => 'e6e4086c6d1fbc9f93eab6756f27103940df8b4e',
             'dev_requirement' => false,
         ),
         'graham-campbell/result-type' => array(

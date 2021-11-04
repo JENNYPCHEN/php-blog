@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Models;
+use App\Models\Blogs;
 
-class Comments
+class Comments extends Blogs
 {
-
-
+    
     private $id;
     private $author;
     private $comment;
@@ -16,37 +16,6 @@ class Comments
     private $post_id;
     public static $counter=0;
 
-
-    public function __construct($value = [])
-    {
-        if (!empty($value)) {
-
-            $this->hydrate($value);
-            self::$counter++;
-        }
-    }
-
-    public function hydrate(array $values)
-    {
-        foreach ($values as $key => $value) {
-            $method = 'set';
-            $pieces = explode('_', $key);
-            foreach ($pieces as $piece) {
-                if (count($pieces) == 1) {
-                    $method = 'set' . ucfirst($pieces[0]);
-                }
-                if (count($pieces) == 2) {
-                    $method = 'set' . ucfirst($pieces[0]) . ucfirst($pieces[1]);
-                }
-                if (count($pieces) == 3) {
-                    $method = 'set' . ucfirst($pieces[0]) . ucfirst($pieces[1]) . ucfirst($pieces[2]);
-                }
-            }
-            if (method_exists($this, $method)) {
-                $this->$method($value);
-            }
-        }
-    }
     public function setId($id)
     {
         $id = (int) $id;
