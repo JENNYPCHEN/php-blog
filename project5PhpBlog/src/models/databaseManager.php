@@ -17,4 +17,8 @@ class DatabaseManager
         $db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         return $db;
     }
+
+    function pagination($page){
+        return ($page-1)*5;
+    }
 }

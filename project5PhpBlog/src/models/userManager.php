@@ -17,7 +17,7 @@ class userManager extends databaseManager
         $statement->bindValue(':username', $user->getUserName());
         $statement->bindValue(':email', $user->getEmail());
         $statement->bindValue(':password', $user->getPassword());
-        $statement->execute();
+        return $statement->execute();
     }
 
 
@@ -36,7 +36,7 @@ class userManager extends databaseManager
     {
         $users = [];
         $db = $this->dbConnect();
-        $this_page_first_result =($userPage-1)*5;
+        $this_page_first_result =$this->pagination($userPage);
         $statement = $db->PREPARE('SELECT * FROM USER ORDER BY date_create DESC LIMIT :thisPageFirstResult, 5;');
         $statement->bindValue(':thisPageFirstResult', $this_page_first_result, PDO::PARAM_INT);
         $statement->execute();

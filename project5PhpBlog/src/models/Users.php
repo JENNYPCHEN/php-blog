@@ -12,12 +12,11 @@ class Users extends BLogs
     private $last_name;
     private $user_name;
     private $email;
-    private $password; 
+    private $password;
     private $date_create;
     private $user_type_id;
     private $confirmPassword;
     private $reset_token;
-    public static $counter=0;
 
     public function setId($id)
     {
@@ -88,7 +87,7 @@ class Users extends BLogs
     {
         $user_type_id = (int) $user_type_id;
         if ($user_type_id > 0) {
-            $this->user_type_id= $user_type_id;
+            $this->user_type_id = $user_type_id;
         }
     }
     public function getUserTypeId()
@@ -110,8 +109,5 @@ class Users extends BLogs
     public function getResetToken()
     {
         return $this->reset_token;
-    }
-    public function getCounter(){
-        return self::$counter;
     }
 }
