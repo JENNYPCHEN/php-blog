@@ -14,7 +14,9 @@ class PostManager extends DatabaseManager
     {
         $posts = [];
         $db = $this->dbConnect();
-        $this_page_first_result =($page-1)*5;
+        $this_page_first_result =$this->pagination($page);
+       /* $this_page_first_result =($page-1)*5;*/
+
 
        if (!empty($keyword)) {
             $statement = $db->prepare('SELECT post.id, title, image,category, chapo, user_name, content, DATE_FORMAT(post.date_create,"%D %b %Y") AS creation_date FROM `post`JOIN `user`WHERE USER.id = `post`.`user_id`AND content like :keyword GROUP BY post.id ORDER BY post.date_create DESC LIMIT :this_page_first_result, 5');

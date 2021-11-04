@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Models;
+
 use App\Models\Blogs;
 
 class Comments extends Blogs
 {
-    
+
     private $id;
     private $author;
     private $comment;
@@ -14,7 +15,7 @@ class Comments extends Blogs
     private $valid;
     private $user_id;
     private $post_id;
-    public static $counter=0;
+    public static $counter = 0;
 
     public function setId($id)
     {
@@ -95,7 +96,8 @@ class Comments extends Blogs
     {
         return $this->comment_date_create;
     }
-    public function getCounter(){
+    public function getCounter()
+    {
         return self::$counter;
     }
 }

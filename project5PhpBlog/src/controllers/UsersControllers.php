@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Controllers;
 use App\Models\Database;
 use App\Models\UserManager;
 use App\Models\PostManager;
@@ -12,34 +13,17 @@ use \PDO;
 
 
 
-class UsersControllers
+
+class UsersControllers extends GeneralControllers
 {
 
     function newUser($user)
     {
-
-        $usernameError = "";
-        $emailAddressError = "";
-        $passwordError = "";
-        $confirmPasswordError = "";
-        $error = "";
-
-        $nameValidation = "/^[a-zA-Z0-9]*$/";
-        $passwordValidation = "/^(?=.*?[0-9])[a-zA-Z0-9]{8,}$/";
-
-        if (!preg_match($nameValidation, $user['username'])) {
-            $usernameError = "Name can only contain letters and numbers";
-        }
-        if (!filter_var($user['email'], FILTER_VALIDATE_EMAIL)) {
-            $emailAddressError = "Please enter the correct format.";
-        }
-        if (!preg_match($passwordValidation, $user['password'])) {
-            $passwordError = "Password must have at least one numeric value.";
-        } elseif (strlen($user['password']) < 7) {
-            $passwordError = "Password must have at least 8 characters.";
-        } elseif ($user['password'] != $user['confirmPassword']) {
-            $confirmPasswordError = "Passwords do not match, please try again.";
-        }
+        $usernameError = $emailAddressError = $passwordError = $confirmPasswordError = $error = "";
+        $usernameError = $this->UsernameVerification($user['user_name']);
+        $emailAddressError = $this->emailVerification($user['email']);
+        $passwordError = $this->passwordVerification($user['password']);
+        $confirmPasswordError = $this->confirmPasswordVerification($user['password'], $user['confirmPassword']);
         if (!empty($usernameError) or !empty($emailAddressError) or !empty($passwordError) or !empty($confirmPasswordError)) {
             require('src/views/frontend/signup.php');
         }
@@ -84,9 +68,9 @@ class UsersControllers
                 if ($currentUserTypeId !== 1) {
                     header('Location:index.php');
                 } elseif ($currentUserTypeId == 1) {
-                    $backendControllers=new BackendControllers();
+                    $backendControllers = new BackendControllers();
                     $backendControllers->dashboardPage();
-                   /* $postManager = new PostManager();
+                    /* $postManager = new PostManager();
                     $commentManager = new CommentManager();
                     $userManager = new UserManager();
                     $page = $_GET['page'] ?? 1;
@@ -167,22 +151,19 @@ class UsersControllers
         } elseif ($user['password'] !== $user['confirmPassword']) {
             $error = "Password do not match. Please try again.";
             require 'src/views/frontend/resetPassword.php';
-        } else{
-            $user['password']=password_hash($user['password'], PASSWORD_BCRYPT);
-            $userManager=new UserManager();
-            $resetUser=$userManager->newPassword($user);
-        if(isset($resetUser)){
-            session_start();
-            $_SESSION['successmessage' ] = "Password has been reset successfully.";
-            header('Location:index.php?action=loginpage');
-            exit();   
-        } else{
-            $error = "Opps.Something went wrong. Please try again later";
-            require 'src/views/frontend/resetPassword.php';
+        } else {
+            $user['password'] = password_hash($user['password'], PASSWORD_BCRYPT);
+            $userManager = new UserManager();
+            $resetUser = $userManager->newPassword($user);
+            if (isset($resetUser)) {
+                session_start();
+                $_SESSION['successmessage'] = "Password has been reset successfully.";
+                header('Location:index.php?action=loginpage');
+                exit();
+            } else {
+                $error = "Opps.Something went wrong. Please try again later";
+                require 'src/views/frontend/resetPassword.php';
+            }
         }
-            
-
-        }
-      }
-     
     }
+}

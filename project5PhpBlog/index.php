@@ -60,7 +60,6 @@ try {
                     'password' => trim($_POST['password']),
                     'confirmPassword' => trim($_POST['confirmPassword'])
                 ];
-
                 $usersControllers = new UsersControllers();
                 $usersControllers->newUser($user);
             }
