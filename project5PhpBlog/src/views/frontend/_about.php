@@ -16,7 +16,7 @@
     </div>
     <!--seachbox-->
     <form class="d-flex pt-2 pb-2" action ="index.php?action=search" methods="get">
-        <input class="form-control me-2" name="search" placeholder="Search" aria-label="Search" value="<?php echo $keyword ?>">
+        <input class="form-control me-2" name="search" placeholder="Search" aria-label="Search" value="<?=htmlentities($keyword) ?>">
         <button class="btn button" type="submit">Search</button>
     </form>
 </div>
