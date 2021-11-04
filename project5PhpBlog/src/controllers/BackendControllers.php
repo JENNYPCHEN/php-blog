@@ -9,7 +9,7 @@ use App\Models\Posts;
 use App\Models\Comments;
 use App\Helpers\Helper;
 
-class BackendControllers
+class BackendControllers extends GeneralControllers
 {
 
 
@@ -35,10 +35,8 @@ class BackendControllers
         $targetFilePath = 'public/img/' . Helper::randomString(8) . '/' . $fileName;
         $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
         $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'svg');
-        $error = "";
         if (!empty($fileName) && !empty($fileTmpPath)) {
-            if (!in_array($fileType, $allowTypes)) {
-                $error = "Sorry, only jpg, png, jpeg, gif, & svg files are allowed to upload.";
+            if (!empty($error = $this->imageVerification($fileType, $allowTypes))) {
                 require('src/views/backend/createPost.php');
                 exit;
             } else {
@@ -49,18 +47,17 @@ class BackendControllers
         }
         $postManager = new postManager;
         $post = new Posts($post);
-        $id=($post->getId());
-        $haveImage=is_string($post->getImage());
+        $id = ($post->getId());
+        $haveImage = is_string($post->getImage());
 
         if (!empty($id) && !$haveImage) {
             $post = $postManager->editPost($post);
-        }elseif(!empty($id) && $haveImage) {
+        } elseif (!empty($id) && $haveImage) {
             $post = $postManager->editPostAndImage($post);
-        } 
-        if(empty($id)) {
+        }
+        if (empty($id)) {
             $post = $postManager->createPost($post);
         }
-
         if ($post === false) {
             echo 'Server problem.Please try again later';
         } else {
@@ -86,12 +83,12 @@ class BackendControllers
         $userManager = new UserManager();
         $number_of_user_results = $userManager->counter();
 
-        $posts = $postManager->getPosts($keyword,$page);
+        $posts = $postManager->getPosts($keyword, $page);
         $number_of_pages = ceil($number_of_post_results / 5);
         $comments = $commentManager->getAllComments($commentPage);
-        $number_comment_pages= ceil($number_of_comment_results / 5);
+        $number_comment_pages = ceil($number_of_comment_results / 5);
         $users = $userManager->getUsers($userPage);
-        $number_user_pages= ceil($number_of_user_results / 5);
+        $number_user_pages = ceil($number_of_user_results / 5);
         require('src/views/backend/dashboard.php');
     }
     function editPage()

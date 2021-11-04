@@ -52,39 +52,24 @@ class UsersControllers extends GeneralControllers
         $currentUserPassword = $currentUser->getPassword();
         $currentUsername = $currentUser->getUserName();
         $currentUserId = $currentUser->getId();
-
-        if (empty($currentUserPassword)) {
-            $error = "Please enter the correct username and password.";
+        $enteredPassword = $user['password'];
+        $error = $this->currentUserPasswordVerification($currentUserPassword, $enteredPassword);
+        if (!empty($error)) {
             require('src/views/frontend/login.php');
-        } elseif (!empty($currentUserPassword)) {
-            if (password_verify($user['password'], $currentUserPassword) == false) {
-                $error = "Please enter the correct username and password.";
-                require('src/views/frontend/login.php');
-            } elseif (password_verify($user['password'], $currentUserPassword) == true) {
-                session_start();
-                $_SESSION['user_type_id'] = $currentUserTypeId;
-                $_SESSION['username'] = $currentUsername;
-                $_SESSION['id'] = $currentUserId;
-                if ($currentUserTypeId !== 1) {
-                    header('Location:index.php');
-                } elseif ($currentUserTypeId == 1) {
-                    $backendControllers = new BackendControllers();
-                    $backendControllers->dashboardPage();
-                    /* $postManager = new PostManager();
-                    $commentManager = new CommentManager();
-                    $userManager = new UserManager();
-                    $page = $_GET['page'] ?? 1;
-                    $number_of_post_results = $postManager->counter();
-                    $posts = $postManager->getPosts($keyword, $page);
-                    $number_of_pages = ceil($number_of_post_results / 5);
-                    $comments = $commentManager->getAllComments();
-                    $users = $userManager->getUsers();
-                    require('src/views/backend/dashboard.php');*/
-                }
+        } elseif (empty($error) && password_verify($user['password'], $currentUserPassword) == true) {
+            session_start();
+            $_SESSION['user_type_id'] = $currentUserTypeId;
+            $_SESSION['username'] = $currentUsername;
+            $_SESSION['id'] = $currentUserId;
+            if ($currentUserTypeId !== 1) {
+                header('Location:index.php');
+            } elseif ($currentUserTypeId == 1) {
+                $backendControllers = new BackendControllers();
+                $backendControllers->dashboardPage();
             }
         }
     }
-    public function logout()
+    function logout()
     {
         session_start();
         unset($_SESSION['username']);
@@ -94,7 +79,7 @@ class UsersControllers extends GeneralControllers
         header("location: index.php");
     }
 
-    public function findUserEmail($user)
+    function findUserEmail($user)
     {
         $userManager = new UserManager();
         $user = $userManager->findUserEmail($user);
@@ -140,18 +125,13 @@ class UsersControllers extends GeneralControllers
     }
     function newPassword($user)
     {
-        $passwordValidation = "/^(?=.*?[0-9])[a-zA-Z0-9]{8,}$/";
-        $error = "";
-        if (!preg_match($passwordValidation, $user['password'])) {
-            $error = "Password must have at least one numeric value.";
+
+        if (!empty($error = $this->passwordVerification($user['password']))) {
             require 'src/views/frontend/resetPassword.php';
-        } elseif (strlen($user['password']) < 7) {
-            $error = "Password must have at least 8 characters.";
+        } elseif (!empty($error = $this->confirmPasswordVerification($user['password'], $user['confirmPassword']))) {
             require 'src/views/frontend/resetPassword.php';
-        } elseif ($user['password'] !== $user['confirmPassword']) {
-            $error = "Password do not match. Please try again.";
-            require 'src/views/frontend/resetPassword.php';
-        } else {
+        }
+        if (empty($error)) {
             $user['password'] = password_hash($user['password'], PASSWORD_BCRYPT);
             $userManager = new UserManager();
             $resetUser = $userManager->newPassword($user);
