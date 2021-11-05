@@ -13,37 +13,37 @@
                 <div class="row mb-5">
                     <div class="col-lg-12 text-center">
                         <ul class="list-inline">
-                            <li class="list-inline-item mr-2 category font-weight-normal"> <?php echo $post->getCategory();?> </li>
-                            <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo $post->getUserName(); ?></li>
-                            <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?php echo $post->getCreationDate(); ?></li>
+                            <li class="list-inline-item mr-2 category font-weight-normal"> <?= filter_var($post->getCategory(), FILTER_SANITIZE_STRING); ?> </li>
+                            <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?= filter_var($post->getUserName(), FILTER_SANITIZE_STRING); ?></li>
+                            <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?= filter_var($post->getCreationDate(), FILTER_SANITIZE_STRING); ?></li>
                         </ul>
                     </div>
                     <div class="col-lg-12 text-center">
-                        <h2 class="h3 mb-4"> <a class="d-block blogtitle" href=""><?php echo $post->getTitle(); ?></a></h2>
-                        <p class="blogtext"><?php echo $post->getChapo();?></p>
+                        <h2 class="h3 mb-4"> <a class="d-block blogtitle" href=""><?= filter_var($post->getTitle(), FILTER_SANITIZE_STRING); ?></a></h2>
+                        <p class="blogtext"><?= filter_var($post->getChapo(), FILTER_SANITIZE_STRING); ?></p>
                     </div>
-                    <div class="col-lg-12 text-center"><a class="d-block post-trending mb-4" href=""><img class="img-fluid w-100" src="<?php echo $post->getImage(); ?>" alt="" /></a>
+                    <div class="col-lg-12 text-center"><a class="d-block post-trending mb-4" href=""><img class="img-fluid w-100" src="<?= filter_var($post->getImage(), FILTER_SANITIZE_STRING); ?>" alt="" /></a>
                     </div>
                     <div class="col-lg-12">
-                        <p class="blogtext"><?php echo $post->getContent();?></p>
+                        <p class="blogtext"><?= $post->getContent(); ?></p>
                     </div>
                 </div>
                 <?php if (!empty($_SESSION['username'])) : ?>
                     <!-- Leave comment-->
                     <?php if (isset($_SESSION['success_message']) && !empty($_SESSION['success_message'])) { ?>
-                        <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?php echo $_SESSION['success_message']; ?></div>
+                        <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?= filter_var($_SESSION['success_message'], FILTER_SANITIZE_STRING); ?></div>
                     <?php
                         unset($_SESSION['success_message']);
                     }
                     ?>
-                    <form method="post" action="index.php?action=leavecomment&amp;id=<?= $post->getId(); ?>">
+                    <form method="post" action="index.php?action=leavecomment&amp;id=<?= filter_var($post->getId(), FILTER_SANITIZE_STRING); ?>">
                         <h3 class="cardtitle">Leave a comment</h3>
                         <div class="row mb-3">
                             <div class="col-lg-12 mb-3">
-                                <input class="form-control" type="text" name="author" placeholder="Full Name e.g. Jason Doe" value="<?= $_SESSION['username'] ?>" required>
+                                <input class="form-control" type="text" name="author" placeholder="Full Name e.g. Jason Doe" value="<?= filter_var($_SESSION['username'], FILTER_SANITIZE_STRING); ?>" required>
                             </div>
                             <div class="col-lg-12 mb-3">
-                                <textarea class="form-control" name="comment" rows="5" placeholder="Leave your comment" value="<?= $comment ?>" required></textarea>
+                                <textarea class="form-control" name="comment" rows="5" placeholder="Leave your comment" value="<?= filter_var($comment, FILTER_SANITIZE_STRING) ?>" required></textarea>
                             </div>
                             <div class="col-lg-12 mb-3">
                                 <button class="btn button" type="submit">Submit your comment</button>
@@ -58,10 +58,9 @@
 
                 <?php foreach ($comments as $comment) { ?>
 
-                    <p class="small mb-0 date"><?= $comment->getCommentCreateDate()?></p>
-                    <h5 class="name"><?= htmlspecialchars($comment->getAuthor())?></h5>
-                    <p class="blogtext text-small mb-2"><?= htmlspecialchars($comment->getComment()) ?></p>
-                    <!--<div class="reply fs-6"><a href="#"><i class="fas fa-share mr-2"></i><strong>Reply</strong></a></div>-->
+                    <p class="small mb-0 date"><?= filter_var($comment->getCommentCreateDate(), FILTER_SANITIZE_STRING); ?></p>
+                    <h5 class="name"><?= filter_var($comment->getAuthor(), FILTER_SANITIZE_STRING); ?></h5>
+                    <p class="blogtext text-small mb-2"><?= filter_var($comment->getComment(), FILTER_SANITIZE_STRING); ?></p>
                 <?php } ?>
 
             </div>
