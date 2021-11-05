@@ -14,7 +14,7 @@ class FrontendControllers
     public function listPosts()
     {
 
-        $keyword = $_GET['search'] ?? '';
+        $keyword =htmlentities($_GET['search'], ENT_QUOTES, 'UTF-8')?? '';
         $page = $_GET['page'] ?? 1;
         $postManager = new PostManager();
         $number_of_post_results = $postManager->counter($keyword);
