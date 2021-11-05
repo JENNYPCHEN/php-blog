@@ -41,10 +41,10 @@ try {
             if (!empty($_POST['author']) && !empty($_POST['comment'])) {
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                 $comment = [
-                    'post_id' => $_GET['id'],
+                    'post_id' => filter_var($_GET['id'], FILTER_SANITIZE_STRING),
                     'author' => trim($_POST['author']),
                     'comment' => trim($_POST['comment']),
-                    'user_id' => $_SESSION['id'],
+                    'user_id' => filter_var($_SESSION['id'], FILTER_SANITIZE_NUMBER_INT),
                 ];
                 $FrontendControllers = new FrontendControllers();
                 $FrontendControllers->addComment($comment);
@@ -85,10 +85,10 @@ try {
         } elseif ($_GET['action'] == 'updatePost') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $post = [
-                    'id' => $_GET['id'],
-                    'title' => htmlspecialchars($_POST['title']),
-                    'category' => htmlspecialchars($_POST['category']),
-                    'chapo' => htmlspecialchars($_POST['chapo']),
+                    'id' => filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT),
+                    'title' => filter_var($_POST['title'], FILTER_SANITIZE_STRING),
+                    'category' => filter_var($_POST['category'], FILTER_SANITIZE_STRING),
+                    'chapo' => filter_var($_POST['chapo'], FILTER_SANITIZE_STRING),
                     'content' => $_POST['content'],
                     'image' => $_FILES['image'] ?? '',
                 ];
@@ -97,11 +97,11 @@ try {
             }
         } elseif ($_GET['action'] == 'createPost') {
             $post = [
-                'title' => htmlspecialchars($_POST['title']),
-                'category' => htmlspecialchars($_POST['category']),
-                'chapo' => htmlspecialchars($_POST['chapo']),
+                'title' => filter_var($_POST['title'], FILTER_SANITIZE_STRING),
+                'category' =>filter_var($_POST['category'], FILTER_SANITIZE_STRING),
+                'chapo' => filter_var($_POST['chapo'], FILTER_SANITIZE_STRING),
                 'content' => $_POST['content'],
-                'user_id' => $_SESSION['id'],
+                'user_id' =>filter_var($_SESSION['id'], FILTER_SANITIZE_NUMBER_INT),
                 'image' => $_FILES["image"] ?? '',
             ];
             $BackendControllers = new BackendControllers();
@@ -181,5 +181,5 @@ try {
         $FrontendControllers->listPosts();
     }
 } catch (Exception $e) {
-    echo 'Erreur : ' . $e->getMessage();
+    echo 'Erreur : ' . filter_var($e->getMessage(), FILTER_SANITIZE_STRING);
 }
