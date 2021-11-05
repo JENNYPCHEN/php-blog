@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+<?php session_start(); 
+use App\Models\Session;?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,19 +42,19 @@
                 <li class="list-inline-item"><a href="https://www.linkedin.com/in/ching-yi-chen-63120322/"target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin" ></i></a></li>
                 <li class="list-inline-item"><a href="https://github.com/JENNYPCHEN"target="_blank" rel="noopener noreferrer" ><i class="fab fa-github"></i></a></li>
             </ul>
-            <?php if(!isset($_SESSION['username'])) : ?>
+            <?php if(empty(Session::get('username'))) : ?>
             <a class="text-small mb-0 h6 d-none d-lg-block admin-title" href="index.php?action=loginpage" title="Please login so that you can leave your comments"><i class="fas fa-sign-in-alt"></i> Signup/Login</a>
             <?php else : ?>
-            <div class="text-small mb-0 h6 d-none d-lg-block cardtitle"><i class="fas fa-heart" style="color:#eededa"></i>&nbsp;Hi. <?=$_SESSION['username'] ?>&nbsp;<i class="fas fa-heart" style="color:#eededa"></i></div>
+            <div class="text-small mb-0 h6 d-none d-lg-block cardtitle"><i class="fas fa-heart" style="color:#eededa"></i>&nbsp;Hi. <?=Session::get('username') ?>&nbsp;<i class="fas fa-heart" style="color:#eededa"></i></div>
             <a class="text-small mb-0 h6 d-none d-lg-block" href="index.php?action=logout"><i class="fas fa-sign-in-alt"></i> Logout</a>
             <?php endif; ?>
         </div>
     </nav>
     <!--navbar-->
-    <?php if(!isset($_SESSION['username'])) : ?>
+    <?php if(empty(Session::get('username'))) : ?>
     <div class="text-center d-block d-lg-none link "><a href="index.php?action=loginpage" title="Please login so that you can leave your comments"><i class="fas fa-sign-in-alt"></i> Signup/Login</a></div>
     <?php else : ?>
-        <div class="text-center d-block d-lg-none link cardtitle "><i class="fas fa-heart" style="color:#eededa"></i>&nbsp;Hi. <?=filter_var($_SESSION['username'], FILTER_SANITIZE_STRING); ?>&nbsp;<i class="fas fa-heart" style="color:#eededa"></i></div>
+        <div class="text-center d-block d-lg-none link cardtitle "><i class="fas fa-heart" style="color:#eededa"></i>&nbsp;Hi. <?=filter_var(Session::get('username'), FILTER_SANITIZE_STRING); ?>&nbsp;<i class="fas fa-heart" style="color:#eededa"></i></div>
         <div class="text-center d-block d-lg-none link "><a href="index.php?action=logout"><i class="fas fa-sign-in-alt"></i> Logout</a></div>
         <?php endif; ?>
         <nav class="navbar navbar-expand-lg navbar-light border-top border-bottom border-light link sticky-top navcolor">

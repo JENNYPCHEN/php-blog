@@ -38,7 +38,7 @@ class UsersControllers extends GeneralControllers
                 require('src/views/frontend/signup.php');
             } else {
                 session_start();
-                Session::set("successmessage","You have successfully signed up.Please login.");
+                Session::set("successmessage", "You have successfully signed up.Please login.");
                 header('Location:index.php?action=loginpage');
                 exit();
             }
@@ -49,24 +49,29 @@ class UsersControllers extends GeneralControllers
     {
         $userManager = new UserManager;
         $currentUser = $userManager->login($user);
-        $currentUserTypeId = $currentUser->getUserTypeId();
-        $currentUserPassword = $currentUser->getPassword();
-        $currentUsername = $currentUser->getUserName();
-        $currentUserId = $currentUser->getId();
-        $enteredPassword = $user['password'];
-        $error = $this->currentUserPasswordVerification($currentUserPassword, $enteredPassword);
-        if (!empty($error)) {
+        if (empty($currentUser)) {
+            $error = "Please enter the correct username and password.";
             require('src/views/frontend/login.php');
-        } elseif (empty($error) && password_verify($user['password'], $currentUserPassword) == true) {
-            session_start();
-            Session::set('user_type_id',$currentUserTypeId);
-            Session::set('username', $currentUsername);
-            Session::set('id',$currentUserId);
-            if ($currentUserTypeId !== 1) {
-                header('Location:index.php');
-            } elseif ($currentUserTypeId == 1) {
-                $backendControllers = new BackendControllers();
-                $backendControllers->dashboardPage();
+        } else {
+            $enteredPassword = $user['password'];
+            $currentUserPassword = $currentUser->getPassword();
+            $error = $this->currentUserPasswordVerification($currentUserPassword, $enteredPassword);
+            if (!empty($error)) {
+                require('src/views/frontend/login.php');
+            } elseif (empty($error) && password_verify($user['password'], $currentUserPassword) == true) {
+                $currentUserTypeId = $currentUser->getUserTypeId();
+                $currentUsername = $currentUser->getUserName();
+                $currentUserId = $currentUser->getId();
+                session_start();
+                Session::set('user_type_id', $currentUserTypeId);
+                Session::set('username', $currentUsername);
+                Session::set('id', $currentUserId);
+                if ($currentUserTypeId !== 1) {
+                    header('Location:index.php');
+                } elseif ($currentUserTypeId == 1) {
+                    $backendControllers = new BackendControllers();
+                    $backendControllers->dashboardPage();
+                }
             }
         }
     }
@@ -90,7 +95,7 @@ class UsersControllers extends GeneralControllers
 
         if (empty($userUserName) && empty($userId)) {
             session_start();
-            Session::set('error',"Email does not exist.");
+            Session::set('error', "Email does not exist.");
             header('Location:index.php?action=loginpage');
         } else {
             $user->setResetToken(time() . password_hash($user->getEmail(), PASSWORD_BCRYPT));
@@ -110,14 +115,13 @@ class UsersControllers extends GeneralControllers
         $userResetToken = $userFromSystem->getResetToken();
         if (empty($userResetToken)) {
             session_start();
-            Session::set('error',"Email does not exist.");
+            Session::set('error', "Email does not exist.");
             header('Location:index.php?action=loginpage');
         }
         if (isset($userResetToken) && $userResetToken !== $user['reset_token']) {
             session_start();
-            Session::set('error',"Recovery email has been expired.");
+            Session::set('error', "Recovery email has been expired.");
             header('Location:index.php?action=loginpage');
-    
         } elseif ($userResetToken == $user['reset_token']) {
             require 'src/views/frontend/resetPassword.php';
         }
@@ -138,7 +142,6 @@ class UsersControllers extends GeneralControllers
                 session_start();
                 Session::set('successmessage', "Password has been reset successfully.");
                 header('Location:index.php?action=loginpage');
-    
             } else {
                 $error = "Opps.Something went wrong. Please try again later";
                 require 'src/views/frontend/resetPassword.php';
