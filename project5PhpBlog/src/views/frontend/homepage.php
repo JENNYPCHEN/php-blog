@@ -15,13 +15,13 @@
             </div>
             <div class="col-lg-6">
               <ul class="list-inline">
-                <li class="list-inline-item mr-2 category font-weight-normal"><?= htmlspecialchars($post->getCategory()) ?></li>
-                <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?=htmlspecialchars($post->getUserName()) ?></li>
-                <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?=htmlspecialchars($post->getCreationDate()) ?></li>
+                <li class="list-inline-item mr-2 category font-weight-normal"><?= filter_var($post->getCategory(), FILTER_SANITIZE_STRING); ?></li>
+                <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?=filter_var($post->getUserName(), FILTER_SANITIZE_STRING) ?></li>
+                <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?=filter_var($post->getCreationDate(), FILTER_SANITIZE_STRING) ?></li>
               </ul>
-              <h2 class="h3 mb-4"> <a class="d-block blogtitle" href="post.html"><?=htmlspecialchars($post->getTitle()); ?></a></h2>
+              <h2 class="h3 mb-4"> <a class="d-block blogtitle" href="post.html"><?=filter_var($post->getTitle(), FILTER_SANITIZE_STRING); ?></a></h2>
               <p class="blogtext "><?=substr($post->getContent(), 0, 220)?></p>
-              <a class="p-0 read-more-btn " href="index.php?action=post&amp;id=<?= htmlspecialchars($post->getId()); ?>"><span>Read more</span><i class="fas fa-long-arrow-alt-right"></i></a>
+              <a class="p-0 read-more-btn " href="index.php?action=post&amp;id=<?= filter_var($post->getId(), FILTER_SANITIZE_STRING); ?>"><span>Read more</span><i class="fas fa-long-arrow-alt-right"></i></a>
             
             </div>
 
@@ -35,7 +35,7 @@
         <nav aria-label="Page navigation">
           <ul class="pagination">
          <?php for ($page=1;$page<=$number_of_pages;$page++) { ?>
-            <li class="page-item"><a class="page-link" name="page" href="index.php?search=<?=htmlspecialchars($keyword)?>&amp;page=<?=$page?>"><?=$page?></a></li>
+            <li class="page-item"><a class="page-link" name="page" href="index.php?search=<?=filter_var($keyword, FILTER_SANITIZE_STRING)?>&amp;page=<?=$page?>"><?=$page?></a></li>
          <?php } ?>
           </ul>
         </nav>
@@ -60,7 +60,7 @@
           <form action="index.php?action=contact" method="post">
             <h3 class="cardtitle text-center"> Contact </h3>
             <?php if (isset($_SESSION['error']) && !empty($_SESSION['error'])) { ?>
-              <div class="error"><?=htmlspecialchars($_SESSION['error']); ?></div>
+              <div class="error"><?=filter_var($_SESSION['error'], FILTER_SANITIZE_STRING);?></div>
             <?php unset($_SESSION['error']);
             } ?>
             <?php if (isset($_SESSION['success_message']) && !empty($_SESSION['success_message'])) { ?>
