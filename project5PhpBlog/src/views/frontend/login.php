@@ -5,7 +5,7 @@
 <div style="background-image: url('public/img/sea.png');">
     <!--login-->
     <?php if (isset($_SESSION['successmessage']) && !empty($_SESSION['successmessage'])) { ?>
-        <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?php echo $_SESSION['successmessage']; ?></div>
+        <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?=filter_var($_SESSION['successmessage'], FILTER_SANITIZE_STRING); ?></div>
     <?php
         unset($_SESSION['successmessage']);
     }
@@ -17,7 +17,7 @@
             <input type="text" class="form-control ps-5 pe-5 mb-3" id="floatingInput" placeholder="username" name="username" required>
             <label for="floatingInput">Username</label>
             <div class="error">
-                <?php echo $error ?>
+                <?=filter_var($error, FILTER_SANITIZE_STRING); ?>
                 <!--Please enter the correct username and password.-->
             </div>
         </div>
@@ -25,7 +25,7 @@
             <input type="password" class="form-control ps-5 pe-5 mb-3" id="floatingPassword" placeholder="Password" name="password" required>
             <label for="floatingPassword">Password</label>
             <div class="error">
-                <?php echo $error ?>
+                <?=filter_var($error, FILTER_SANITIZE_STRING); ?>
                 <!--Please enter the correct username and password.-->
             </div>
             <button class="w-100 btn button ps-5 pe-5 mb-3 " type="submit">Sign in</button>
@@ -38,7 +38,7 @@
             Forgot your password?
         </a>
         <?php if (isset($_SESSION['error']) && !empty($_SESSION['error'])) { ?>
-            <div class="error"><?php echo $_SESSION['error']; ?></div>
+            <div class="error"><?=filter_var($_SESSION['error'], FILTER_SANITIZE_STRING); ?></div>
         <?php unset($_SESSION['error']);
         } ?>
         <form class="dropdown-menu p-4" method="post" action="index.php?action=resetPassword">
