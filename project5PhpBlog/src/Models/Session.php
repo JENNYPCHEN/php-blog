@@ -20,11 +20,4 @@ class Session
             return false;
         }
     }
-    public static function dump()
-    {
-        if (isset($_SESSION)) {
-            print_r($_SESSION);
-            return;
-        }
-    }
 }

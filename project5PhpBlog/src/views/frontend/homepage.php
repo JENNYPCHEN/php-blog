@@ -1,5 +1,6 @@
 <?php $title = 'ChingYi P.C | Personal Blog'; ?>
-<?php ob_start(); ?>
+<?php ob_start(); 
+use App\Models\Session;?>
 
 <!--banner-->
 <div class="pb-4 "><img class="img-fluid" src="public/img/sea.png" alt="banner" /></div>
@@ -59,13 +60,13 @@
         <div class="p-4">
           <form action="index.php?action=contact" method="post">
             <h3 class="cardtitle text-center"> Contact </h3>
-            <?php if (isset($_SESSION['error']) && !empty($_SESSION['error'])) { ?>
-              <div class="error"><?= filter_var($_SESSION['error'], FILTER_SANITIZE_STRING); ?></div>
-            <?php unset($_SESSION['error']);
+            <?php if (!empty(Session::get('error'))) { ?>
+              <div class="error"><?= filter_var(Session::get('error'), FILTER_SANITIZE_STRING); ?></div>
+            <?php Session::del('error');
             } ?>
-            <?php if (isset($_SESSION['success_message']) && !empty($_SESSION['success_message'])) { ?>
-              <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?= filter_var($_SESSION['success_message'], FILTER_SANITIZE_STRING); ?></div>
-            <?php unset($_SESSION['success_message']);
+            <?php if (!empty(Session::get('success_message'))) { ?>
+              <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?= filter_var(Session::get('success_message'), FILTER_SANITIZE_STRING); ?></div>
+            <?php Session::del('success_message');
             } ?>
             <div class="row needs-validation">
               <div class="col">

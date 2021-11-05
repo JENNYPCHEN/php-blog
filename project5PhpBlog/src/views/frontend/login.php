@@ -1,13 +1,14 @@
-<?php session_start(); ?>
+<?php session_start(); 
+use App\Models\Session;?>
 <?php $title = 'ChingYi P.C | Personal Blog | login'; ?>
 <?php ob_start(); ?>
 <!--background-->
 <div style="background-image: url('public/img/sea.png');">
     <!--login-->
-    <?php if (isset($_SESSION['successmessage']) && !empty($_SESSION['successmessage'])) { ?>
-        <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?=filter_var($_SESSION['successmessage'], FILTER_SANITIZE_STRING); ?></div>
+    <?php if (!empty(Session::get('successmessage'))) { ?>
+        <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?=filter_var(Session::get('successmessage'), FILTER_SANITIZE_STRING); ?></div>
     <?php
-        unset($_SESSION['successmessage']);
+        Session::del('successmessage');
     }
     ?>
     <form class="ms-5 me-5 needs-validation" action="index.php?action=login" method="post">
@@ -37,9 +38,9 @@
         <a class="btn fs-6 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Forgot your password?
         </a>
-        <?php if (isset($_SESSION['error']) && !empty($_SESSION['error'])) { ?>
-            <div class="error"><?=filter_var($_SESSION['error'], FILTER_SANITIZE_STRING); ?></div>
-        <?php unset($_SESSION['error']);
+        <?php if (!empty(Session::get('error'))) { ?>
+            <div class="error"><?=filter_var(Session::get('error'), FILTER_SANITIZE_STRING); ?></div>
+        <?php Session::del('error');
         } ?>
         <form class="dropdown-menu p-4" method="post" action="index.php?action=resetPassword">
             <div class="mb-3 blogtext">
