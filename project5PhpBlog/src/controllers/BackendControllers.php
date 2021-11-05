@@ -8,6 +8,7 @@ use App\Models\CommentManager;
 use App\Models\Posts;
 use App\Models\Comments;
 use App\Helpers\Helper;
+use App\Models\Session;
 
 class BackendControllers extends GeneralControllers
 {
@@ -23,7 +24,7 @@ class BackendControllers extends GeneralControllers
             echo 'Server problem.Please try again later';
         } else {
             session_start();
-            $_SESSION['success_message'] = "Post is deleted successfully";
+            Session::set('success_message',"Post is deleted successfully");
             header('Location: index.php?action=dashboard');
             exit();
         }
@@ -62,7 +63,7 @@ class BackendControllers extends GeneralControllers
             echo 'Server problem.Please try again later';
         } else {
             session_start();
-            $_SESSION['success_message'] = "Post is updated successfully";
+            Session::set('success_message', "Post is updated successfully");
             header('Location: index.php?action=dashboard');
         }
     }
@@ -110,7 +111,7 @@ class BackendControllers extends GeneralControllers
             echo 'Server problem.Please try again later';
         } else {
             session_start();
-            $_SESSION['success_message'] = "comment is validated successfully";
+            Session::set('success_message',"comment is validated successfully");
             header('Location: index.php?action=dashboard');
         }
     }
@@ -122,7 +123,7 @@ class BackendControllers extends GeneralControllers
             echo 'Server problem.Please try again later';
         } else {
             session_start();
-            $_SESSION['success_message'] = "Comment is deleted successfully";
+            Session::set('success_message',"Comment is deleted successfully");
             header('Location: index.php?action=dashboard');
             exit();
         }
@@ -135,7 +136,7 @@ class BackendControllers extends GeneralControllers
             echo 'Server problem.Please try again later';
         } else {
             session_start();
-            $_SESSION['success_message'] = "User is deleted successfully";
+            Session::set('success_message',"User is deleted successfully");
             header('Location: index.php?action=dashboard');
         }
     }
@@ -147,7 +148,7 @@ class BackendControllers extends GeneralControllers
             echo 'Server problem.Please try again later';
         } else {
             session_start();
-            $_SESSION['success_message'] = "User role is modified successfully";
+            Session::set('success_message',"User role is modified successfully");
             header('Location: index.php?action=dashboard');
         }
     }
