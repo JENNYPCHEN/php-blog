@@ -35,7 +35,7 @@
         <nav aria-label="Page navigation">
           <ul class="pagination">
          <?php for ($page=1;$page<=$number_of_pages;$page++) { ?>
-            <li class="page-item"><a class="page-link" name="page" href="index.php?search=<?=filter_var($keyword, FILTER_SANITIZE_STRING)?>&amp;page=<?=$page?>"><?=$page?></a></li>
+            <li class="page-item"><a class="page-link" name="page" href="index.php?search=<?=filter_var($keyword, FILTER_SANITIZE_STRING)?>&amp;page=<?=filter_var($page, FILTER_SANITIZE_STRING)?>"><?=filter_var($page, FILTER_SANITIZE_STRING)?></a></li>
          <?php } ?>
           </ul>
         </nav>
@@ -64,27 +64,27 @@
             <?php unset($_SESSION['error']);
             } ?>
             <?php if (isset($_SESSION['success_message']) && !empty($_SESSION['success_message'])) { ?>
-              <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?=htmlspecialchars($_SESSION['success_message']); ?></div>
+              <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?=filter_var($_SESSION['success_message'], FILTER_SANITIZE_STRING); ?></div>
             <?php unset($_SESSION['success_message']);
             } ?>
             <div class="row needs-validation">
               <div class="col">
                 <label for="first-name" class="form-label">First name</label>
-                <input class="form-control" type="text" id="first-name" name="firstName" value="<?= $mail['firstName'] ?>" required />
+                <input class="form-control" type="text" id="first-name" name="firstName" value="<?= filter_var($mail['firstName'], FILTER_SANITIZE_STRING); ?>" required />
               </div>
               <div class="col">
                 <label for="last-name" class="form-label">Last name</label>
-                <input class="form-control" type="text" id="last-name" name="lastName" value="<?= $mail['lastName'] ?>" required />
+                <input class="form-control" type="text" id="last-name" name="lastName" value="<?= filter_var($mail['lastName'] , FILTER_SANITIZE_STRING);?>" required />
               </div>
             </div>
             <div class="row">
               <div class="col">
                 <label for="email" class="form-label">Email</label>
-                <input class="form-control" type="email" id="email" name="email" value="<?= $mail['email'] ?>" required />
+                <input class="form-control" type="email" id="email" name="email" value="<?= filter_var($mail['email'], FILTER_SANITIZE_STRING); ?>" required />
               </div>
               <div class="col">
                 <label for="subject" class="form-label">Subject</label>
-                <input class="form-control" type="text" id="subject" name="subject" value="<?= $mail['subject'] ?>" required />
+                <input class="form-control" type="text" id="subject" name="subject" value="<?= filter_var($mail['subject'] , FILTER_SANITIZE_STRING);?>" required />
               </div>
             </div>
             <div class="row">
