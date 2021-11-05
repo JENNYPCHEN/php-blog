@@ -1,10 +1,11 @@
-<?php session_start(); ?>
+<?php session_start(); 
+use App\Models\Session;?>
 <?php ob_start(); ?>
 
-<?php if (isset($_SESSION['success_message']) && !empty($_SESSION['success_message'])) { ?>
-    <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?= filter_var($_SESSION['success_message'], FILTER_SANITIZE_STRING) ?></div>
+<?php if (!empty(Session::get('success_message'))) { ?>
+    <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?= filter_var(Session::get('success_message'), FILTER_SANITIZE_STRING) ?></div>
 <?php
-    unset($_SESSION['success_message']);
+    Session::del('success_message');
 }
 ?>
 <!--statistic-->
