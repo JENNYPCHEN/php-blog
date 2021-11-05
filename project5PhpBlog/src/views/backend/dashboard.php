@@ -2,7 +2,7 @@
 <?php ob_start(); ?>
 
 <?php if (isset($_SESSION['success_message']) && !empty($_SESSION['success_message'])) { ?>
-    <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?php echo $_SESSION['success_message']; ?></div>
+    <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?= filter_var($_SESSION['success_message'], FILTER_SANITIZE_STRING) ?></div>
 <?php
     unset($_SESSION['success_message']);
 }
@@ -10,13 +10,13 @@
 <!--statistic-->
 <div class=" d-flex justify-content-between card-group border-light mb-3">
     <div class="card">
-        <h5 class="card-body card-title fs-6"><i class="fas fa-mail-bulk"></i> <?= $postManager->counter($keyword); ?> Publications</h5>
+        <h5 class="card-body card-title fs-6"><i class="fas fa-mail-bulk"></i> <?= filter_var($postManager->counter($keyword), FILTER_SANITIZE_STRING); ?> Publications</h5>
     </div>
     <div class="card">
-        <h5 class="card-body card-title fs-6"><i class="far fa-user"></i> <?= $userManager->counter(); ?> Users</h5>
+        <h5 class="card-body card-title fs-6"><i class="far fa-user"></i> <?= filter_var($userManager->counter(), FILTER_SANITIZE_STRING); ?> Users</h5>
     </div>
     <div class="card">
-        <h5 class="card-body card-title fs-6"><i class="far fa-comments"></i> <?= $commentManager->counter(); ?> Comments</h5>
+        <h5 class="card-body card-title fs-6"><i class="far fa-comments"></i> <?= filter_var($commentManager->counter(), FILTER_SANITIZE_STRING); ?> Comments</h5>
     </div>
 </div>
 <!--Post-->
@@ -37,15 +37,15 @@
         <tbody>
             <?php foreach ($posts as $post) { ?>
                 <tr>
-                    <th scope="row"><?php echo $post->getId(); ?></th>
-                    <td class="tabled"><?php echo $post->getTitle(); ?></td>
-                    <td class="tabled"><?php echo substr($post->getContent(), 0, 50) ?></td>
-                    <td class="tabled"><?= $post->getCategory() ?></td>
-                    <td class="tabled"><?php echo $post->getCreationDate() ?></td>
+                    <th scope="row"><?=filter_var($post->getId(), FILTER_SANITIZE_STRING); ?></th>
+                    <td class="tabled"><?=filter_var($post->getTitle(), FILTER_SANITIZE_STRING); ?></td>
+                    <td class="tabled"><?=substr($post->getContent(), 0, 50) ?></td>
+                    <td class="tabled"><?=filter_var($post->getCategory(), FILTER_SANITIZE_STRING)  ?></td>
+                    <td class="tabled"><?=filter_var($post->getCreationDate(), FILTER_SANITIZE_STRING) ?></td>
                     <td>
-                        <a href="index.php?action=post&id=<?= $post->getId(); ?>" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-sm button2 m-1">View</button></a>
-                        <a href="index.php?action=editPage&id=<?= $post->getId(); ?>"><button type="button" class="btn btn-sm button2 m-1">Edit</button></a>
-                        <form method="post" action="index.php?action=deletePost&id=<?= $post->getId(); ?>" style="display:inline-block" onclick="return confirm('Are you sure to delete?')"><input name="id" type="hidden" value="<?= $post->getId(); ?>"><button type="submit" class="btn  btn-sm btn-danger m-1">Delete</button></form>
+                        <a href="index.php?action=post&id=<?=filter_var($post->getId(), FILTER_SANITIZE_STRING); ?>" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-sm button2 m-1">View</button></a>
+                        <a href="index.php?action=editPage&id=<?=filter_var($post->getId(), FILTER_SANITIZE_STRING); ?>"><button type="button" class="btn btn-sm button2 m-1">Edit</button></a>
+                        <form method="post" action="index.php?action=deletePost&id=<?=filter_var($post->getId(), FILTER_SANITIZE_STRING); ?>" style="display:inline-block" onclick="return confirm('Are you sure to delete?')"><input name="id" type="hidden" value="<?=filter_var($post->getId(), FILTER_SANITIZE_STRING); ?>"><button type="submit" class="btn  btn-sm btn-danger m-1">Delete</button></form>
                     </td>
                 </tr>
             <?php } ?>
@@ -56,7 +56,7 @@
 <nav aria-label="Page navigation">
     <ul class="pagination">
         <?php for ($page = 1; $page <= $number_of_pages; $page++) { ?>
-            <li class="page-item"><a class="page-link" name="page" href="index.php?action=dashboard&amp;page=<?= $page ?>"><?= $page ?></a></li>
+            <li class="page-item"><a class="page-link" name="page" href="index.php?action=dashboard&amp;page=<?=filter_var($page, FILTER_SANITIZE_STRING)?>"><?=filter_var($page, FILTER_SANITIZE_STRING)?></a></li>
         <?php } ?>
     </ul>
 </nav>
@@ -65,15 +65,15 @@
 <h2 class="mb-3 m-1  admin-title" id="comments">Comments</h2>
 <?php foreach ($comments as $comment) { ?>
     <div class="card m-1 mb-3">
-        <p class="card-text m-1"><?= htmlspecialchars($comment->getComment()) ?></p>
+        <p class="card-text m-1"><?=filter_var($comment->getComment(), FILTER_SANITIZE_STRING) ?></p>
         <div class="card-footer d-flex justify-content-between">
-            <span class="fs-6 m-1"><i class="fas fa-user"> </i><?= htmlspecialchars($comment->getAuthor()) ?> (User ID:<?= $comment->getUserId() ?>)</span>
+            <span class="fs-6 m-1"><i class="fas fa-user"> </i><?=filter_var($comment->getAuthor(), FILTER_SANITIZE_STRING) ?> (User ID:<?=filter_var($comment->getUserId(), FILTER_SANITIZE_STRING) ?>)</span>
             <span class="fs-6 m-1"><?= $comment->getCommentCreateDate() ?></span>
             <span class="fs-6 m-1"><?php if (empty($comment->getValid())) : ?>pending<?php elseif (!empty($comment->getValid())) : ?>validated<?php endif; ?></span>
             <span class="fs-6 m-1 ">
-                <a method="post" href="index.php?action=post&id=<?= $comment->getPostId(); ?>" style="display:inline-block" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-sm button2">View</button></a>
-                <form method="post" action="index.php?action=validComment&id=<?= $comment->getId(); ?>" style="display:inline-block"><button type="submit" class="btn btn-sm button2">Valid</button></form>
-                <form method="post" action="index.php?action=deleteComment&id=<?= $comment->getId(); ?>" style="display:inline-block" onclick="return confirm('Are you sure to delete?')"><button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                <a method="post" href="index.php?action=post&id=<?=filter_var($comment->getPostId(), FILTER_SANITIZE_STRING); ?>" style="display:inline-block" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-sm button2">View</button></a>
+                <form method="post" action="index.php?action=validComment&id=<?= filter_var($comment->getId(), FILTER_SANITIZE_STRING); ?>" style="display:inline-block"><button type="submit" class="btn btn-sm button2">Valid</button></form>
+                <form method="post" action="index.php?action=deleteComment&id=<?= filter_var($comment->getId(), FILTER_SANITIZE_STRING); ?>" style="display:inline-block" onclick="return confirm('Are you sure to delete?')"><button type="submit" class="btn btn-sm btn-danger">Delete</button>
             </span></form>
         </div>
     </div>
@@ -82,7 +82,7 @@
 <nav aria-label="Page navigation">
     <ul class="pagination">
         <?php for ($commentPage = 1; $commentPage <= $number_comment_pages; $commentPage++) { ?>
-            <li class="page-item"><a class="page-link" name="commentPage" href="index.php?action=dashboard&amp;commentPage=<?= $commentPage ?>#comments"><?= $commentPage ?></a></li>
+            <li class="page-item"><a class="page-link" name="commentPage" href="index.php?action=dashboard&amp;commentPage=<?=filter_var($commentPage, FILTER_SANITIZE_STRING) ?>#comments"><?=filter_var($commentPage, FILTER_SANITIZE_STRING) ?></a></li>
         <?php } ?>
     </ul>
 </nav>
@@ -103,18 +103,18 @@
         <?php foreach ($users as $user) { ?>
             <tbody>
                 <tr>
-                    <th scope="row"><?= $user->getId() ?></th>
+                    <th scope="row"><?= filter_var($user->getId(), FILTER_SANITIZE_STRING) ?></th>
                     <td><?php if ($user->getUserTypeId() == 1) {
                             echo "administrator";
                         } else {
                             echo "normal user";
                         } ?></td>
-                    <td><?= $user->getUserName() ?></td>
-                    <td><?= $user->getEmail(); ?></td>
-                    <td><?= $user->getDateCreate(); ?></td>
+                    <td><?= filter_var($user->getUserName(), FILTER_SANITIZE_STRING) ?></td>
+                    <td><?= filter_var($user->getEmail(), FILTER_SANITIZE_STRING); ?></td>
+                    <td><?= filter_var($user->getDateCreate(), FILTER_SANITIZE_STRING); ?></td>
                     <td>
-                        <form method="post" action="index.php?action=editUserRole&id=<?= $user->getId(); ?>" style="display:inline-block"><button type="submit" class="btn btn-sm button2 m-1">Edit role</button></form>
-                        <form method="post" action="index.php?action=deleteUser&id=<?= $user->getId(); ?>" style="display:inline-block" onclick="return confirm('Are you sure to delete?')"><button type="submit" class="btn btn-sm btn-danger m-1">Delete</button></form>
+                        <form method="post" action="index.php?action=editUserRole&id=<?= filter_var($user->getId(), FILTER_SANITIZE_STRING) ?>" style="display:inline-block"><button type="submit" class="btn btn-sm button2 m-1">Edit role</button></form>
+                        <form method="post" action="index.php?action=deleteUser&id=<?= filter_var($user->getId(), FILTER_SANITIZE_STRING) ?>" style="display:inline-block" onclick="return confirm('Are you sure to delete?')"><button type="submit" class="btn btn-sm btn-danger m-1">Delete</button></form>
                     </td>
                 </tr>
             </tbody>
@@ -125,7 +125,7 @@
 <nav aria-label="Page navigation">
     <ul class="pagination">
         <?php for ($userPage=1; $userPage <= $number_user_pages; $userPage++) { ?>
-            <li class="page-item"><a class="page-link" name="userPage" href="index.php?action=dashboard&amp;userPage=<?= $userPage ?>#users"><?= $userPage ?></a></li>
+            <li class="page-item"><a class="page-link" name="userPage" href="index.php?action=dashboard&amp;userPage=<?=filter_var($userPage, FILTER_SANITIZE_STRING)?>#users"><?=filter_var($userPage, FILTER_SANITIZE_STRING)?></a></li>
         <?php } ?>
     </ul>
 </nav>
