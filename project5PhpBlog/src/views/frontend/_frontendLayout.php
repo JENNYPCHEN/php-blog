@@ -4,7 +4,7 @@
 <head>
     <meta charset=utf-8>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?= htmlspecialchars($title) ?></title>
+    <title><?= filter_var($title, FILTER_SANITIZE_STRING); ?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -53,7 +53,7 @@
     <?php if(!isset($_SESSION['username'])) : ?>
     <div class="text-center d-block d-lg-none link "><a href="index.php?action=loginpage" title="Please login so that you can leave your comments"><i class="fas fa-sign-in-alt"></i> Signup/Login</a></div>
     <?php else : ?>
-        <div class="text-center d-block d-lg-none link cardtitle "><i class="fas fa-heart" style="color:#eededa"></i>&nbsp;Hi. <?=htmlspecialchars($_SESSION['username']) ?>&nbsp;<i class="fas fa-heart" style="color:#eededa"></i></div>
+        <div class="text-center d-block d-lg-none link cardtitle "><i class="fas fa-heart" style="color:#eededa"></i>&nbsp;Hi. <?=filter_var($_SESSION['username'], FILTER_SANITIZE_STRING); ?>&nbsp;<i class="fas fa-heart" style="color:#eededa"></i></div>
         <div class="text-center d-block d-lg-none link "><a href="index.php?action=logout"><i class="fas fa-sign-in-alt"></i> Logout</a></div>
         <?php endif; ?>
         <nav class="navbar navbar-expand-lg navbar-light border-top border-bottom border-light link sticky-top navcolor">
