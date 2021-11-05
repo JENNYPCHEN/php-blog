@@ -11,7 +11,7 @@
         </div>
         <div class="m-3 blogtext">
             <label for="post_title" class="form-label">Category</label>
-            <input type="text" class="form-control" name="category" placeholder="Category" value="<?php echo $post['category'] ?>" required>
+            <input type="text" class="form-control" name="category" placeholder="Category" required>
         </div>
         <div class="m-3 blogtext">
             <label for="headline" class="form-label">Headline</label>
@@ -26,7 +26,7 @@
             <label for="upload_image" class="form-label">Upload Image</label>
             <input class="form-control" type="file" name="image" id="upload_image">
             <div class="error">
-                <?php echo $error ?>
+                <?=filter_var($error, FILTER_SANITIZE_STRING);?>
             </div>
         </div>
         <button type="submit" class="btn button2 m-3">Publish</button>
