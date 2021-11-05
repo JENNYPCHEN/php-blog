@@ -68,7 +68,7 @@
         <p class="card-text m-1"><?=filter_var($comment->getComment(), FILTER_SANITIZE_STRING) ?></p>
         <div class="card-footer d-flex justify-content-between">
             <span class="fs-6 m-1"><i class="fas fa-user"> </i><?=filter_var($comment->getAuthor(), FILTER_SANITIZE_STRING) ?> (User ID:<?=filter_var($comment->getUserId(), FILTER_SANITIZE_STRING) ?>)</span>
-            <span class="fs-6 m-1"><?= $comment->getCommentCreateDate() ?></span>
+            <span class="fs-6 m-1"><?=filter_var($comment->getCommentCreateDate(), FILTER_SANITIZE_STRING) ?></span>
             <span class="fs-6 m-1"><?php if (empty($comment->getValid())) : ?>pending<?php elseif (!empty($comment->getValid())) : ?>validated<?php endif; ?></span>
             <span class="fs-6 m-1 ">
                 <a method="post" href="index.php?action=post&id=<?=filter_var($comment->getPostId(), FILTER_SANITIZE_STRING); ?>" style="display:inline-block" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-sm button2">View</button></a>
@@ -105,9 +105,9 @@
                 <tr>
                     <th scope="row"><?= filter_var($user->getId(), FILTER_SANITIZE_STRING) ?></th>
                     <td><?php if ($user->getUserTypeId() == 1) {
-                            echo "administrator";
+                            print_r ("administrator");
                         } else {
-                            echo "normal user";
+                            print_r ("normal user");
                         } ?></td>
                     <td><?= filter_var($user->getUserName(), FILTER_SANITIZE_STRING) ?></td>
                     <td><?= filter_var($user->getEmail(), FILTER_SANITIZE_STRING); ?></td>
