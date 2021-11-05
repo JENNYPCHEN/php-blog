@@ -1,5 +1,6 @@
 # php-blog
 <a href="https://codeclimate.com/github/JENNYPCHEN/php-blog/maintainability"><img src="https://api.codeclimate.com/v1/badges/8d31f64570610b543924/maintainability" /></a>
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d6dd636e97d6458e928aa8896b54ff50)](https://www.codacy.com/gh/JENNYPCHEN/php-blog/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JENNYPCHEN/php-blog&amp;utm_campaign=Badge_Grade)
 
 Hi there,
 
