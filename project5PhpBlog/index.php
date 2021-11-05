@@ -7,6 +7,7 @@ use App\Controllers\UsersControllers;
 use App\Controllers\FrontendControllers;
 use App\Controllers\BackendControllers;
 use App\Controllers\MailControllers;
+use App\Models\Session;
 use Dotenv\Dotenv;
 $dotenv= Dotenv::createImmutable(__DIR__."/vendor");
 $dotenv->load();
@@ -18,7 +19,7 @@ try {
         } elseif ($_GET['action'] == 'signuppage') {
             $FrontControllers = new FrontendControllers();
             $FrontControllers->signupPage();
-        } elseif ($_GET['action'] == 'dashboard' && $_SESSION['user_type_id'] == 1) {
+        } elseif ($_GET['action'] == 'dashboard' && Session::get("user_type_id") == 1) {
             $BackendControllers = new BackendControllers();
             $BackendControllers->dashboardPage();
         } elseif ($_GET['action'] == 'editPage') {
@@ -44,7 +45,7 @@ try {
                     'post_id' => filter_var($_GET['id'], FILTER_SANITIZE_STRING),
                     'author' => trim($_POST['author']),
                     'comment' => trim($_POST['comment']),
-                    'user_id' => filter_var($_SESSION['id'], FILTER_SANITIZE_NUMBER_INT),
+                    'user_id' => filter_var(Session::get('id'), FILTER_SANITIZE_NUMBER_INT),
                 ];
                 $FrontendControllers = new FrontendControllers();
                 $FrontendControllers->addComment($comment);
@@ -101,7 +102,7 @@ try {
                 'category' =>filter_var($_POST['category'], FILTER_SANITIZE_STRING),
                 'chapo' => filter_var($_POST['chapo'], FILTER_SANITIZE_STRING),
                 'content' => $_POST['content'],
-                'user_id' =>filter_var($_SESSION['id'], FILTER_SANITIZE_NUMBER_INT),
+                'user_id' =>filter_var(Session::get('id'), FILTER_SANITIZE_NUMBER_INT),
                 'image' => $_FILES["image"] ?? '',
             ];
             $BackendControllers = new BackendControllers();

@@ -89,10 +89,10 @@ class Mails extends Blogs
             $mail->Body = $body;
             $mail->send();
             session_start();
-            $_SESSION['success_message'] = "Your contact form is sent successfully.Thank you for contacting us.";
+            Session::set('success_message',"Your contact form is sent successfully.Thank you for contacting us.");
         } catch (Exception $e) {
             session_start();
-            $_SESSION['error'] = "Oops, something went wrong. Please try again later.";
+            Session::set('error',"Oops, something went wrong. Please try again later.");
         }
     }
     function sendResetPasswordEmail($user){
@@ -119,10 +119,10 @@ class Mails extends Blogs
             $mail->Body = $body;
             $mail->send();
             session_start();
-            $_SESSION['successmessage'] = "We have sent you an Email to reset the password. Please check your mail box.";
+            Session::set('successmessage',"We have sent you an Email to reset the password. Please check your mail box.");
         } catch (Exception $e) {
             session_start();
-            $_SESSION['error'] = "Oops, something went wrong. Please try again later.";
+            Session::set('error',"Oops, something went wrong. Please try again later.");
         }
 
 

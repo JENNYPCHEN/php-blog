@@ -64,7 +64,6 @@ class BackendControllers extends GeneralControllers
             session_start();
             $_SESSION['success_message'] = "Post is updated successfully";
             header('Location: index.php?action=dashboard');
-            exit();
         }
     }
     function dashboardPage()
@@ -113,7 +112,6 @@ class BackendControllers extends GeneralControllers
             session_start();
             $_SESSION['success_message'] = "comment is validated successfully";
             header('Location: index.php?action=dashboard');
-            exit();
         }
     }
     function deleteComment($comment)
@@ -139,7 +137,6 @@ class BackendControllers extends GeneralControllers
             session_start();
             $_SESSION['success_message'] = "User is deleted successfully";
             header('Location: index.php?action=dashboard');
-            exit();
         }
     }
     function editUserRole($user)
@@ -152,7 +149,6 @@ class BackendControllers extends GeneralControllers
             session_start();
             $_SESSION['success_message'] = "User role is modified successfully";
             header('Location: index.php?action=dashboard');
-            exit();
         }
     }
 }

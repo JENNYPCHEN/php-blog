@@ -9,6 +9,7 @@ use App\Models\PostManager;
 use App\Models\CommentManager;
 use App\Models\Mails;
 use App\Models\Users;
+use App\Models\Session;
 use \PDO;
 
 
@@ -37,7 +38,7 @@ class UsersControllers extends GeneralControllers
                 require('src/views/frontend/signup.php');
             } else {
                 session_start();
-                $_SESSION['successmessage'] = "You have successfully signed up.Please login.";
+                Session::set("successmessage","You have successfully signed up.Please login.");
                 header('Location:index.php?action=loginpage');
                 exit();
             }
@@ -58,9 +59,9 @@ class UsersControllers extends GeneralControllers
             require('src/views/frontend/login.php');
         } elseif (empty($error) && password_verify($user['password'], $currentUserPassword) == true) {
             session_start();
-            $_SESSION['user_type_id'] = $currentUserTypeId;
-            $_SESSION['username'] = $currentUsername;
-            $_SESSION['id'] = $currentUserId;
+            Session::set('user_type_id',$currentUserTypeId);
+            Session::set('username', $currentUsername);
+            Session::set('id',$currentUserId);
             if ($currentUserTypeId !== 1) {
                 header('Location:index.php');
             } elseif ($currentUserTypeId == 1) {
@@ -72,9 +73,9 @@ class UsersControllers extends GeneralControllers
     function logout()
     {
         session_start();
-        unset($_SESSION['username']);
-        unset($_SESSION['user_type_id']);
-        unset($_SESSION['id']);
+        Session::del('username');
+        Session::del('user_type_id');
+        Session::del('id');
         session_destroy();
         header("location: index.php");
     }
@@ -89,9 +90,8 @@ class UsersControllers extends GeneralControllers
 
         if (empty($userUserName) && empty($userId)) {
             session_start();
-            $_SESSION['error'] = "Email does not exist.";
+            Session::set('error',"Email does not exist.");
             header('Location:index.php?action=loginpage');
-            exit();
         } else {
             $user->setResetToken(time() . password_hash($user->getEmail(), PASSWORD_BCRYPT));
 
@@ -110,15 +110,14 @@ class UsersControllers extends GeneralControllers
         $userResetToken = $userFromSystem->getResetToken();
         if (empty($userResetToken)) {
             session_start();
-            $_SESSION['error'] = "Email does not exist.";
+            Session::set('error',"Email does not exist.");
             header('Location:index.php?action=loginpage');
-            exit();
         }
         if (isset($userResetToken) && $userResetToken !== $user['reset_token']) {
             session_start();
-            $_SESSION['error'] = "Recovery email has been expired.";
+            Session::set('error',"Recovery email has been expired.");
             header('Location:index.php?action=loginpage');
-            exit();
+    
         } elseif ($userResetToken == $user['reset_token']) {
             require 'src/views/frontend/resetPassword.php';
         }
@@ -137,9 +136,9 @@ class UsersControllers extends GeneralControllers
             $resetUser = $userManager->newPassword($user);
             if (isset($resetUser)) {
                 session_start();
-                $_SESSION['successmessage'] = "Password has been reset successfully.";
+                Session::set('successmessage', "Password has been reset successfully.");
                 header('Location:index.php?action=loginpage');
-                exit();
+    
             } else {
                 $error = "Opps.Something went wrong. Please try again later";
                 require 'src/views/frontend/resetPassword.php';
