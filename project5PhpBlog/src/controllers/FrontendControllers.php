@@ -6,6 +6,7 @@ use App\Models\PostManager;
 use App\Models\UserManager;
 use App\Models\CommentManager;
 use App\Models\Comments;
+use App\Models\Session;
 
 class FrontendControllers
 {
@@ -38,12 +39,11 @@ class FrontendControllers
         $comment = new Comments($comment);
         $comments = $commentManager->createComment($comment);
         if ($comments === false) {
-            echo 'Server problem.Please try again later';
+    print_r('Server problem.Please try again later');
         } else {
             session_start();
-            $_SESSION['success_message'] = "Comment is sent successfully. It will be displayed once it is approved.";
+            Session::set("success_message", "Comment is sent successfully. It will be displayed once it is approved.");
             header('Location: index.php?action=post&id=' . $comment->getPostId());
-            exit();
         }
     }
 
