@@ -1,7 +1,8 @@
-<?php session_start(); ?>
-<?php $_SESSION['user_type_id']?>
-<?php $_SESSION['username'] ?>
-<?php $_SESSION['id'] ?>
+<?php session_start(); 
+use App\Models\Session;?>
+<?php Session::get('user_type_id')?>
+<?php Session::get('username') ?>
+<?php Session::get('id') ?>
 <?php $title = 'ChingYi P.C | Personal Blog | Dashboard'; ?>
 <!DOCTYPE html>
 <html>

@@ -1,4 +1,5 @@
-<?php session_start(); ?>
+<?php session_start(); 
+use App\Models\Session;?>
 <?php $title = 'ChingYi P.C | Personal Blog'; ?>
 <?php ob_start(); ?>
 <!--banner-->
@@ -28,19 +29,19 @@
                         <p class="blogtext"><?= $post->getContent(); ?></p>
                     </div>
                 </div>
-                <?php if (!empty($_SESSION['username'])) : ?>
+                <?php if (!empty(Session::get('username'))) : ?>
                     <!-- Leave comment-->
-                    <?php if (isset($_SESSION['success_message']) && !empty($_SESSION['success_message'])) { ?>
-                        <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?= filter_var($_SESSION['success_message'], FILTER_SANITIZE_STRING); ?></div>
+                    <?php if (!empty(Session::get('success_message'))) { ?>
+                        <div class="success-message" style="margin-bottom: 15px;font-size: 20px;color: green;"><?= filter_var(Session::get('success_message'), FILTER_SANITIZE_STRING); ?></div>
                     <?php
-                        unset($_SESSION['success_message']);
+                        Session::del('success_message');
                     }
                     ?>
                     <form method="post" action="index.php?action=leavecomment&amp;id=<?= filter_var($post->getId(), FILTER_SANITIZE_STRING); ?>">
                         <h3 class="cardtitle">Leave a comment</h3>
                         <div class="row mb-3">
                             <div class="col-lg-12 mb-3">
-                                <input class="form-control" type="text" name="author" placeholder="Full Name e.g. Jason Doe" value="<?= filter_var($_SESSION['username'], FILTER_SANITIZE_STRING); ?>" required>
+                                <input class="form-control" type="text" name="author" placeholder="Full Name e.g. Jason Doe" value="<?= filter_var(Session::get('username'), FILTER_SANITIZE_STRING); ?>" required>
                             </div>
                             <div class="col-lg-12 mb-3">
                                 <textarea class="form-control" name="comment" rows="5" placeholder="Leave your comment" value="<?= filter_var($comment, FILTER_SANITIZE_STRING) ?>" required></textarea>
