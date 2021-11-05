@@ -78,7 +78,7 @@ try {
             $UsersControllers->logout();
         } elseif ($_GET['action'] == 'deletePost') {
             $post = [
-                'id' => $_GET['id'],
+                'id' => filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT),
             ];
             $BackendControllers = new BackendControllers();
             $BackendControllers->deletePost($post);
@@ -157,8 +157,8 @@ try {
         } elseif ($_GET['action'] == 'resetPasswordMail') {
             if (isset($_GET['email']) && (isset($_GET['reset_token']))) {
                 $user = [
-                    'email' => $_GET['email'],
-                    'reset_token' => $_GET['reset_token']
+                    'email' => htmlspecialchars($_GET['email']),
+                    'reset_token' => htmlspecialchars($_GET['reset_token'])
                 ];
                 $userControllers = new UsersControllers();
                 $userControllers->resetPassWordMailVerification($user);
