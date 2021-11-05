@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset=utf-8>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?= $title ?></title>
+    <title><?= htmlspecialchars($title) ?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Satisfy&amp;display=swap">
     <!-- theme stylesheet-->
-    <link rel="stylesheet" type="text/css" href="public/css/style.css?v=<?php echo time(); ?>" 
+    <link rel="stylesheet" type="text/css" href="public/css/style.css" 
     <!-- Font Awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!--tinyMCE-->
@@ -53,7 +53,7 @@
     <?php if(!isset($_SESSION['username'])) : ?>
     <div class="text-center d-block d-lg-none link "><a href="index.php?action=loginpage" title="Please login so that you can leave your comments"><i class="fas fa-sign-in-alt"></i> Signup/Login</a></div>
     <?php else : ?>
-        <div class="text-center d-block d-lg-none link cardtitle "><i class="fas fa-heart" style="color:#eededa"></i>&nbsp;Hi. <?=$_SESSION['username'] ?>&nbsp;<i class="fas fa-heart" style="color:#eededa"></i></div>
+        <div class="text-center d-block d-lg-none link cardtitle "><i class="fas fa-heart" style="color:#eededa"></i>&nbsp;Hi. <?=htmlspecialchars($_SESSION['username']) ?>&nbsp;<i class="fas fa-heart" style="color:#eededa"></i></div>
         <div class="text-center d-block d-lg-none link "><a href="index.php?action=logout"><i class="fas fa-sign-in-alt"></i> Logout</a></div>
         <?php endif; ?>
         <nav class="navbar navbar-expand-lg navbar-light border-top border-bottom border-light link sticky-top navcolor">
@@ -76,7 +76,7 @@
         </div>
     </nav>
 
-    <?php echo $content ?>
+    <?= $content ?>
 
     <!--footer-->
     <footer class="py-4"">
