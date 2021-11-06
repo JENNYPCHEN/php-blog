@@ -71,11 +71,11 @@ class Mails extends Blogs
         $mail = new PHPMailer($mail);
         try {
             $mail->isSMTP();
-            $mail->Host = $_ENV["MAIL_HOST"];
+            $mail->Host = filter_var($_ENV["MAIL_HOST"], FILTER_SANITIZE_STRING);
             $mail->SMTPAuth = true;
-            $mail->Port = $_ENV["MAIL_PORT"];
-            $mail->Username = $_ENV["MAIL_USERNAME"];
-            $mail->Password = $_ENV["MAIL_PASSWORD"];
+            $mail->Port = filter_var($_ENV["MAIL_PORT"], FILTER_SANITIZE_STRING);
+            $mail->Username = filter_var($_ENV["MAIL_USERNAME"], FILTER_SANITIZE_STRING);
+            $mail->Password = filter_var($_ENV["MAIL_PASSWORD"], FILTER_SANITIZE_STRING);
 
             $mail->setFrom('pelgrims.chenchingyi@gmail.com', 'ChingYi PC');
             $mail->addAddress($this->getEmail(), $this->getFirstName());
@@ -101,11 +101,12 @@ class Mails extends Blogs
         $userToken=$user->getResetToken();
         try {
             $mail->isSMTP();
-            $mail->Host = $_ENV["MAIL_HOST"];
+            $mail->Host = filter_var($_ENV["MAIL_HOST"], FILTER_SANITIZE_STRING);
             $mail->SMTPAuth = true;
-            $mail->Port = $_ENV["MAIL_PORT"];
-            $mail->Username = $_ENV["MAIL_USERNAME"];
-            $mail->Password = $_ENV["MAIL_PASSWORD"];
+            $mail->Port = filter_var($_ENV["MAIL_PORT"], FILTER_SANITIZE_STRING);
+            $mail->Username = filter_var($_ENV["MAIL_USERNAME"], FILTER_SANITIZE_STRING);
+            $mail->Password = filter_var($_ENV["MAIL_PASSWORD"], FILTER_SANITIZE_STRING);
+
 
             $mail->setFrom('pelgrims.chenchingyi@gmail.com', 'ChingYi PC');
             $mail->addAddress($user->getEmail(), $user->getFirstName());

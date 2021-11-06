@@ -32,7 +32,6 @@ class PostManager extends DatabaseManager
             $posts[] = new Posts($values);
         }
         return $posts;
-        echo var_dump($posts);
     }
 
     function getPost($postId)
