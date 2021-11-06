@@ -70,6 +70,10 @@ You can use the following administrator account to test the blog, or you could s
 Username: administratorSample<br>
 Password: Aa12345678<br>
 <br>
+<br>
+Username: NormalUser<br>
+Password: Aa12345678<br>
+<br>
 Enjoy!<br>
 <br>
 ChingYi P.C
