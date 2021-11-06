@@ -49,7 +49,7 @@ Create a new database and import the file P5_php_database.sql into the new datab
 Install Composer if you do not have it yet. All dependencies must be installed in a vendor directory.
 
 <h4>Step 4 .Env file</h4>
-Create an .env file and copy the text below into your file and modify it as required and place the file in the vendor folder.<br>
+Create an .env file and copy the variable names below into your file and add the variable data as required and place the file in the vendor folder.<br>
 <br>
 #SMTP configuration to send mail<br>
 MAIL_HOST = <br>
