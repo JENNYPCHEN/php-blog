@@ -69,7 +69,7 @@ class BackendControllers extends GeneralControllers
     }
     function dashboardPage()
     {
-        $keyword = $_GET['search'] ?? '';
+        $keyword = filter_var($_GET['search'], FILTER_SANITIZE_STRING) ?? '';
         $page = $_GET['page'] ?? 1;
         $commentPage = $_GET['commentPage'] ?? 1;
         $userPage = $_GET['userPage'] ?? 1;
@@ -95,7 +95,7 @@ class BackendControllers extends GeneralControllers
     {
 
         $postManager = new PostManager();
-        $post = $postManager->getPost($_GET['id']);
+        $post = $postManager->getPost(filter_var($_GET['id'], FILTER_SANITIZE_STRING));
         require('src/views/backend/updatePost.php');
     }
     function newPostPage()
