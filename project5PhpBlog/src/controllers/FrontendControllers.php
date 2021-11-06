@@ -15,7 +15,7 @@ class FrontendControllers
     public function listPosts()
     {
 
-        $keyword =htmlentities($_GET['search'], ENT_QUOTES, 'UTF-8')?? '';
+       $keyword =htmlentities($_GET['search'], ENT_QUOTES, 'UTF-8')?? '';
         $page = $_GET['page'] ?? 1;
         $postManager = new PostManager();
         $number_of_post_results = $postManager->counter($keyword);
@@ -28,8 +28,8 @@ class FrontendControllers
     {
         $postManager = new PostManager();
         $commentManager = new CommentManager();
-        $post = $postManager->getPost($_GET['id']);
-        $comments = $commentManager->getComments($_GET['id']);
+        $post = $postManager->getPost(filter_var($_GET['id'],FILTER_SANITIZE_STRING));
+        $comments = $commentManager->getComments(filter_var($_GET['id'],FILTER_SANITIZE_STRING));
         require('src/views/frontend/singlepost.php');
     }
 
