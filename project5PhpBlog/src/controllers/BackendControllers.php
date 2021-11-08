@@ -36,9 +36,17 @@ class BackendControllers extends GeneralControllers
         $targetFilePath = 'public/img/' . Helper::randomString(8) . '/' . $fileName;
         $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
         $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'svg');
+        
+
         if (!empty($fileName) && !empty($fileTmpPath)) {
             if (!empty($error = $this->imageVerification($fileType, $allowTypes))) {
-                require('src/views/backend/createPost.php');
+                if(empty($post['id'])){
+                    require('src/views/backend/createPost.php');
+                } else{
+                    session_start();
+                    Session::set('error', $error);
+                    header('Location: index.php?action=editPage&id='.filter_var($post['id'], FILTER_SANITIZE_STRING));
+                }
                 exit;
             } else {
                 mkdir(dirname(__DIR__ . '/../../' . $targetFilePath));

@@ -58,16 +58,16 @@ use App\Models\Session;?>
                     Posts
                 </a>
                 <ul class="dropdown-menu sidebardropdown" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#posts">Posts</a>
+                    <li><a class="dropdown-item" href="index.php?action=dashboard#posts">Posts</a>
                     </li>
                     <li><a class="dropdown-item" href="index.php?action=newPostPage">add a post</a>
                     </li>
                 </ul>
                 <li class="nav-item">
-                    <a class="nav-link pb-2" href="#comments">Comments</a>
+                    <a class="nav-link pb-2" href="index.php?action=dashboard#comments">Comments</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link pb-2" href="#users">Users</a>
+                    <a class="nav-link pb-2" href="index.php?action=dashboard#users">Users</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link pb-2 " href="index.php?action=logout">Logout</a>
