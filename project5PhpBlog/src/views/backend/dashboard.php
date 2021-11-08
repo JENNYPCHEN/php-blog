@@ -115,7 +115,7 @@ use App\Models\Session;?>
                     <td><?= filter_var($user->getDateCreate(), FILTER_SANITIZE_STRING); ?></td>
                     <td>
                         <form method="post" action="index.php?action=editUserRole&id=<?= filter_var($user->getId(), FILTER_SANITIZE_STRING) ?>" style="display:inline-block"><button type="submit" class="btn btn-sm button2 m-1">Edit role</button></form>
-                        <form method="post" action="index.php?action=deleteUser&id=<?= filter_var($user->getId(), FILTER_SANITIZE_STRING) ?>" style="display:inline-block" onclick="return confirm('Are you sure to delete?')"><button type="submit" class="btn btn-sm btn-danger m-1">Delete</button></form>
+                        <form method="post" action="index.php?action=deleteUser&id=<?= filter_var($user->getId(), FILTER_SANITIZE_STRING) ?>" style="display:inline-block" onclick="return confirm('Are you sure to delete? All the comments and posts from the user may be affected')"><button type="submit" class="btn btn-sm btn-danger m-1">Delete</button></form>
                     </td>
                 </tr>
             </tbody>

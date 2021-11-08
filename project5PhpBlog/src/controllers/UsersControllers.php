@@ -87,9 +87,9 @@ class UsersControllers extends GeneralControllers
 
     function findUserEmail($user)
     {
+
         $userManager = new UserManager();
         $user = $userManager->findUserEmail($user);
-
         $userUserName = $user->getUserName();
         $userId = $user->getId();
 

@@ -9,7 +9,8 @@ use App\Controllers\BackendControllers;
 use App\Controllers\MailControllers;
 use App\Models\Session;
 use Dotenv\Dotenv;
-$dotenv= Dotenv::createImmutable(__DIR__."/vendor");
+
+$dotenv = Dotenv::createImmutable(__DIR__ . "/vendor");
 $dotenv->load();
 try {
     if (isset($_GET['action'])) {
@@ -99,10 +100,10 @@ try {
         } elseif ($_GET['action'] == 'createPost') {
             $post = [
                 'title' => filter_var($_POST['title'], FILTER_SANITIZE_STRING),
-                'category' =>filter_var($_POST['category'], FILTER_SANITIZE_STRING),
+                'category' => filter_var($_POST['category'], FILTER_SANITIZE_STRING),
                 'chapo' => filter_var($_POST['chapo'], FILTER_SANITIZE_STRING),
                 'content' => $_POST['content'],
-                'user_id' =>filter_var(Session::get('id'), FILTER_SANITIZE_NUMBER_INT),
+                'user_id' => filter_var(Session::get('id'), FILTER_SANITIZE_NUMBER_INT),
                 'image' => $_FILES["image"] ?? '',
             ];
             $BackendControllers = new BackendControllers();
@@ -151,7 +152,7 @@ try {
             $MailControllers = new MailControllers();
             $MailControllers->sendMail($mail);
         } elseif ($_GET['action'] == 'resetPassword') {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_EMAIL);
             $user = ['email' => trim($_POST['email'])];
             $userControllers = new UsersControllers();
             $userControllers->findUserEmail($user);
@@ -167,13 +168,13 @@ try {
         } elseif ($_GET['action'] == 'newPassword') {
             if (isset($_POST['email']) && isset($_POST['reset_token']) && isset($_POST['password']) && isset($_POST['confirmPassword'])) {
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-                $user=[
-                    'email'=>trim($_POST['email']),
-                    'reset_token'=>trim($_POST['reset_token']),
-                    'password'=>trim($_POST['password']),
-                    'confirmPassword'=>trim($_POST['confirmPassword'])
+                $user = [
+                    'email' => trim($_POST['email']),
+                    'reset_token' => trim($_POST['reset_token']),
+                    'password' => trim($_POST['password']),
+                    'confirmPassword' => trim($_POST['confirmPassword'])
                 ];
-                $usersController=new UsersControllers();
+                $usersController = new UsersControllers();
                 $usersController->newPassword($user);
             }
         }
