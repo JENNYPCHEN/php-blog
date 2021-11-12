@@ -7,24 +7,25 @@
     <form method="post" enctype="multipart/form-data" action="index.php?action=createPost">
         <div class="m-3 blogtext">
             <label for="post_title" class="form-label">Title</label>
-            <input type="text" class="form-control" name="title" placeholder="Title" required>
+            <input type="text" class="form-control" value="<?=$post['title']?>" name="title" placeholder="Title" required>
         </div>
         <div class="m-3 blogtext">
             <label for="post_title" class="form-label">Category</label>
-            <input type="text" class="form-control" name="category" placeholder="Category" required>
+            <input type="text" class="form-control" name="category" value="<?=$post['category']?>"placeholder="Category" required>
         </div>
         <div class="m-3 blogtext">
-            <label for="headline" class="form-label">Headline</label>
-            <textarea type="text" class="form-control" name="chapo" rows="3" placeholder="Headline" required></textarea>
+            <label for="post_title" class="form-label">Headline</label>
+            <input type="text" class="form-control" name="chapo" value="<?=$post['chapo']?>" placeholder="Headline" required>
         </div>
+        
         
         <div class="m-3 blogtext">
             <label for="content" class="form-label">Content</label>
-            <textarea type="text" id="mytextarea" rows="10" name="content" required>Hello, World!</textarea>
+            <textarea type="text" id="mytextarea" rows="10" name="content" value="<?=$post['content']?>"required>Hello, World!</textarea>
         </div>
         <div class="m-3">
             <label for="upload_image" class="form-label">Upload Image</label>
-            <input class="form-control" type="file" name="image" id="upload_image">
+            <input class="form-control" type="file" name="image" id="upload_image" required>
             <div class="error">
                 <?=filter_var($error, FILTER_SANITIZE_STRING);?>
             </div>
