@@ -20,12 +20,12 @@ class PostManager extends DatabaseManager
 
 
        if (!empty($keyword)) {
-            $statement = $db->prepare('SELECT post.id, title, image,category, chapo, user_name, content, DATE_FORMAT(post.date_update,"%D %b %Y") AS update_date FROM `post`JOIN `user`WHERE USER.id = `post`.`user_id`AND content like :keyword GROUP BY post.id ORDER BY post.date_create DESC LIMIT :this_page_first_result, 5');
+            $statement = $db->prepare('SELECT post.id, title, image,category, chapo, user_name, content, DATE_FORMAT(date_update,"%D %b %Y") AS update_date FROM `post`JOIN `user`WHERE USER.id = `post`.`user_id`AND content like :keyword GROUP BY post.id ORDER BY post.date_update DESC LIMIT :this_page_first_result, 5');
             $statement->bindValue(":keyword", "%$keyword%");
             $statement->bindValue(":this_page_first_result", $this_page_first_result,PDO::PARAM_INT);
             $statement->execute();
         } else {
-            $statement = $db->prepare('SELECT post.id, title, image,category, chapo, user_name, content, DATE_FORMAT(post.date_update, "%D %b %Y") AS update_date FROM `post` JOIN `user` WHERE USER.id = `post`.`user_id` GROUP BY post.id ORDER BY post.date_create DESC LIMIT :thisPageFirstResult, 5');
+            $statement = $db->prepare('SELECT post.id, title, image,category, chapo, user_name, content, DATE_FORMAT(date_update, "%D %b %Y") AS update_date FROM `post` JOIN `user` WHERE USER.id = `post`.`user_id` GROUP BY post.id ORDER BY post.date_update DESC LIMIT :thisPageFirstResult, 5');
             $statement->bindValue(':thisPageFirstResult', $this_page_first_result, PDO::PARAM_INT);
             $statement->execute();
         }

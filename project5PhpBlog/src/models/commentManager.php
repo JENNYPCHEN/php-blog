@@ -37,7 +37,7 @@ class CommentManager extends DatabaseManager
         $db = $this->dbConnect();
         $this_page_first_result =$this->pagination($commentPage);
 
-        $statement = $db->PREPARE('SELECT `id`, `author`, `comment`,`post_id`,`user_id`, DATE_FORMAT(date_create, "%D %b %Y %H:%i") AS comment_creation_date, `valid` FROM COMMENT ORDER BY comment_creation_date DESC LIMIT :thisPageFirstResult, 5');
+        $statement = $db->PREPARE('SELECT `id`, `author`, `comment`,`post_id`,`user_id`, `valid`,DATE_FORMAT(`date_create`, "%D %b %Y %H:%i") AS comment_creation_date, `valid` FROM `COMMENT` ORDER BY `comment_creation_date` DESC LIMIT :thisPageFirstResult, 5');
         $statement->bindValue(':thisPageFirstResult', $this_page_first_result, PDO::PARAM_INT);
         $statement->execute();
         while ($values = $statement->fetch(PDO::FETCH_ASSOC)) {
