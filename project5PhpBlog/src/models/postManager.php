@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\models\DatabaseManager;
 use PDO;
+use App\Models\Session;
 
 
 
@@ -55,25 +56,28 @@ class PostManager extends DatabaseManager
     }
     function editPostAndImage($post)
     {
+        echo Session::get('id');
         $db = $this->dbConnect();
-        $statement = $db->prepare('UPDATE post SET `title` = :title,`category` = :category,`image` = :img,`chapo` = :headline, `content` = :content,`date_update` = NOW() WHERE `id` = :id');
+        $statement = $db->prepare('UPDATE post SET `title` = :title,`category` = :category,`image` = :img,`user_id` = :user_id,`chapo` = :headline,`content` = :content,`date_update` = NOW() WHERE `id` = :id');
         $statement->bindValue(':id', $post->getId());
         $statement->bindValue(':title', $post->getTitle());
         $statement->bindValue(':category', $post->getCategory());
         $statement->bindValue(':headline', $post->getChapo());
         $statement->bindValue(':content', $post->getContent());
+        $statement->bindValue(':user_id', $post->getUserId());
         $statement->bindValue(':img', $post->getImage());
         return $statement->execute();
     }
     function editPost($post)
-    {
+    {  
         $db = $this->dbConnect();
-        $statement = $db->prepare('UPDATE post SET `title` = :title,`category` = :category,`chapo` = :headline, `content` = :content,`date_update` = NOW() WHERE `id` = :id');
+        $statement = $db->prepare('UPDATE post SET `title` = :title,`category` = :category,`chapo` = :headline,`user_id` = :user_id, `content` = :content,`date_update` = NOW() WHERE `id` = :id');
         $statement->bindValue(':id', $post->getId());
         $statement->bindValue(':title', $post->getTitle());
         $statement->bindValue(':category', $post->getCategory());
         $statement->bindValue(':headline', $post->getChapo());
         $statement->bindValue(':content', $post->getContent());
+        $statement->bindValue(':user_id', $post->getUserId());
         return $statement->execute();
     }
     function createPost($post)

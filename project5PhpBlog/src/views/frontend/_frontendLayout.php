@@ -94,7 +94,7 @@ use App\Models\Session;?>
                     </ul>
                 </div>
             </div>
-            <div class="col-md-4 text-lg-right">
+            <div class="col-md-4 text-lg-right"><a class="name" title="exclusive for administrator"href="index.php?action=dashboard">dashbord</a>
             </div>
         </div>
         </div>

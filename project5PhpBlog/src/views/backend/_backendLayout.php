@@ -126,7 +126,7 @@ use App\Models\Session;?>
                     <h5 class="card-body card-title fs-6"><i class="far fa-comments"></i>  Comments</h5>
                 </div>-->
             </div>
-
+   
             <?=$content ?>
 
         </div>

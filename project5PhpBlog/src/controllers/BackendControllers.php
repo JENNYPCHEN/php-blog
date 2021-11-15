@@ -24,7 +24,7 @@ class BackendControllers extends GeneralControllers
             echo 'Server problem.Please try again later';
         } else {
             session_start();
-            Session::set('success_message',"Post is deleted successfully");
+            Session::set('success_message', "Post is deleted successfully");
             header('Location: index.php?action=dashboard');
             exit();
         }
@@ -36,16 +36,16 @@ class BackendControllers extends GeneralControllers
         $targetFilePath = 'public/img/' . Helper::randomString(8) . '/' . $fileName;
         $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
         $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'svg');
-        
+
 
         if (!empty($fileName) && !empty($fileTmpPath)) {
             if (!empty($error = $this->imageVerification($fileType, $allowTypes))) {
-                if(empty($post['id'])){
+                if (empty($post['id'])) {
                     require('src/views/backend/createPost.php');
-                } else{
+                } else {
                     session_start();
                     Session::set('error', $error);
-                    header('Location: index.php?action=editPage&id='.filter_var($post['id'], FILTER_SANITIZE_STRING));
+                    header('Location: index.php?action=editPage&id=' . filter_var($post['id'], FILTER_SANITIZE_STRING));
                 }
                 exit;
             } else {
@@ -119,7 +119,7 @@ class BackendControllers extends GeneralControllers
             echo 'Server problem.Please try again later';
         } else {
             session_start();
-            Session::set('success_message',"comment is validated successfully");
+            Session::set('success_message', "comment is validated successfully");
             header('Location: index.php?action=dashboard');
         }
     }
@@ -131,7 +131,7 @@ class BackendControllers extends GeneralControllers
             echo 'Server problem.Please try again later';
         } else {
             session_start();
-            Session::set('success_message',"Comment is deleted successfully");
+            Session::set('success_message', "Comment is deleted successfully");
             header('Location: index.php?action=dashboard');
             exit();
         }
@@ -144,7 +144,7 @@ class BackendControllers extends GeneralControllers
             echo 'Server problem.Please try again later';
         } else {
             session_start();
-            Session::set('success_message',"User is deleted successfully");
+            Session::set('success_message', "User is deleted successfully");
             header('Location: index.php?action=dashboard');
         }
     }
@@ -156,7 +156,7 @@ class BackendControllers extends GeneralControllers
             echo 'Server problem.Please try again later';
         } else {
             session_start();
-            Session::set('success_message',"User role is modified successfully");
+            Session::set('success_message', "User role is modified successfully");
             header('Location: index.php?action=dashboard');
         }
     }

@@ -3,7 +3,7 @@
     <div class="card rounded-0 border-0 bg-light mb-4 py-lg-4">
         <div class="card-body text-center link">
             <h2 class="cardtitle h3 mb-3">About me</h2><img class="circle mb-3" src="public/img/logo.png" alt="...">
-            <p class="text-small">Basé à Paris. Amateur de défis. Etudie actuellement "Développeur d'applications - PHP/Symfony" sur Openclassrooms. </p>
+            <p class="text-small">Ching Yi PELGRIMS CHEN<br>Basé à Paris. Amateur de défis. Etudie actuellement "Développeur d'applications - PHP/Symfony" sur Openclassrooms. </p>
             <a href="mailto:pelgrims.chenchingyi@gmail.com">pelgrim.chenchingyi@gmail.com</a>
             <ul class="list-inline small mb-0 text-dark">
                 <li class="list-inline-item"><a href="#"target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f" ></i></a></li>

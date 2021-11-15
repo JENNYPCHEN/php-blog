@@ -1,4 +1,5 @@
 <?php session_start();
+
 use App\Models\Session; ?>
 <?php $title = 'ChingYi P.C | Personal Blog | Dashboard'; ?>
 <?php ob_start(); ?>
@@ -28,12 +29,12 @@ use App\Models\Session; ?>
             <input class="form-control" type="file" name="image" id="upload_image">
             <?php if (!empty(Session::get('error'))) { ?>
                 <div class="error"> <?= filter_var(Session::get('error'), FILTER_SANITIZE_STRING) ?></div>
-                <?php
+            <?php
                 Session::del('error');
             }
-                ?>
-                </div>
-                <button type="submit" class="btn button2 m-3">Publish</button>
+            ?>
+        </div>
+        <button type="submit" class="btn button2 m-3">Publish</button>
     </form>
 </body>
 </div>

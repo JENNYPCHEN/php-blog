@@ -23,6 +23,9 @@ try {
         } elseif ($_GET['action'] == 'dashboard' && Session::get("user_type_id") == 1) {
             $BackendControllers = new BackendControllers();
             $BackendControllers->dashboardPage();
+        } elseif ($_GET['action'] == 'dashboard' && Session::get("user_type_id") !== 1) {
+            $FrontControllers = new FrontendControllers();
+            $FrontControllers->loginPage();
         } elseif ($_GET['action'] == 'editPage') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $BackendControllers = new BackendControllers();
@@ -93,6 +96,7 @@ try {
                     'chapo' => filter_var($_POST['chapo'], FILTER_SANITIZE_STRING),
                     'content' => $_POST['content'],
                     'image' => $_FILES['image'] ?? '',
+                    'user_id' => filter_var(Session::get('id'), FILTER_SANITIZE_NUMBER_INT)
                 ];
                 $BackendControllers = new BackendControllers;
                 $BackendControllers->NewOrUpdatePost($post);

@@ -21,6 +21,7 @@ use App\Models\Session;?>
                 <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?= filter_var($post->getUpdateDate(), FILTER_SANITIZE_STRING) ?></li>
               </ul>
               <h2 class="h3 mb-4"> <a class="d-block blogtitle" href="post.html"><?= filter_var($post->getTitle(), FILTER_SANITIZE_STRING); ?></a></h2>
+              <p class="blogtext "><?= substr($post->getChapo(), 0, 220) ?></p>
               <p class="blogtext "><?= substr($post->getContent(), 0, 220) ?></p>
               <a class="p-0 read-more-btn " href="index.php?action=post&amp;id=<?= filter_var($post->getId(), FILTER_SANITIZE_STRING); ?>"><span>Read more</span><i class="fas fa-long-arrow-alt-right"></i></a>
 
