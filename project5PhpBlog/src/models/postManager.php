@@ -56,7 +56,6 @@ class PostManager extends DatabaseManager
     }
     function editPostAndImage($post)
     {
-        echo Session::get('id');
         $db = $this->dbConnect();
         $statement = $db->prepare('UPDATE post SET `title` = :title,`category` = :category,`image` = :img,`user_id` = :user_id,`chapo` = :headline,`content` = :content,`date_update` = NOW() WHERE `id` = :id');
         $statement->bindValue(':id', $post->getId());
