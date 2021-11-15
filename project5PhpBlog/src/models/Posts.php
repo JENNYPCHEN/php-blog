@@ -17,6 +17,7 @@ class Posts extends Blogs
     private $user_id;
     private $image;
     private $counter;
+    private $update_date;
 
     public function setId($id)
     {
@@ -113,5 +114,14 @@ class Posts extends Blogs
     public function getCounter()
     {
         return $this->counter;
+    }
+
+    public function setUpdateDate($update_date)
+    {
+        $this->update_date = $update_date;
+    }
+    public function getUpdateDate()
+    {
+        return $this->update_date;
     }
 }

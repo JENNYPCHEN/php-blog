@@ -16,7 +16,7 @@ use App\Models\Session;?>
                         <ul class="list-inline">
                             <li class="list-inline-item mr-2 category font-weight-normal"> <?= filter_var($post->getCategory(), FILTER_SANITIZE_STRING); ?> </li>
                             <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?= filter_var($post->getUserName(), FILTER_SANITIZE_STRING); ?></li>
-                            <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?= filter_var($post->getCreationDate(), FILTER_SANITIZE_STRING); ?></li>
+                            <li class="list-inline-item mx-2 text-uppercase meta font-weight-normal"><?= filter_var($post->getUpdateDate(), FILTER_SANITIZE_STRING); ?></li>
                         </ul>
                     </div>
                     <div class="col-lg-12 text-center">

@@ -31,7 +31,7 @@ use App\Models\Session;?>
         <th scope="col">Title</th>
         <th scope="col">Content</th>
         <th scope="col">Category</th>
-        <th scope="col">Created Date</th>
+        <th scope="col">Updated Date</th>
         <th scope="col">Action</th>
         </tr>
         </thead>
@@ -42,7 +42,7 @@ use App\Models\Session;?>
                     <td class="tabled"><?=filter_var($post->getTitle(), FILTER_SANITIZE_STRING); ?></td>
                     <td class="tabled"><?=substr($post->getContent(), 0, 50) ?></td>
                     <td class="tabled"><?=filter_var($post->getCategory(), FILTER_SANITIZE_STRING)  ?></td>
-                    <td class="tabled"><?=filter_var($post->getCreationDate(), FILTER_SANITIZE_STRING) ?></td>
+                    <td class="tabled"><?=filter_var($post->getUpdateDate(), FILTER_SANITIZE_STRING) ?></td>
                     <td>
                         <a href="index.php?action=post&id=<?=filter_var($post->getId(), FILTER_SANITIZE_STRING); ?>" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-sm button2 m-1">View</button></a>
                         <a href="index.php?action=editPage&id=<?=filter_var($post->getId(), FILTER_SANITIZE_STRING); ?>"><button type="button" class="btn btn-sm button2 m-1">Edit</button></a>
