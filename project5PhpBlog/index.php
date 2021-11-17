@@ -12,6 +12,7 @@ use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable(__DIR__ . "/vendor");
 $dotenv->load();
+
 try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'loginpage') {
@@ -108,7 +109,7 @@ try {
                 'chapo' => filter_var($_POST['chapo'], FILTER_SANITIZE_STRING),
                 'content' => $_POST['content'],
                 'user_id' => filter_var(Session::get('id'), FILTER_SANITIZE_NUMBER_INT),
-                'image' => $_FILES["image"] ?? '',
+                'image' => $_FILES["image"],
             ];
             $BackendControllers = new BackendControllers();
             $BackendControllers->NewOrUpdatePost($post);

@@ -16,7 +16,6 @@ class PostManager extends DatabaseManager
         $posts = [];
         $db = $this->dbConnect();
         $this_page_first_result =$this->pagination($page);
-       /* $this_page_first_result =($page-1)*5;*/
 
 
        if (!empty($keyword)) {
