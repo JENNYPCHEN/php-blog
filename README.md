@@ -75,4 +75,10 @@ Password: Aa12345678<br>
 <br>
 Enjoy!<br>
 <br>
-ChingYi P.C
+<p> You can click the link below the have a better look of the project !</p>
+ <a href='http://blog.chingyipc.com/'>http://blog.chingyipc.com/</a>
+ </br>
+  </br>
+ <p>Have a lovely day</p>
+ <p>ChingYi P.C</p>
+ <a href='http://chingyipc.com/'>http://chingyipc.com/</a>
